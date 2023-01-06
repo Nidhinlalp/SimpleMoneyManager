@@ -15,7 +15,7 @@ class ScreenTransaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TransactionDb.instance.refresh;
+    TransactionDb.instance.refresh();
     CategoryDb.instance.refreshUI();
     return ValueListenableBuilder(
       valueListenable: transactionListNotifire,
@@ -35,7 +35,6 @@ class ScreenTransaction extends StatelessWidget {
             Color.fromARGB(255, 52, 141, 214),
             Color.fromARGB(255, 255, 255, 255),
           ],
-         
           child: Scaffold(
             appBar: AppBar(
               title: Center(
@@ -57,19 +56,19 @@ class ScreenTransaction extends StatelessWidget {
                   ),
                 ),
               ),
-               leading: const MenuBar(),
-        actions: [
-          IconButton(
-            onPressed: () {
-              //showSearch(context: context, delegate: SearchWidget());
-            },
-            icon: const Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
-          ),
-        ],
-        elevation: 0,
+              leading: const MenuBar(),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    //showSearch(context: context, delegate: SearchWidget());
+                  },
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+              elevation: 0,
             ),
             backgroundColor: Colors.transparent,
             body: SafeArea(
@@ -92,7 +91,6 @@ class ScreenTransaction extends StatelessWidget {
                                 width: double.infinity,
                                 decoration: const BoxDecoration(
                                   color: Colors.white30,
-                                 
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(
                                       50,
@@ -160,8 +158,6 @@ class ScreenTransaction extends StatelessWidget {
                                             ),
                                             radius: 25,
                                             backgroundColor: Colors.white30,
-            
-                                          
                                           ),
                                           CircleAvatar(
                                             child: Icon(
@@ -170,8 +166,6 @@ class ScreenTransaction extends StatelessWidget {
                                             ),
                                             radius: 25,
                                             backgroundColor: Colors.white30,
-            
-                                           
                                           ),
                                         ],
                                       ),
@@ -282,7 +276,7 @@ class ScreenTransaction extends StatelessWidget {
                             ),
                           ),
                         ),
-            
+
                         // resent transaction
                       ],
                     ),
@@ -406,7 +400,7 @@ class ScreenTransaction extends StatelessWidget {
               child: const Icon(
                 Icons.add,
               ),
-              backgroundColor: const  Color.fromARGB(255, 201, 122, 198),
+              backgroundColor: const Color.fromARGB(255, 201, 122, 198),
               foregroundColor: const Color.fromARGB(255, 10, 10, 10),
               splashColor: const Color.fromARGB(255, 245, 245, 245),
             ),

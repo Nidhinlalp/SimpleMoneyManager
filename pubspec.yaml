@@ -43,6 +43,7 @@ dependencies:
   animate_gradient: ^0.0.2
   flip_card: ^0.6.0
   google_fonts: ^3.0.1
+  
 
 dev_dependencies:
   build_runner: ^2.3.3

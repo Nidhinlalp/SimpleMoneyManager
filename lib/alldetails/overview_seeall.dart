@@ -32,6 +32,7 @@ class OverViewSeeAll extends StatelessWidget {
                       flex: 2,
                       onPressed: (context) {
                         TransactionDb.instance.deleteTransaction(value.id!);
+                        
                       },
                       backgroundColor: Colors.red,
                       foregroundColor: Colors.white,

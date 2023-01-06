@@ -33,6 +33,18 @@ class ExpenseCategoyList extends StatelessWidget {
                       icon: Icons.delete,
                       label: 'Delete',
                     ),
+                    SlidableAction(
+                      borderRadius: BorderRadius.circular(
+                        15.0,
+                      ),
+                      onPressed: (context) => (context) {},
+                      backgroundColor: const Color(
+                        0xFF0392CF,
+                      ),
+                      foregroundColor: Colors.white,
+                      icon: Icons.edit,
+                      label: 'Edit',
+                    ),
                   ],
                 ),
                 child: Padding(

@@ -19,7 +19,7 @@ class OverViewSeeAll extends StatelessWidget {
           return ListView.separated(
             padding: const EdgeInsets.all(20.0),
             itemBuilder: (ctx, index) {
-              final _value = newList[index].type==CategoryType.income?newList[index]:newList[0];
+              final _value = newList[index];
               return Slidable(
                 key: Key(_value.id!),
                 endActionPane: ActionPane(

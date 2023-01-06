@@ -96,14 +96,15 @@ class ScreenTransaction extends StatelessWidget {
                               height: 340,
                               width: double.infinity,
                               decoration: const BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topRight,
-                                  end: Alignment.bottomLeft,
-                                  colors: [
-                                    Color.fromARGB(255, 146, 123, 176),
-                                    Color.fromARGB(255, 141, 85, 183),
-                                  ],
-                                ),
+                                color: Colors.white30,
+                                // gradient: LinearGradient(
+                                //   begin: Alignment.topRight,
+                                //   end: Alignment.bottomLeft,
+                                //   colors: [
+                                //     Colors.white30,
+                                //     Color.fromARGB(255, 200, 173, 220),
+                                //   ],
+                                // ),
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(
                                     50,
@@ -120,12 +121,7 @@ class ScreenTransaction extends StatelessWidget {
                                 ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Color.fromARGB(
-                                      255,
-                                      49,
-                                      44,
-                                      49,
-                                    ),
+                                    color: Color.fromARGB(255, 190, 115, 190),
                                     blurRadius: 20,
                                     spreadRadius: 1,
                                     offset: Offset.infinite,
@@ -169,25 +165,27 @@ class ScreenTransaction extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       children: const [
-                                        CircleAvatar(
+                                        CircleAvatar(child: Icon(Icons.arrow_downward,color: Colors.black,),
                                           radius: 25,
-                                          backgroundColor: Colors.teal,
-                                          child: CircleAvatar(
-                                            backgroundImage: AssetImage(
-                                              'assets/images/percent-down-line-icon-percentage-260nw-1075668071.webp',
-                                            ),
-                                            radius: 25,
-                                          ),
+                                          backgroundColor: Colors.white30,
+                                          
+                                          // child: CircleAvatar(
+                                          //   backgroundImage: AssetImage(
+                                          //     'assets/images/percent-down-line-icon-percentage-260nw-1075668071.webp',
+                                          //   ),
+                                          //   radius: 25,
+                                          // ),
                                         ),
-                                        CircleAvatar(
+                                       CircleAvatar(child: Icon(Icons.arrow_upward,color: Colors.black,),
                                           radius: 25,
-                                          backgroundColor: Colors.teal,
-                                          child: CircleAvatar(
-                                            backgroundImage: AssetImage(
-                                              'assets/images/up.webp',
-                                            ),
-                                            radius: 25,
-                                          ),
+                                          backgroundColor: Colors.white30,
+                                          
+                                          // child: CircleAvatar(
+                                          //   backgroundImage: AssetImage(
+                                          //     'assets/images/percent-down-line-icon-percentage-260nw-1075668071.webp',
+                                          //   ),
+                                          //   radius: 25,
+                                          // ),
                                         ),
                                       ],
                                     ),
@@ -196,54 +194,58 @@ class ScreenTransaction extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                       left: 12,
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: const [
-                                        Text(
-                                          'Income',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black,
-                                            fontSize: 20,
+                                    child: Expanded(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: const [
+                                          Text(
+                                            'Income',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                            ),
                                           ),
-                                        ),
-                                        Text(
-                                          'Expense',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black,
-                                            fontSize: 20,
+                                          Text(
+                                            'Expense',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(
                                       10.0,
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: const [
-                                        Text(
-                                          '₹ 50000',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black,
-                                            fontSize: 17,
+                                    child: Expanded(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: const [
+                                          Text(
+                                            '₹ 50000',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black,
+                                              fontSize: 17,
+                                            ),
                                           ),
-                                        ),
-                                        Text(
-                                          '₹ 2000',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black,
-                                            fontSize: 17,
+                                          Text(
+                                            '₹ 2000',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black,
+                                              fontSize: 17,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -265,7 +267,7 @@ class ScreenTransaction extends StatelessWidget {
                             );
                           },
                           child: Card(
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 208, 204, 204),
                             elevation: 10,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(

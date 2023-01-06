@@ -12,7 +12,10 @@ class MenuBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => IconButton(
-        icon: const Icon(Icons.menu_open),
+        icon: const Icon(
+          Icons.menu_open,
+          color: Colors.black,
+        ),
         onPressed: () => ZoomDrawer.of(context)!.toggle(),
       );
 }
@@ -35,44 +38,14 @@ class _ManuState extends State<ManuPage> {
       secondaryBegin: Alignment.bottomLeft,
       secondaryEnd: Alignment.topRight,
       primaryColors: const [
-        Color.fromARGB(
-          255,
-          90,
-          10,
-          86,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
-        Color.fromARGB(
-          255,
-          172,
-          160,
-          172,
-        ),
+        Color.fromARGB(255, 52, 141, 214),
+        Color.fromARGB(255, 255, 255, 255),
+        Color.fromARGB(255, 52, 141, 214),
       ],
       secondaryColors: const [
-        Color.fromARGB(
-          255,
-          172,
-          160,
-          172,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
+        Color.fromARGB(255, 255, 255, 255),
+        Color.fromARGB(255, 52, 141, 214),
+        Color.fromARGB(255, 255, 255, 255),
       ],
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -89,18 +62,8 @@ class _ManuState extends State<ManuPage> {
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [
-                      Color.fromARGB(
-                        255,
-                        172,
-                        160,
-                        172,
-                      ),
-                      Color.fromARGB(
-                        255,
-                        162,
-                        96,
-                        160,
-                      ),
+                      Color.fromARGB(255, 214, 202, 214),
+                      Color.fromARGB(255, 236, 133, 232),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(
@@ -150,18 +113,8 @@ class _ManuState extends State<ManuPage> {
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [
-                      Color.fromARGB(
-                        255,
-                        172,
-                        160,
-                        172,
-                      ),
-                      Color.fromARGB(
-                        255,
-                        162,
-                        96,
-                        160,
-                      ),
+                      Color.fromARGB(255, 214, 202, 214),
+                      Color.fromARGB(255, 236, 133, 232),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(
@@ -204,18 +157,8 @@ class _ManuState extends State<ManuPage> {
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [
-                      Color.fromARGB(
-                        255,
-                        172,
-                        160,
-                        172,
-                      ),
-                      Color.fromARGB(
-                        255,
-                        162,
-                        96,
-                        160,
-                      ),
+                      Color.fromARGB(255, 214, 202, 214),
+                      Color.fromARGB(255, 236, 133, 232),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(
@@ -258,18 +201,8 @@ class _ManuState extends State<ManuPage> {
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [
-                      Color.fromARGB(
-                        255,
-                        172,
-                        160,
-                        172,
-                      ),
-                      Color.fromARGB(
-                        255,
-                        162,
-                        96,
-                        160,
-                      ),
+                      Color.fromARGB(255, 214, 202, 214),
+                      Color.fromARGB(255, 236, 133, 232),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(
@@ -326,18 +259,8 @@ class _ManuState extends State<ManuPage> {
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [
-                      Color.fromARGB(
-                        255,
-                        172,
-                        160,
-                        172,
-                      ),
-                      Color.fromARGB(
-                        255,
-                        162,
-                        96,
-                        160,
-                      ),
+                      Color.fromARGB(255, 214, 202, 214),
+                      Color.fromARGB(255, 236, 133, 232),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(

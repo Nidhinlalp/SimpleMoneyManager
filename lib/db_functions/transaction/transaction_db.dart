@@ -12,6 +12,7 @@ abstract class TransactionDbFunctions{
 }
 
 
+  ValueNotifier<List<TransactionModel>>transactionListNotifire = ValueNotifier([]);
 class TransactionDb implements TransactionDbFunctions{
   TransactionDb._internal();
 
@@ -21,7 +22,6 @@ class TransactionDb implements TransactionDbFunctions{
     return instance;
   }
   
-  ValueNotifier<List<TransactionModel>>transactionListNotifire = ValueNotifier([]);
 
 
   @override

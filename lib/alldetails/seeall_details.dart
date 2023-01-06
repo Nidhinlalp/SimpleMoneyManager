@@ -26,215 +26,183 @@ class _SeeAllDetailsState extends State<SeeAllDetails>
   @override
   Widget build(BuildContext context) {
     return AnimateGradient(
-
-     primaryBegin: Alignment.topLeft,
+      primaryBegin: Alignment.topLeft,
       primaryEnd: Alignment.bottomLeft,
       secondaryBegin: Alignment.bottomLeft,
       secondaryEnd: Alignment.topRight,
       primaryColors: const [
-        Color.fromARGB(
-          255,
-          90,
-          10,
-          86,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
-        Color.fromARGB(
-          255,
-          172,
-          160,
-          172,
-        ),
+        Color.fromARGB(255, 52, 141, 214),
+        Color.fromARGB(255, 255, 255, 255),
+        Color.fromARGB(255, 52, 141, 214),
       ],
       secondaryColors: const [
-        Color.fromARGB(
-          255,
-          172,
-          160,
-          172,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
+        Color.fromARGB(255, 255, 255, 255),
+        Color.fromARGB(255, 52, 141, 214),
+        Color.fromARGB(255, 255, 255, 255),
       ],
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            SliverAppBar(
-              actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.search,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              SliverAppBar(
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.search,color: Colors.black,
+                    ),
+                  ),
+                ],
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                expandedHeight: 240,
+                flexibleSpace: FlexibleSpaceBar(
+                  title: const Text(
+                    'My Transaction',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  background: Image.asset(
+                    'assets/images/mytransaction.gif',
+                  ),
+                ),
+                floating: true,
+                snap: true,
+                pinned: true,
+              ),
+              // Container(height: 90,color: Colors.black,)
+            ],
+            body: Column(
+              children: [
+                const SizedBox(height: 55,),
+                TabBar(
+                  // isScrollable: true,
+                  controller: _tabController,
+                  unselectedLabelColor: Colors.black,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  indicator: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      50,
+                    ),
+                    color: const Color.fromARGB(58, 104, 101, 101),
+                  ),
+                  tabs: [
+                    Tab(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            50,
+                          ),
+                        ),
+                        child: const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Overview",
+                          ),
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            50,
+                          ),
+                        ),
+                        child: const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Income",
+                          ),
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            50,
+                          ),
+                        ),
+                        child: const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Expense",
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    PopupMenuButton<int>(
+                      shape: ContinuousRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          50,
+                        ),
+                      ),
+                      child: const Padding(
+                        padding: EdgeInsets.only(
+                          right: 30.0,
+                        ),
+                        child: Icon(
+                          Icons.filter_list_rounded,
+                          size: 30,
+                          shadows: <Shadow>[
+                            Shadow(color: Colors.white, blurRadius: 15.0)
+                          ],
+                          color: Colors.black,
+                        ),
+                      ),
+                      itemBuilder: (conext) => [
+                        const PopupMenuItem(
+                          value: 1,
+                          child: Text(
+                            "All",
+                          ),
+                        ),
+                        const PopupMenuItem(
+                          value: 2,
+                          child: Text(
+                            "Today",
+                          ),
+                        ),
+                        const PopupMenuItem(
+                          value: 2,
+                          child: Text(
+                            "Yesterday",
+                          ),
+                        ),
+                        const PopupMenuItem(
+                          value: 2,
+                          child: Text(
+                            "Week",
+                          ),
+                        ),
+                        const PopupMenuItem(
+                          value: 2,
+                          child: Text(
+                            "Month",
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: const [
+                      OverViewSeeAll(),
+                      IncomeSeeAll(),
+                      ExpenseSeeAll(),
+                    ],
                   ),
                 ),
               ],
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              expandedHeight: 240,
-              flexibleSpace: FlexibleSpaceBar(
-                title: const Text(
-                  'My Transaction',
-                ),
-                background: Image.asset(
-                  'assets/images/moneymanagement-icon-unscreen.gif',
-                ),
-              ),
-              floating: true,
-              snap: true,
-              pinned: true,
             ),
-            // Container(height: 90,color: Colors.black,)
-          ],
-          body: Column(
-            children: [
-              TabBar(
-                // isScrollable: true,
-                controller: _tabController,
-                unselectedLabelColor: Colors.grey,
-                indicatorSize: TabBarIndicatorSize.label,
-                indicator: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    50,
-                  ),
-                  color: const  Color.fromARGB(
-                    255,
-                    172,
-                    160,
-                    172,
-                  ),
-                ),
-                tabs: [
-                  Tab(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          50,
-                        ),
-                      ),
-                      child: const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Overview",
-                        ),
-                      ),
-                    ),
-                  ),
-                  Tab(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          50,
-                        ),
-                      ),
-                      child: const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Income",
-                        ),
-                      ),
-                    ),
-                  ),
-                  Tab(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          50,
-                        ),
-                      ),
-                      child: const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Expense",
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  PopupMenuButton<int>(
-                    shape: ContinuousRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        50,
-                      ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.only(
-                        right: 30.0,
-                      ),
-                      child: Icon(
-                        Icons.filter_list_rounded,
-                        size: 30,
-                        shadows: <Shadow>[
-                          Shadow(color: Colors.white, blurRadius: 15.0)
-                        ],
-                        color: Colors.white,
-                      ),
-                    ),
-                    itemBuilder: (conext) => [
-                      const PopupMenuItem(
-                        value: 1,
-                        child: Text(
-                          "All",
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        value: 2,
-                        child: Text(
-                          "Today",
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        value: 2,
-                        child: Text(
-                          "Yesterday",
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        value: 2,
-                        child: Text(
-                          "Week",
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        value: 2,
-                        child: Text(
-                          "Month",
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: const [
-                    OverViewSeeAll(),
-                    IncomeSeeAll(),
-                    ExpenseSeeAll(),
-                  ],
-                ),
-              ),
-            ],
           ),
         ),
       ),

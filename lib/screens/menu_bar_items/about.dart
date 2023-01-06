@@ -37,8 +37,8 @@ class _AboutState extends State<About> with TickerProviderStateMixin {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: <Color>[
-                  Color.fromARGB(255, 195, 221, 236),
-                  Color.fromARGB(255, 145, 187, 221),
+                  Color.fromARGB(255, 201, 122, 198),
+                      Color.fromARGB(255, 221, 145, 254),
                 ],
               ),
             ),

@@ -19,54 +19,50 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Image.asset(
-            'assets/images/money-transfer-2647242-2208355.png',
-            fit: BoxFit.contain,
-            height: 30,
-          ),
-        ),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: <Color>[
-                Color.fromARGB(
-                  255,
-                  162,
-                  96,
-                  160,
-                ),
-                Color.fromARGB(255, 136, 39, 133),
-              ],
-            ),
-          ),
-        ),
-        leading: const MenuBar(),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search,
-            ),
-          ),
-        ],
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   title: Center(
+      //     child: Image.asset(
+      //       'assets/images/money-transfer-2647242-2208355.png',
+      //       fit: BoxFit.contain,
+      //       height: 30,
+      //     ),
+      //   ),
+      //   flexibleSpace: Container(
+      //     decoration: const BoxDecoration(
+      //       gradient: LinearGradient(
+      //         begin: Alignment.topCenter,
+      //         end: Alignment.bottomCenter,
+      //         colors: <Color>[
+      //           Color.fromARGB(255, 201, 122, 198),
+      //           Color.fromARGB(255, 221, 145, 254),
+      //         ],
+      //       ),
+      //     ),
+      //   ),
+      //   leading: const MenuBar(),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {
+      //         // showSearch(context: context, delegate: SearchWidget());
+      //       },
+      //       icon: const Icon(
+      //         Icons.search,
+      //         color: Colors.black,
+      //       ),
+      //     ),
+      //   ],
+      //   elevation: 0,
+      // ),
       bottomNavigationBar: const MoneyManagerBottomNavigation(),
-      body: SafeArea(
-        child: ValueListenableBuilder(
-          valueListenable: selectedIndexNotifier,
-          builder: (
-            BuildContext context,
-            int updatedIndex,
-            _,
-          ) {
-            return _pages[updatedIndex];
-          },
-        ),
+      body: ValueListenableBuilder(
+        valueListenable: selectedIndexNotifier,
+        builder: (
+          BuildContext context,
+          int updatedIndex,
+          _,
+        ) {
+          return _pages[updatedIndex];
+        },
       ),
     );
   }

@@ -18,7 +18,7 @@ class _HompageState extends State<Hompage> {
         mainScreen: ScreenHome(),
         borderRadius: 50,
         angle: 0.0,
-        slideWidth: 210,
+        slideWidth: 240,
         //
       );
 }

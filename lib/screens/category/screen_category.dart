@@ -34,129 +34,111 @@ class _ScreenCategoryState extends State<ScreenCategory>
       secondaryBegin: Alignment.bottomLeft,
       secondaryEnd: Alignment.topRight,
       primaryColors: const [
-        Color.fromARGB(
-          255,
-          90,
-          10,
-          86,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
-        Color.fromARGB(
-          255,
-          172,
-          160,
-          172,
-        ),
+        Color.fromARGB(255, 52, 141, 214),
+        Color.fromARGB(255, 255, 255, 255),
+        Color.fromARGB(255, 52, 141, 214),
       ],
       secondaryColors: const [
-        Color.fromARGB(
-          255,
-          172,
-          160,
-          172,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
+        Color.fromARGB(255, 255, 255, 255),
+        Color.fromARGB(255, 52, 141, 214),
+        Color.fromARGB(255, 255, 255, 255),
       ],
-
-      // child: Container(
-      //   decoration: const BoxDecoration(
-      //     gradient: LinearGradient(
-      //       begin: Alignment.topRight,
-      //       end: Alignment.bottomLeft,
-      //       colors: [
-      //         Color.fromARGB(
-      //           255,
-      //           131,
-      //           21,
-      //           127,
-      //         ),
-      //         Color.fromARGB(
-      //           255,
-      //           76,
-      //           15,
-      //           74,
-      //         ),
-      //       ],
-      //     ),
-      //   ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Column(
-          children: [
-            TabBar(
-              controller: _tabController,
-              unselectedLabelColor: Colors.grey,
-              indicatorSize: TabBarIndicatorSize.label,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  50,
-                ),
-                color: const Color.fromARGB(
-                  255,
-                  172,
-                  160,
-                  172,
-                ),
-              ),
-              tabs: [
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        50,
-                      ),
-                    ),
-                    child: const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "INCOME",
-                      ),
-                    ),
-                  ),
-                ),
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        50,
-                      ),
-                    ),
-                    child: const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "EXPENSE",
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+        appBar: AppBar(
+          title: Center(
+            child: Image.asset(
+              'assets/images/money-transfer-2647242-2208355.png',
+              fit: BoxFit.contain,
+              height: 30,
             ),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: const [
-                  IncomeCategoryList(),
-                  ExpenseCategoyList(),
+          ),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[
+                  Color.fromARGB(255, 201, 122, 198),
+                  Color.fromARGB(255, 221, 145, 254),
                 ],
               ),
             ),
+          ),
+          //  leading: const MenuBar(),
+          actions: [
+            IconButton(
+              onPressed: () {
+                //showSearch(context: context, delegate: SearchWidget());
+              },
+              icon: const Icon(
+                Icons.search,
+                color: Colors.black,
+              ),
+            ),
           ],
+          elevation: 0,
+        ),
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 6,
+              ),
+              TabBar(
+                controller: _tabController,
+                unselectedLabelColor: Colors.black,
+                indicatorSize: TabBarIndicatorSize.label,
+                indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    50,
+                  ),
+                  color: const Color.fromARGB(58, 104, 101, 101),
+                ),
+                tabs: [
+                  Tab(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          50,
+                        ),
+                      ),
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "INCOME",
+                        ),
+                      ),
+                    ),
+                  ),
+                  Tab(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          50,
+                        ),
+                      ),
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "EXPENSE",
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: const [
+                    IncomeCategoryList(),
+                    ExpenseCategoyList(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -167,24 +149,9 @@ class _ScreenCategoryState extends State<ScreenCategory>
           child: const Icon(
             Icons.add,
           ),
-          backgroundColor: const Color.fromARGB(
-            255,
-            162,
-            96,
-            160,
-          ),
-          foregroundColor: const Color.fromARGB(
-            255,
-            10,
-            10,
-            10,
-          ),
-          splashColor: const Color.fromARGB(
-            255,
-            245,
-            245,
-            245,
-          ),
+          backgroundColor: const Color.fromARGB(255, 201, 122, 198),
+          foregroundColor: const Color.fromARGB(255, 10, 10, 10),
+          splashColor: const Color.fromARGB(255, 245, 245, 245),
         ),
       ),
     );

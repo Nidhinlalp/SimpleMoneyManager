@@ -14,14 +14,14 @@ class OverViewSeeAll extends StatelessWidget {
     TransactionDb.instance.refresh();
     CategoryDb.instance.refreshUI();
     return ValueListenableBuilder(
-        valueListenable: TransactionDb.instance.transactionListNotifire,
+        valueListenable: transactionListNotifire,
         builder: (BuildContext ctx, List<TransactionModel> newList, Widget? _) {
           return ListView.separated(
             padding: const EdgeInsets.all(20.0),
             itemBuilder: (ctx, index) {
-              final _value = newList[index];
+              final value = newList[index];
               return Slidable(
-                key: Key(_value.id!),
+                key: Key(value.id!),
                 endActionPane: ActionPane(
                   motion: const ScrollMotion(),
                   children: [
@@ -31,7 +31,7 @@ class OverViewSeeAll extends StatelessWidget {
                       ),
                       flex: 2,
                       onPressed: (context) {
-                        TransactionDb.instance.deleteTransaction(_value.id!);
+                        TransactionDb.instance.deleteTransaction(value.id!);
                       },
                       backgroundColor: Colors.red,
                       foregroundColor: Colors.white,
@@ -68,18 +68,8 @@ class OverViewSeeAll extends StatelessWidget {
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                         colors: [
-                          Color.fromARGB(
-                            255,
-                            172,
-                            160,
-                            172,
-                          ),
-                          Color.fromARGB(
-                            255,
-                            162,
-                            96,
-                            160,
-                          ),
+                          Color.fromARGB(255, 214, 202, 214),
+                          Color.fromARGB(255, 236, 133, 232),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(
@@ -88,22 +78,22 @@ class OverViewSeeAll extends StatelessWidget {
                     ),
                     child: ListTile(
                       leading: CircleAvatar(
-                        backgroundColor: _value.type == CategoryType.income
+                        backgroundColor: value.type == CategoryType.income
                             ? Colors.green
                             : Colors.redAccent[700],
                         radius: 50,
                         child: Text(
-                          parseDate(_value.date),
+                          parseDate(value.date),
                           textAlign: TextAlign.center,
                         ),
                       ),
                       title: Text(
-                        '₹ ${_value.amount}',
+                        '₹ ${value.amount}',
                         style: const TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
-                        _value.category.name,
+                        value.category.name,
                         style: const TextStyle(
                             fontSize: 15.0, fontWeight: FontWeight.w500),
                       ),

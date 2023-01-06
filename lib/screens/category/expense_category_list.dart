@@ -70,18 +70,8 @@ class ExpenseCategoyList extends StatelessWidget {
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
                           colors: [
-                            Color.fromARGB(
-                              255,
-                              172,
-                              160,
-                              172,
-                            ),
-                            Color.fromARGB(
-                              255,
-                              162,
-                              96,
-                              160,
-                            ),
+                            Color.fromARGB(255, 214, 202, 214),
+                            Color.fromARGB(255, 236, 133, 232),
                           ],
                         ),
                         borderRadius: BorderRadius.circular(

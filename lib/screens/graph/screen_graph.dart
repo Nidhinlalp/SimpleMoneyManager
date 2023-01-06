@@ -30,44 +30,14 @@ class _ScreenGraphState extends State<ScreenGraph>
       secondaryBegin: Alignment.bottomLeft,
       secondaryEnd: Alignment.topRight,
       primaryColors: const [
-        Color.fromARGB(
-          255,
-          90,
-          10,
-          86,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
-        Color.fromARGB(
-          255,
-          172,
-          160,
-          172,
-        ),
+        Color.fromARGB(255, 52, 141, 214),
+        Color.fromARGB(255, 255, 255, 255),
+        Color.fromARGB(255, 52, 141, 214),
       ],
       secondaryColors: const [
-        Color.fromARGB(
-          255,
-          172,
-          160,
-          172,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
+        Color.fromARGB(255, 255, 255, 255),
+        Color.fromARGB(255, 52, 141, 214),
+        Color.fromARGB(255, 255, 255, 255),
       ],
       // child: Container(
       //   decoration: const BoxDecoration(
@@ -91,162 +61,174 @@ class _ScreenGraphState extends State<ScreenGraph>
       //     ),
       //   ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(
-                30.0,
+        
+            appBar: AppBar(
+              title: Center(
+                child: Image.asset(
+                  'assets/images/money-transfer-2647242-2208355.png',
+                  fit: BoxFit.contain,
+                  height: 30,
+                ),
               ),
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Color.fromARGB(
-                        255,
-                        172,
-                        160,
-                        172,
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: <Color>[
+                      Color.fromARGB(255, 201, 122, 198),
+                      Color.fromARGB(255, 221, 145, 254),
+                    ],
+                  ),
+                ),
+              ),
+              //  leading: const MenuBar(),
+       
+        elevation: 0,
+            ),
+        backgroundColor: Colors.transparent,
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(
+                  30.0,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Color.fromARGB(255, 214, 202, 214),
+                        Color.fromARGB(255, 236, 133, 232),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(
+                      20,
+                    ),
+                  ),
+                  height: 40,
+                  width: 300,
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 10,
                       ),
-                      Color.fromARGB(
-                        255,
-                        162,
-                        96,
-                        160,
+                      const Text(
+                        'All',
+                      ),
+                      PopupMenuButton<int>(
+                        shape: ContinuousRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            50,
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.only(
+                            right: 30.0,
+                          ),
+                          child: Icon(
+                            Icons.arrow_drop_down,
+                          ),
+                        ),
+                        itemBuilder: (context) => [
+                          const PopupMenuItem(
+                            value: 1,
+                            child: Text(
+                              "All",
+                            ),
+                          ),
+                          const PopupMenuItem(
+                            value: 2,
+                            child: Text(
+                              "Today",
+                            ),
+                          ),
+                          const PopupMenuItem(
+                            value: 2,
+                            child: Text(
+                              "Yesterday",
+                            ),
+                          ),
+                          const PopupMenuItem(
+                            value: 2,
+                            child: Text(
+                              "Week",
+                            ),
+                          ),
+                          const PopupMenuItem(
+                            value: 2,
+                            child: Text(
+                              "Month",
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(
-                    20,
-                  ),
                 ),
-                height: 40,
-                width: 300,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Text(
-                      'All',
-                    ),
-                    PopupMenuButton<int>(
-                      shape: ContinuousRectangleBorder(
+              ),
+              TabBar(
+                controller: _tabController,
+                unselectedLabelColor: Colors.black,
+                indicatorSize: TabBarIndicatorSize.label,
+                indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    50,
+                  ),
+                  color: const Color.fromARGB(58, 104, 101, 101),
+                ),
+                tabs: [
+                  Tab(
+                    child: Container(
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(
                           50,
                         ),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.only(
-                          right: 30.0,
-                        ),
-                        child: Icon(
-                          Icons.arrow_drop_down,
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Overview",
                         ),
                       ),
-                      itemBuilder: (context) => [
-                        const PopupMenuItem(
-                          value: 1,
-                          child: Text(
-                            "All",
-                          ),
-                        ),
-                        const PopupMenuItem(
-                          value: 2,
-                          child: Text(
-                            "Today",
-                          ),
-                        ),
-                        const PopupMenuItem(
-                          value: 2,
-                          child: Text(
-                            "Yesterday",
-                          ),
-                        ),
-                        const PopupMenuItem(
-                          value: 2,
-                          child: Text(
-                            "Week",
-                          ),
-                        ),
-                        const PopupMenuItem(
-                          value: 2,
-                          child: Text(
-                            "Month",
-                          ),
-                        ),
-                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  Tab(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          50,
+                        ),
+                      ),
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Income",
+                        ),
+                      ),
+                    ),
+                  ),
+                  Tab(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          50,
+                        ),
+                      ),
+                      child: const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Expense",
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            TabBar(
-              controller: _tabController,
-              unselectedLabelColor: Colors.grey,
-              indicatorSize: TabBarIndicatorSize.label,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  50,
-                ),
-                color: const Color.fromARGB(
-                    255,
-                    172,
-                    160,
-                    172,
-                  ),
-              ),
-              tabs: [
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        50,
-                      ),
-                    ),
-                    child: const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Overview",
-                      ),
-                    ),
-                  ),
-                ),
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        50,
-                      ),
-                    ),
-                    child: const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Income",
-                      ),
-                    ),
-                  ),
-                ),
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        50,
-                      ),
-                    ),
-                    child: const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Expense",
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

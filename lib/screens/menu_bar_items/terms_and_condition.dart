@@ -1,6 +1,7 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_gradient/animate_gradient.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TemsAndCondition extends StatefulWidget {
   const TemsAndCondition({super.key});
@@ -19,44 +20,14 @@ class _AboutState extends State<TemsAndCondition>
       secondaryBegin: Alignment.bottomLeft,
       secondaryEnd: Alignment.topRight,
       primaryColors: const [
-        Color.fromARGB(
-          255,
-          90,
-          10,
-          86,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
-        Color.fromARGB(
-          255,
-          172,
-          160,
-          172,
-        ),
+        Color.fromARGB(255, 52, 141, 214),
+        Color.fromARGB(255, 255, 255, 255),
+        Color.fromARGB(255, 52, 141, 214),
       ],
       secondaryColors: const [
-        Color.fromARGB(
-          255,
-          172,
-          160,
-          172,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
-        Color.fromARGB(
-          255,
-          161,
-          24,
-          156,
-        ),
+        Color.fromARGB(255, 255, 255, 255),
+        Color.fromARGB(255, 52, 141, 214),
+        Color.fromARGB(255, 255, 255, 255),
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -66,29 +37,16 @@ class _AboutState extends State<TemsAndCondition>
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: <Color>[
-                  Color.fromARGB(
-                    255,
-                    76,
-                    15,
-                    74,
-                  ),
-                  Color.fromARGB(
-                    255,
-                    131,
-                    21,
-                    127,
-                  ),
+                  Color.fromARGB(255, 201, 122, 198),
+                  Color.fromARGB(255, 221, 145, 254),
                 ],
               ),
             ),
           ),
-          title: const Text(
+          title: Text(
             'Terms and Conditions',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-            ),
+            style: GoogleFonts.roboto(fontSize: 25, color: Colors.black),
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -105,8 +63,8 @@ class _AboutState extends State<TemsAndCondition>
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [
-                    Color.fromARGB(255, 225, 117, 220),
-                    Color.fromARGB(255, 166, 132, 165),
+                    Color.fromARGB(255, 195, 221, 236),
+                    Color.fromARGB(255, 145, 187, 221),
                   ],
                 ),
                 borderRadius: BorderRadius.only(
@@ -184,7 +142,7 @@ class _AboutState extends State<TemsAndCondition>
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: Text('Click herte to Contact me ',
+                        child: Text('Click here to Contact  ',
                             style: Theme.of(context).textTheme.bodyText1),
                       ),
                     ],
@@ -200,8 +158,8 @@ class _AboutState extends State<TemsAndCondition>
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [
-                    Color.fromARGB(255, 225, 117, 220),
-                    Color.fromARGB(255, 166, 132, 165),
+                    Color.fromARGB(255, 195, 221, 236),
+                    Color.fromARGB(255, 145, 187, 221),
                   ],
                 ),
                 borderRadius: BorderRadius.only(
@@ -284,7 +242,7 @@ class _AboutState extends State<TemsAndCondition>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Thanku',
+                        'Thank you !',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       )

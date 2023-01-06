@@ -11,12 +11,7 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
     context: context,
     builder: (ctx) {
       return SimpleDialog(
-        backgroundColor: const Color.fromARGB(
-          255,
-          172,
-          160,
-          172,
-        ),
+        backgroundColor: Colors.white70,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
@@ -55,18 +50,8 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [
-                    Color.fromARGB(
-                      255,
-                      165,
-                      147,
-                      165,
-                    ),
-                    Color.fromARGB(
-                      255,
-                      162,
-                      96,
-                      160,
-                    ),
+                    Color.fromARGB(255, 238, 228, 238),
+                    Color.fromARGB(255, 236, 133, 232),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(

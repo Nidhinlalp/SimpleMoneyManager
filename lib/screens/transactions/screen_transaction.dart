@@ -1,4 +1,5 @@
 import 'package:animate_gradient/animate_gradient.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
@@ -152,6 +153,7 @@ class ScreenTransaction extends StatelessWidget {
                                             MainAxisAlignment.spaceAround,
                                         children: const [
                                           CircleAvatar(
+                                            // ignore: sort_child_properties_last
                                             child: Icon(
                                               Icons.arrow_downward,
                                               color: Colors.black,
@@ -160,6 +162,7 @@ class ScreenTransaction extends StatelessWidget {
                                             backgroundColor: Colors.white30,
                                           ),
                                           CircleAvatar(
+                                            // ignore: sort_child_properties_last
                                             child: Icon(
                                               Icons.arrow_upward,
                                               color: Colors.black,
@@ -287,9 +290,9 @@ class ScreenTransaction extends StatelessWidget {
                         20.0,
                       ),
                       itemBuilder: (ctx, index) {
-                        final _value = newList[index];
+                        final value = newList[index];
                         return Slidable(
-                          key: Key(_value.id!),
+                          key: Key(value.id!),
                           endActionPane: ActionPane(
                             motion: const ScrollMotion(),
                             children: [
@@ -300,7 +303,21 @@ class ScreenTransaction extends StatelessWidget {
                                 flex: 2,
                                 onPressed: (context) {
                                   TransactionDb.instance
-                                      .deleteTransaction(_value.id!);
+                                      .deleteTransaction(value.id!);
+                                  final snackBar = SnackBar(
+                                    elevation: 0,
+                                    behavior: SnackBarBehavior.floating,
+                                    backgroundColor: Colors.transparent,
+                                    content: AwesomeSnackbarContent(
+                                      title: 'On Snap!',
+                                      message: 'You Deleted One item !',
+                                      contentType: ContentType.failure,
+                                    ),
+                                  );
+
+                                  ScaffoldMessenger.of(context)
+                                    ..hideCurrentSnackBar()
+                                    ..showSnackBar(snackBar);
                                 },
                                 backgroundColor: Colors.red,
                                 foregroundColor: Colors.white,
@@ -348,23 +365,23 @@ class ScreenTransaction extends StatelessWidget {
                               child: ListTile(
                                 leading: CircleAvatar(
                                   backgroundColor:
-                                      _value.type == CategoryType.income
+                                      value.type == CategoryType.income
                                           ? Colors.green
                                           : Colors.redAccent[700],
                                   radius: 50,
                                   child: Text(
-                                    parseDate(_value.date),
+                                    parseDate(value.date),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
                                 title: Text(
-                                  '₹ ${_value.amount}',
+                                  '₹ ${value.amount}',
                                   style: const TextStyle(
                                       fontSize: 20.0,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 subtitle: Text(
-                                  _value.category.name,
+                                  value.category.name,
                                   style: const TextStyle(
                                       fontSize: 15.0,
                                       fontWeight: FontWeight.w500),
@@ -393,7 +410,8 @@ class ScreenTransaction extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const ScreenAddTransaction()),
+                    builder: (context) => const ScreenAddTransaction(),
+                  ),
                 );
               },
               // ignore: sort_child_properties_last
@@ -413,6 +431,6 @@ class ScreenTransaction extends StatelessWidget {
 
 String parseDate(DateTime date) {
   final _date = DateFormat.MMMd().format(date);
-  final _splitedDate = _date.split(' ');
-  return '${_splitedDate.last}\n${_splitedDate.first}';
+  final splitedDate = _date.split(' ');
+  return '${splitedDate.last}\n${splitedDate.first}';
 }

@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
@@ -6,7 +7,7 @@ ValueNotifier<CategoryType> selectCategoryNotifire =
     ValueNotifier(CategoryType.income);
 
 Future<void> showCategoryAddPopup(BuildContext context) async {
-  final _nameEditingController = TextEditingController();
+  final nameEditingController = TextEditingController();
   showDialog(
     context: context,
     builder: (ctx) {
@@ -20,7 +21,7 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextFormField(
-              controller: _nameEditingController,
+              controller: nameEditingController,
               decoration: const InputDecoration(
                   labelText: 'Category Name',
                   floatingLabelStyle: TextStyle(
@@ -66,19 +67,33 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                   shape: const StadiumBorder(),
                 ),
                 onPressed: () {
-                  final _name = _nameEditingController.text;
-                  if (_name.isEmpty) {
+                  final name = nameEditingController.text;
+                  if (name.isEmpty) {
                     return;
                   }
-                  final _type = selectCategoryNotifire.value;
-                  final _category = CategoryModels(
+                  final type = selectCategoryNotifire.value;
+                  final category = CategoryModels(
                     id: DateTime.now().millisecondsSinceEpoch.toString(),
-                    name: _name,
-                    type: _type,
+                    name: name,
+                    type: type,
                   );
 
-                  CategoryDb().insertCategory(_category);
+                  CategoryDb().insertCategory(category);
                   Navigator.of(ctx).pop();
+                  final snackBar = SnackBar(
+                    elevation: 0,
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.transparent,
+                    content: AwesomeSnackbarContent(
+                      title: 'On Snap!',
+                      message: 'Transaction Add Successfully !',
+                      contentType: ContentType.success,
+                    ),
+                  );
+
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(snackBar);
                 },
                 child: const Text(
                   'Add',

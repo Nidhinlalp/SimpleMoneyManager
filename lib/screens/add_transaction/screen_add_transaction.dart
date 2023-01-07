@@ -1,7 +1,9 @@
 import 'dart:ffi';
 
 import 'package:animate_gradient/animate_gradient.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
@@ -468,7 +470,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                           end: Alignment.bottomLeft,
                           colors: [
                             Color.fromARGB(255, 214, 202, 214),
-                    Color.fromARGB(255, 236, 133, 232),
+                            Color.fromARGB(255, 236, 133, 232),
                           ],
                         ),
                         borderRadius: BorderRadius.circular(
@@ -479,6 +481,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                         onPressed: () {
                           addTransaction();
                         },
+                        // ignore: sort_child_properties_last
                         child: const Text(
                           'Add',
                           style: TextStyle(
@@ -538,5 +541,20 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     await TransactionDb.instance.addTransaction(_models);
     Navigator.of(context).pop();
     TransactionDb.instance.refresh();
+    final snackBar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: 'On Snap!',
+        message:
+            'Transaction Add Successfully !',
+        contentType: ContentType.success,
+      ),
+    );
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
   }
 }

@@ -144,6 +144,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
           onPressed: () {
             //  print('ia, category');
             showCategoryAddPopup(context);
+            
           },
           // ignore: sort_child_properties_last
           child: const Icon(

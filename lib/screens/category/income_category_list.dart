@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
@@ -28,6 +29,20 @@ class IncomeCategoryList extends StatelessWidget {
                       flex: 2,
                       onPressed: (context) {
                         CategoryDb.instance.deleteCategory(category.id);
+                        final snackBar = SnackBar(
+                          elevation: 0,
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          content: AwesomeSnackbarContent(
+                            title: 'On Snap!',
+                            message: 'You Deleted One item !',
+                            contentType: ContentType.failure,
+                          ),
+                        );
+
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(snackBar);
                       },
                       backgroundColor: Colors.red,
                       foregroundColor: Colors.white,

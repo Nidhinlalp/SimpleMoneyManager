@@ -9,7 +9,7 @@ import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart'
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 import 'package:simplemoneymanager/screens/transactions/menu_bar.dart';
-import '../add_transaction/screen_add_transaction.dart';
+import '../add_transaction/floting_animation.dart';
 
 class ScreenTransaction extends StatelessWidget {
   const ScreenTransaction({super.key});
@@ -38,6 +38,8 @@ class ScreenTransaction extends StatelessWidget {
           ],
           child: Scaffold(
             appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              
               title: Center(
                 child: Image.asset(
                   'assets/images/money-transfer-2647242-2208355.png',
@@ -45,18 +47,7 @@ class ScreenTransaction extends StatelessWidget {
                   height: 30,
                 ),
               ),
-              flexibleSpace: Container(
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: <Color>[
-                      Color.fromARGB(255, 201, 122, 198),
-                      Color.fromARGB(255, 221, 145, 254),
-                    ],
-                  ),
-                ),
-              ),
+             
               leading: const MenuBar(),
               actions: [
                 IconButton(
@@ -404,24 +395,25 @@ class ScreenTransaction extends StatelessWidget {
             ),
 
             //flotting action button
-
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ScreenAddTransaction(),
-                  ),
-                );
-              },
-              // ignore: sort_child_properties_last
-              child: const Icon(
-                Icons.add,
-              ),
-              backgroundColor: const Color.fromARGB(255, 201, 122, 198),
-              foregroundColor: const Color.fromARGB(255, 10, 10, 10),
-              splashColor: const Color.fromARGB(255, 245, 245, 245),
-            ),
+                      floatingActionButton: const CustomFABWidget(),
+                      
+            // floatingActionButton: FloatingActionButton(
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) => const ScreenAddTransaction(),
+            //       ),
+            //     );
+            //   },
+            //   // ignore: sort_child_properties_last
+            //   child: const Icon(
+            //     Icons.add,
+            //   ),
+            //   backgroundColor: const Color.fromARGB(255, 201, 122, 198),
+            //   foregroundColor: const Color.fromARGB(255, 10, 10, 10),
+            //   splashColor: const Color.fromARGB(255, 245, 245, 245),
+            // ),
           ),
         );
       },

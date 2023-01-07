@@ -55,19 +55,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
               height: 30,
             ),
           ),
-          // flexibleSpace: Container(
-          //   decoration: const BoxDecoration(
-          //     gradient: LinearGradient(
-          //       begin: Alignment.topCenter,
-          //       end: Alignment.bottomCenter,
-          //       colors: <Color>[
-          //         Color.fromARGB(255, 201, 122, 198),
-          //         Color.fromARGB(255, 221, 145, 254),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-          //  leading: const MenuBar(),
+
           actions: [
             IconButton(
               onPressed: () {
@@ -153,7 +141,6 @@ class _ScreenCategoryState extends State<ScreenCategory>
           child: const Icon(
             Icons.add,
           ),
-          backgroundColor: const Color.fromARGB(255, 201, 122, 198),
           foregroundColor: const Color.fromARGB(255, 10, 10, 10),
           splashColor: const Color.fromARGB(255, 245, 245, 245),
         ),

@@ -3,11 +3,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
-import 'package:simplemoneymanager/screens/transactions/zoom_Drawa.dart';
+import 'package:simplemoneymanager/welcome/intropages/onbord_screen.dart';
 
 Future<void >main()async {
-final obj1=CategoryDb();
-final obj2=CategoryDb();
+
+
+
+
 
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
      theme: ThemeData(
   ),
-      home:   const Hompage(),
+      home:   const OnbordScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

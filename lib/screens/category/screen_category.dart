@@ -45,6 +45,9 @@ class _ScreenCategoryState extends State<ScreenCategory>
       ],
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.transparent,
           title: Center(
             child: Image.asset(
               'assets/images/money-transfer-2647242-2208355.png',
@@ -52,18 +55,18 @@ class _ScreenCategoryState extends State<ScreenCategory>
               height: 30,
             ),
           ),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: <Color>[
-                  Color.fromARGB(255, 201, 122, 198),
-                  Color.fromARGB(255, 221, 145, 254),
-                ],
-              ),
-            ),
-          ),
+          // flexibleSpace: Container(
+          //   decoration: const BoxDecoration(
+          //     gradient: LinearGradient(
+          //       begin: Alignment.topCenter,
+          //       end: Alignment.bottomCenter,
+          //       colors: <Color>[
+          //         Color.fromARGB(255, 201, 122, 198),
+          //         Color.fromARGB(255, 221, 145, 254),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           //  leading: const MenuBar(),
           actions: [
             IconButton(

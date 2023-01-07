@@ -30,19 +30,20 @@ class _AboutState extends State<About> with TickerProviderStateMixin {
       ],
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           elevation: 0,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: <Color>[
-                  Color.fromARGB(255, 201, 122, 198),
-                      Color.fromARGB(255, 221, 145, 254),
-                ],
-              ),
-            ),
-          ),
+          // flexibleSpace: Container(
+          //   decoration: const BoxDecoration(
+          //     gradient: LinearGradient(
+          //       begin: Alignment.topCenter,
+          //       end: Alignment.bottomCenter,
+          //       colors: <Color>[
+          //         Color.fromARGB(255, 201, 122, 198),
+          //             Color.fromARGB(255, 221, 145, 254),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           title: Text(
             'About',
             textAlign: TextAlign.center,

@@ -1,4 +1,3 @@
-
 import 'package:animate_gradient/animate_gradient.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
@@ -52,24 +51,13 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       ],
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
           title: Text(
             'Add Transaction',
             textAlign: TextAlign.center,
             style: GoogleFonts.roboto(fontSize: 25, color: Colors.black),
           ),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: <Color>[
-                  Color.fromARGB(255, 201, 122, 198),
-                  Color.fromARGB(255, 221, 145, 254),
-                ],
-              ),
-            ),
-          ),
-          elevation: 0,
         ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
@@ -545,8 +533,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       backgroundColor: Colors.transparent,
       content: AwesomeSnackbarContent(
         title: 'On Snap!',
-        message:
-            'Transaction Add Successfully !',
+        message: 'Transaction Add Successfully !',
         contentType: ContentType.success,
       ),
     );

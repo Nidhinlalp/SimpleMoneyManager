@@ -4,7 +4,7 @@ import 'package:simplemoneymanager/screens/home/screen_home.dart';
 import 'package:simplemoneymanager/screens/transactions/menu_bar.dart';
 
 class Hompage extends StatefulWidget {
-  const Hompage({super.key});
+  const Hompage(BuildContext context, {super.key});
 
   @override
   State<Hompage> createState() => _HompageState();

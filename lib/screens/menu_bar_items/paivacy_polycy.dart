@@ -30,18 +30,9 @@ class _AboutState extends State<PraivacyPolicy> with TickerProviderStateMixin {
       ],
       child: Scaffold(
         appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: <Color>[
-                   Color.fromARGB(255, 201, 122, 198),
-                      Color.fromARGB(255, 221, 145, 254),
-                ],
-              ),
-            ),
-          ),
+           backgroundColor: Colors.transparent,
+           elevation: 0,
+          
           title: Text(
             'Privacy Pollcy',
             textAlign: TextAlign.center,

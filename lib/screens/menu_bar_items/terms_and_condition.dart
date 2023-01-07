@@ -31,18 +31,20 @@ class _AboutState extends State<TemsAndCondition>
       ],
       child: Scaffold(
         appBar: AppBar(
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: <Color>[
-                  Color.fromARGB(255, 201, 122, 198),
-                  Color.fromARGB(255, 221, 145, 254),
-                ],
-              ),
-            ),
-          ),
+           backgroundColor: Colors.transparent,
+           elevation: 0,
+          // flexibleSpace: Container(
+          //   decoration: const BoxDecoration(
+          //     gradient: LinearGradient(
+          //       begin: Alignment.topCenter,
+          //       end: Alignment.bottomCenter,
+          //       colors: <Color>[
+          //         Color.fromARGB(255, 201, 122, 198),
+          //         Color.fromARGB(255, 221, 145, 254),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           title: Text(
             'Terms and Conditions',
             textAlign: TextAlign.center,

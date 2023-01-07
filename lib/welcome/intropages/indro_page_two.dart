@@ -13,12 +13,16 @@ class IntroPage2 extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text(
-              '"DO NOT SAVE WHAT IS LEFT AFTER SPENDING, BUT SPEND WHAT IS LEFT AFTER SAVING."',
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500),
+            Row(
+              children: const [
+                Text(
+                  '"DO NOT SAVE WHAT IS LEFT\n AFTER SPENDING, BUT SPEND\n WHAT IS LEFT AFTER SAVING."',
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
             ),
 
             Lottie.network(

@@ -13,12 +13,16 @@ class IntroPage1 extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text(
-              '"MONEY WONT CREATE SUCCESS, THE FREEDOM TO MAKE IT WILL"',
-              style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500),
+            Row(
+              children: const [
+                Text(
+                  '"MONEY WONT CREATE\n SUCCESS, THE FREEDOM TO\n MAKE IT WILL"',
+                  style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500),
+                ),
+              ],
             ),
             Lottie.network(
               'https://assets2.lottiefiles.com/packages/lf20_1pxqjqps.json',width: 400

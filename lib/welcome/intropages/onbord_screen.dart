@@ -84,7 +84,7 @@ class _OnbordScreenState extends State<OnbordScreen> {
                             );
                           },
                           child: const Text(
-                            'Get Start',
+                            'Start',
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),

@@ -26,29 +26,29 @@ class TransactionDb implements TransactionDbFunctions{
 
   @override
   Future<void> addTransaction(TransactionModel obj)async {
-    final _db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
-    await _db.put(obj.id, obj); 
+    final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
+    await db.put(obj.id, obj); 
    
   }
 
   Future<void> refresh() async{
-    final _list = await getAllTransaction();
-    _list.sort((first, second)=>second.date.compareTo(first.date));
+    final list = await getAllTransaction();
+    list.sort((first, second)=>second.date.compareTo(first.date));
     transactionListNotifire.value.clear();
-    transactionListNotifire.value.addAll(_list);
+    transactionListNotifire.value.addAll(list);
     transactionListNotifire.notifyListeners();
   }
   
   @override
   Future<List<TransactionModel>> getAllTransaction() async{
-    final _db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
-    return _db.values.toList();
+    final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
+    return db.values.toList();
   }
   
   @override
   Future<void> deleteTransaction(String id)async {
-       final _db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
-       await _db.delete(id);
+       final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
+       await db.delete(id);
        refresh();
 
   }

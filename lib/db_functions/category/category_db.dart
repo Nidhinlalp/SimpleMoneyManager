@@ -26,23 +26,23 @@ factory CategoryDb (){
 
   @override
   Future<void> insertCategory(CategoryModels value) async {
-    final _categoryDB = await Hive.openBox<CategoryModels>(CATEGORY_DB_NAME);
-    await _categoryDB.put(value.id,value);
+    final categoryDB = await Hive.openBox<CategoryModels>(CATEGORY_DB_NAME);
+    await categoryDB.put(value.id,value);
      refreshUI();
   }
 
   @override
   Future<List<CategoryModels>> getCategories() async {
-    final _categoryDB = await Hive.openBox<CategoryModels>(CATEGORY_DB_NAME);
-    return _categoryDB.values.toList();
+    final categoryDB = await Hive.openBox<CategoryModels>(CATEGORY_DB_NAME);
+    return categoryDB.values.toList();
   }
 
   Future<void> refreshUI() async {
-    final _allCategories = await getCategories();
+    final allCategories = await getCategories();
     incomeCategoryListListener.value.clear();
     expenseCategoryListListener.value.clear();
     await Future.forEach(
-      _allCategories,
+      allCategories,
       (CategoryModels category) {
         if (category.type == CategoryType.income) {
           incomeCategoryListListener.value.add(category);
@@ -57,8 +57,8 @@ factory CategoryDb (){
   
   @override
   Future<void> deleteCategory(String categoryID) async{
-    final _categoryDB =await Hive.openBox<CategoryModels>(CATEGORY_DB_NAME);
-   await _categoryDB.delete(categoryID);
+    final categoryDB =await Hive.openBox<CategoryModels>(CATEGORY_DB_NAME);
+   await categoryDB.delete(categoryID);
    refreshUI();
   }
 }

@@ -129,7 +129,7 @@ class OverViewSeeAll extends StatelessWidget {
 
   String parseDate(DateTime date) {
     final _date = DateFormat.MMMd().format(date);
-    final _splitedDate = _date.split(' ');
-    return '${_splitedDate.last}\n${_splitedDate.first}';
+    final splitedDate = _date.split(' ');
+    return '${splitedDate.last}\n${splitedDate.first}';
   }
 }

@@ -1,9 +1,7 @@
-import 'dart:ffi';
 
 import 'package:animate_gradient/animate_gradient.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
@@ -334,18 +332,18 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                             foregroundColor: Colors.black,
                           ),
                           onPressed: () async {
-                            final _selectedDatetemp = await showDatePicker(
+                            final selectedDatetemp = await showDatePicker(
                               context: context,
                               initialDate: DateTime.now(),
                               firstDate: DateTime.now()
                                   .subtract(const Duration(days: 30)),
                               lastDate: DateTime.now(),
                             );
-                            if (_selectedDatetemp == null) {
+                            if (selectedDatetemp == null) {
                               return;
                             } else {
                               setState(() {
-                                _selectDate = _selectedDatetemp;
+                                _selectDate = selectedDatetemp;
                               });
                             }
                           },
@@ -508,12 +506,12 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   }
 
   Future<void> addTransaction() async {
-    final _notesText = _notesTextEditingController.text;
-    final _amountText = _amountTextEditingController.text;
-    if (_notesText.isEmpty) {
+    final notesText = _notesTextEditingController.text;
+    final amountText = _amountTextEditingController.text;
+    if (notesText.isEmpty) {
       return;
     }
-    if (_amountText.isEmpty) {
+    if (amountText.isEmpty) {
       return;
     }
     if (_categoryID == null) {
@@ -526,19 +524,19 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       return;
     }
 
-    final _parsedAmount = double.tryParse(_amountText);
-    if (_parsedAmount == null) {
+    final parsedAmount = double.tryParse(amountText);
+    if (parsedAmount == null) {
       return;
     }
 
-    final _models = TransactionModel(
-      notes: _notesText,
-      amount: _parsedAmount,
+    final models = TransactionModel(
+      notes: notesText,
+      amount: parsedAmount,
       date: _selectDate!,
       type: _selectCategorytype!,
       category: _selectedcategorymodels!,
     );
-    await TransactionDb.instance.addTransaction(_models);
+    await TransactionDb.instance.addTransaction(models);
     Navigator.of(context).pop();
     TransactionDb.instance.refresh();
     final snackBar = SnackBar(

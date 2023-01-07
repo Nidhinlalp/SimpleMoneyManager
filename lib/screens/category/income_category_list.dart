@@ -35,7 +35,7 @@ class IncomeCategoryList extends StatelessWidget {
                           backgroundColor: Colors.transparent,
                           content: AwesomeSnackbarContent(
                             title: 'On Snap!',
-                            message: 'You Deleted One item !',
+                            message: 'You Deleted One Income Category !',
                             contentType: ContentType.failure,
                           ),
                         );

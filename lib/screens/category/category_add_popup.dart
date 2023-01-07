@@ -86,7 +86,7 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                     backgroundColor: Colors.transparent,
                     content: AwesomeSnackbarContent(
                       title: 'On Snap!',
-                      message: 'Transaction Add Category !',
+                      message: 'Category Add Successfully !',
                       contentType: ContentType.success,
                     ),
                   );

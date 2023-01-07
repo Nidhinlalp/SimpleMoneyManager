@@ -34,7 +34,7 @@ class ExpenseCategoyList extends StatelessWidget {
                           backgroundColor: Colors.transparent,
                           content: AwesomeSnackbarContent(
                             title: 'On Snap!',
-                            message: 'You Deleted One item !',
+                            message: 'You Deleted One Expense Categoryitem !',
                             contentType: ContentType.failure,
                           ),
                         );

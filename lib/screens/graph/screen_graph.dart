@@ -71,19 +71,7 @@ class _ScreenGraphState extends State<ScreenGraph>
               height: 30,
             ),
           ),
-          // flexibleSpace: Container(
-          //   decoration: const BoxDecoration(
-          //     gradient: LinearGradient(
-          //       begin: Alignment.topCenter,
-          //       end: Alignment.bottomCenter,
-          //       colors: <Color>[
-          //         Color.fromARGB(255, 201, 122, 198),
-          //         Color.fromARGB(255, 221, 145, 254),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-          //  leading: const MenuBar(),
+         
 
           elevation: 0,
         ),

@@ -525,6 +525,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       category: _selectedcategorymodels!,
     );
     await TransactionDb.instance.addTransaction(models);
+    // ignore: use_build_context_synchronously
     Navigator.of(context).pop();
     TransactionDb.instance.refresh();
     final snackBar = SnackBar(
@@ -538,6 +539,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       ),
     );
 
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(snackBar);

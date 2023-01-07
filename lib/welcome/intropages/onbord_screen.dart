@@ -21,7 +21,7 @@ class _OnbordScreenState extends State<OnbordScreen> {
   @override
   Widget build(BuildContext context) {
     return AnimateGradient(
-       primaryBegin: Alignment.topLeft,
+      primaryBegin: Alignment.topLeft,
       primaryEnd: Alignment.bottomLeft,
       secondaryBegin: Alignment.bottomLeft,
       secondaryEnd: Alignment.topRight,
@@ -55,7 +55,7 @@ class _OnbordScreenState extends State<OnbordScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   // skip
-    
+
                   GestureDetector(
                     onTap: () {
                       controller.jumpToPage(2);
@@ -64,9 +64,15 @@ class _OnbordScreenState extends State<OnbordScreen> {
                       'Skip',
                     ),
                   ),
-    
-                  SmoothPageIndicator(controller: controller, count: 3,onDotClicked: ((index) => controller.animateToPage(index, duration: Duration(milliseconds: 500), curve: Curves.easeIn)),),
-    
+
+                  SmoothPageIndicator(
+                    controller: controller,
+                    count: 3,
+                    onDotClicked: ((index) => controller.animateToPage(index,
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.easeIn)),
+                  ),
+
                   //Continue
                   onLastPage
                       ? GestureDetector(
@@ -78,17 +84,21 @@ class _OnbordScreenState extends State<OnbordScreen> {
                             );
                           },
                           child: const Text(
-                            'Continue',
+                            'Get Start',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                         )
                       : GestureDetector(
                           onTap: () {
                             controller.nextPage(
-                                duration: Duration(milliseconds: 505),
+                                duration: const Duration(milliseconds: 505),
                                 curve: Curves.easeIn);
                           },
                           child: const Text(
                             'Next',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w500),
                           ),
                         ),
                 ],

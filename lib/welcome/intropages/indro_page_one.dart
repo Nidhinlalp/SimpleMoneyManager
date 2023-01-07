@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shimmer/shimmer.dart';
 
 class IntroPage1 extends StatelessWidget {
   const IntroPage1({super.key});
@@ -8,27 +9,39 @@ class IntroPage1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Row(
-              children: const [
-                Text(
-                  '"MONEY WONT CREATE\n SUCCESS, THE FREEDOM TO\n MAKE IT WILL"',
-                  style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Shimmer.fromColors(
+                  baseColor: Colors.black,
+                  highlightColor: Colors.white,
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 50, right: 50, top: 150),
+                    child: Text(
+                      'MONEY WONT CREATE\nSUCCESS, THE FREEDOM TO MAKE IT WILL !',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 23.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
-              ],
-            ),
-            Lottie.network(
-              'https://assets2.lottiefiles.com/packages/lf20_1pxqjqps.json',width: 400
-            )
-          ],
-        ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Lottie.network(
+                'https://assets2.lottiefiles.com/packages/lf20_1pxqjqps.json',
+                width: 400),
+          )
+        ],
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class IntroPage3 extends StatelessWidget {
   const IntroPage3({super.key});
@@ -13,10 +14,27 @@ class IntroPage3 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Row(
-              children: const [
-                Text(
-                  '"NEVER SPEND YOUR\n MONEY BEFORE YOU\n HAVE EARNED IT."',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Shimmer.fromColors(
+                    baseColor: Colors.black,
+                    highlightColor: Colors.white,
+                    child: const Padding(
+                      padding: EdgeInsets.only(
+                        left: 20,
+                        right: 40,
+                      ),
+                      child: Text(
+                        'NEVER SPEND YOUR MONEY BEFORE YOU HAVE EARNED IT !',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 23.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

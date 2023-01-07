@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shimmer/shimmer.dart';
 
 class IntroPage2 extends StatelessWidget {
   const IntroPage2({super.key});
@@ -14,24 +15,37 @@ class IntroPage2 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Row(
-              children: const [
-                Text(
-                  '"DO NOT SAVE WHAT IS LEFT\n AFTER SPENDING, BUT SPEND\n WHAT IS LEFT AFTER SAVING."',
-                  style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500),
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Shimmer.fromColors(
+                    baseColor: Colors.black,
+                    highlightColor: Colors.white,
+                    child: const Padding(
+                      padding: EdgeInsets.only(
+                        left: 20,
+                        right: 40,
+                      ),
+                      child: Text(
+                        'DO NOT SAVE WHAT IS LEFT AFTER SPENDING, BUT SPEND WHAT IS LEFT AFTER SAVING',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 23.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
-
             Lottie.network(
-              'https://assets7.lottiefiles.com/packages/lf20_qy2hc1lc.json',width: 400,
+              'https://assets7.lottiefiles.com/packages/lf20_qy2hc1lc.json',
+              width: 400,
             ),
           ],
         ),
-     ),
- );
-
+      ),
+    );
   }
 }

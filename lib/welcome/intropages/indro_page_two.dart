@@ -20,7 +20,7 @@ class IntroPage2 extends StatelessWidget {
                 Expanded(
                   child: Shimmer.fromColors(
                     baseColor: Colors.black,
-                    highlightColor: Colors.white,
+                    highlightColor: Colors.white30,
                     child: const Padding(
                       padding: EdgeInsets.only(
                         left: 20,

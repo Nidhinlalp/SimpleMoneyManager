@@ -13,7 +13,7 @@ class OnbordScreen extends StatefulWidget {
   State<OnbordScreen> createState() => _OnbordScreenState();
 }
 
-class _OnbordScreenState extends State<OnbordScreen> {
+class _OnbordScreenState extends State<OnbordScreen> with TickerProviderStateMixin{
   PageController controller = PageController();
 
   bool onLastPage = false;

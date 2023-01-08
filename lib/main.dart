@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 import 'package:simplemoneymanager/welcome/intropages/onbord_screen.dart';
@@ -37,7 +36,7 @@ Future<void >main()async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  // This widget is the root of my application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

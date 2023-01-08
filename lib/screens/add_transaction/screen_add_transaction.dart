@@ -16,7 +16,7 @@ class ScreenAddTransaction extends StatefulWidget {
   State<ScreenAddTransaction> createState() => _ScreenAddTransactionState();
 }
 
-class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
+class _ScreenAddTransactionState extends State<ScreenAddTransaction> with TickerProviderStateMixin{
   DateTime? _selectDate;
   CategoryType? _selectCategorytype;
   CategoryModels? _selectedcategorymodels;
@@ -77,18 +77,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                             begin: Alignment.topRight,
                             end: Alignment.bottomLeft,
                             colors: [
-                              Color.fromARGB(
-                                255,
-                                172,
-                                160,
-                                172,
-                              ),
-                              Color.fromARGB(
-                                255,
-                                162,
-                                96,
-                                160,
-                              ),
+                              Color.fromARGB(255, 172, 160, 172),
+                              Color.fromARGB(255, 162, 96, 160),
                             ],
                           ),
                           borderRadius: BorderRadius.circular(
@@ -133,18 +123,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                             begin: Alignment.topRight,
                             end: Alignment.bottomLeft,
                             colors: [
-                              Color.fromARGB(
-                                255,
-                                172,
-                                160,
-                                172,
-                              ),
-                              Color.fromARGB(
-                                255,
-                                162,
-                                96,
-                                160,
-                              ),
+                              Color.fromARGB(255, 172, 160, 172),
+                              Color.fromARGB(255, 162, 96, 160),
                             ],
                           ),
                           borderRadius: BorderRadius.circular(
@@ -188,18 +168,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                             begin: Alignment.topRight,
                             end: Alignment.bottomLeft,
                             colors: [
-                              Color.fromARGB(
-                                255,
-                                172,
-                                160,
-                                172,
-                              ),
-                              Color.fromARGB(
-                                255,
-                                162,
-                                96,
-                                160,
-                              ),
+                              Color.fromARGB(255, 172, 160, 172),
+                              Color.fromARGB(255, 162, 96, 160),
                             ],
                           ),
                           borderRadius: BorderRadius.circular(
@@ -285,18 +255,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
                               colors: [
-                                Color.fromARGB(
-                                  255,
-                                  172,
-                                  160,
-                                  172,
-                                ),
-                                Color.fromARGB(
-                                  255,
-                                  162,
-                                  96,
-                                  160,
-                                ),
+                                Color.fromARGB(255, 172, 160, 172),
+                                Color.fromARGB(255, 162, 96, 160),
                               ],
                             ),
                             borderRadius: BorderRadius.circular(
@@ -362,18 +322,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
                               colors: [
-                                Color.fromARGB(
-                                  255,
-                                  172,
-                                  160,
-                                  172,
-                                ),
-                                Color.fromARGB(
-                                  255,
-                                  162,
-                                  96,
-                                  160,
-                                ),
+                                Color.fromARGB(255, 172, 160, 172),
+                                Color.fromARGB(255, 162, 96, 160),
                               ],
                             ),
                             borderRadius: BorderRadius.circular(

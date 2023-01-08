@@ -16,15 +16,15 @@ class CustomFABWidget extends StatelessWidget {
         closedShape: const CircleBorder(),
         closedColor: Theme.of(context).primaryColor,
         closedBuilder: (context, openContainer) => Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
-            color: Theme.of(context).primaryColor,
+            color: Colors.transparent,
           ),
           height: fabSize,
           width: fabSize,
           child: const Icon(
             Icons.add,
-            color: Colors.white,
+            color: Colors.black,
           ),
     ),
 );

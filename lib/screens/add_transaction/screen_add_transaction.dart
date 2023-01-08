@@ -99,6 +99,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> with Ticker
                       ),
                       Expanded(
                         child: TextField(
+                          
                           controller: _amountTextEditingController,
                           decoration: const InputDecoration(
                             hintText: '0',

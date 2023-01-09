@@ -62,8 +62,8 @@ class _ManuState extends State<ManuPage> {
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [
-                       Color.fromARGB(255, 49, 119, 172),
-                                    Color.fromARGB(77, 117, 167, 213),
+                      Color.fromARGB(255, 49, 119, 172),
+                      Color.fromARGB(77, 117, 167, 213),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(

@@ -86,8 +86,8 @@ class IncomeCategoryList extends StatelessWidget {
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
                           colors: [
-                            Color.fromARGB(255, 214, 202, 214),
-                            Color.fromARGB(255, 236, 133, 232),
+                             Color.fromARGB(255, 49, 119, 172),
+                                    Color.fromARGB(77, 117, 167, 213),
                           ],
                         ),
                         borderRadius: BorderRadius.circular(

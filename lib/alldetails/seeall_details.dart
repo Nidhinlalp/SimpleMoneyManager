@@ -58,8 +58,8 @@ class _SeeAllDetailsState extends State<SeeAllDetails>
                 backgroundColor: Colors.transparent,
                 expandedHeight: 240,
                 flexibleSpace: FlexibleSpaceBar(
-                  title: const Text(
-                    'My Transaction',
+                  title: const Text(textAlign: TextAlign.center,
+                    'My Transactions',
                     style: TextStyle(color: Colors.black),
                   ),
                   background: Image.asset(

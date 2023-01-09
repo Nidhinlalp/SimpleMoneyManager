@@ -168,8 +168,8 @@ class _AboutState extends State<About> with TickerProviderStateMixin {
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [
-                    Color.fromARGB(255, 195, 221, 236),
-                    Color.fromARGB(255, 145, 187, 221),
+                      Color.fromARGB(255, 49, 119, 172),
+                                    Color.fromARGB(77, 117, 167, 213),
                   ],
                 ),
                 borderRadius: BorderRadius.only(

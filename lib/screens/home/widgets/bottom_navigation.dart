@@ -24,9 +24,9 @@ class _MoneyManagerBottomNavigationState
             milliseconds: 300,
           ),
           height: 60,
-          color: const Color.fromARGB(255, 201, 122, 198),
-          backgroundColor: const Color.fromARGB(255, 236, 133, 232),
-          buttonBackgroundColor: const Color.fromARGB(255, 214, 202, 214),
+          color: Color.fromARGB(255, 105, 148, 192),
+          backgroundColor: Colors.white38,
+          buttonBackgroundColor: Color.fromARGB(255, 105, 148, 192),
           items: const [
             Icon(
               Icons.home_outlined,

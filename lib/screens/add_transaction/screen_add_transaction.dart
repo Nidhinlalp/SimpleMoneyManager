@@ -77,8 +77,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> with Ticker
                             begin: Alignment.topRight,
                             end: Alignment.bottomLeft,
                             colors: [
-                              Color.fromARGB(255, 172, 160, 172),
-                              Color.fromARGB(255, 162, 96, 160),
+                               Color.fromARGB(255, 49, 119, 172),
+                                    Color.fromARGB(77, 117, 167, 213),
                             ],
                           ),
                           borderRadius: BorderRadius.circular(
@@ -124,8 +124,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> with Ticker
                             begin: Alignment.topRight,
                             end: Alignment.bottomLeft,
                             colors: [
-                              Color.fromARGB(255, 172, 160, 172),
-                              Color.fromARGB(255, 162, 96, 160),
+                              Color.fromARGB(255, 49, 119, 172),
+                                    Color.fromARGB(77, 117, 167, 213),
                             ],
                           ),
                           borderRadius: BorderRadius.circular(
@@ -169,8 +169,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> with Ticker
                             begin: Alignment.topRight,
                             end: Alignment.bottomLeft,
                             colors: [
-                              Color.fromARGB(255, 172, 160, 172),
-                              Color.fromARGB(255, 162, 96, 160),
+                               Color.fromARGB(255, 49, 119, 172),
+                                    Color.fromARGB(77, 117, 167, 213),
                             ],
                           ),
                           borderRadius: BorderRadius.circular(
@@ -197,9 +197,9 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> with Ticker
                         children: [
                           Radio(
                             fillColor: MaterialStateColor.resolveWith(
-                                (states) => Colors.green.shade400),
+                                (states) => Color.fromARGB(255, 56, 145, 60)),
                             focusColor: MaterialStateColor.resolveWith(
-                                (states) => Colors.green.shade400),
+                                (states) => Color.fromARGB(255, 64, 100, 65)),
                             value: CategoryType.income,
                             groupValue: _selectCategorytype,
                             onChanged: (newValue) {
@@ -221,9 +221,9 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> with Ticker
                         children: [
                           Radio(
                             fillColor: MaterialStateColor.resolveWith(
-                                (states) => Colors.red.shade900),
+                                (states) => Color.fromARGB(255, 166, 17, 17)),
                             focusColor: MaterialStateColor.resolveWith(
-                                (states) => Colors.red.shade900),
+                                (states) => Color.fromARGB(255, 145, 17, 17)),
                             value: CategoryType.expense,
                             groupValue: _selectCategorytype,
                             onChanged: (newValue) {
@@ -256,8 +256,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> with Ticker
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
                               colors: [
-                                Color.fromARGB(255, 172, 160, 172),
-                                Color.fromARGB(255, 162, 96, 160),
+                                 Color.fromARGB(255, 49, 119, 172),
+                                    Color.fromARGB(77, 117, 167, 213),
                               ],
                             ),
                             borderRadius: BorderRadius.circular(
@@ -323,8 +323,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> with Ticker
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
                               colors: [
-                                Color.fromARGB(255, 172, 160, 172),
-                                Color.fromARGB(255, 162, 96, 160),
+                                Color.fromARGB(255, 49, 119, 172),
+                                    Color.fromARGB(77, 117, 167, 213),
                               ],
                             ),
                             borderRadius: BorderRadius.circular(
@@ -406,8 +406,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> with Ticker
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
                           colors: [
-                            Color.fromARGB(255, 214, 202, 214),
-                            Color.fromARGB(255, 236, 133, 232),
+                             Color.fromARGB(255, 49, 119, 172),
+                                    Color.fromARGB(77, 117, 167, 213),
                           ],
                         ),
                         borderRadius: BorderRadius.circular(
@@ -423,7 +423,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> with Ticker
                           'Add',
                           style: TextStyle(
                             color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w500,fontSize: 19,
                           ),
                         ),
                         style: ElevatedButton.styleFrom(

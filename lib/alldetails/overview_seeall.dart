@@ -15,19 +15,23 @@ class OverViewSeeAll extends StatelessWidget {
     return ValueListenableBuilder(
         valueListenable: transactionListNotifire,
         builder: (BuildContext ctx, List<TransactionModel> newList, Widget? _) {
-          return ListView.separated(
-            padding: const EdgeInsets.all(20.0),
-            itemBuilder: (ctx, index) {
-              final value = newList[index];
-              return TransactionSlidable(value: value);
-            },
-            separatorBuilder: (ctx, index) {
-              return const SizedBox(
-                height: 10,
-              );
-            },
-            itemCount: newList.length,
-          );
+          return newList.isEmpty
+              ? const Center(
+                  child: Text("Oops! No  Data 👎"),
+                )
+              : ListView.separated(
+                  padding: const EdgeInsets.all(20.0),
+                  itemBuilder: (ctx, index) {
+                    final value = newList[index];
+                    return TransactionSlidable(value: value);
+                  },
+                  separatorBuilder: (ctx, index) {
+                    return const SizedBox(
+                      height: 10,
+                    );
+                  },
+                  itemCount: newList.length,
+                );
         });
   }
 

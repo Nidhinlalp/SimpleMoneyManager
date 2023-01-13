@@ -9,11 +9,7 @@ class RecentTransactionHeding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 35.0,
-        right: 35.0,
-        top: 35.0,
-      ),
+      padding: const EdgeInsets.only(left: 35.0, right: 35.0, top: 35.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -51,9 +47,10 @@ class RecentTransactionHeding extends StatelessWidget {
                 child: Text(
                   'View All',
                   style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15,
-                      color: Colors.black),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),

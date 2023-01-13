@@ -8,6 +8,7 @@ import 'package:simplemoneymanager/screens/Hometransactions/resent_transaction_h
 import 'package:simplemoneymanager/screens/Hometransactions/transaction_slidable.dart';
 import '../../colors/colors.dart';
 import '../add_transaction/floting_animation.dart';
+import '../home/search_function/main_search.dart';
 import 'carent_balance_card.dart';
 
 class ScreenTransaction extends StatefulWidget {
@@ -59,25 +60,34 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  //:::::::::::::::curent balance card:::::::::::::::::
                   const CurrentBalance(),
+                  //::::::::::::RecentTransactionHeding:::::::::::;
                   const RecentTransactionHeding(),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
-                      children: List.generate(
-                        newList.length > 5 ? 5 : newList.length,
-                        (index) {
-                          final value = newList[index];
-                          return Column(
-                            children: [
-                              TransactionSlidable(value: value),
-                              const SizedBox(
-                                height: 10,
-                              )
-                            ],
-                          );
-                        },
-                      ),
+                      children: newList.isEmpty
+                          ? [
+                              const Text(
+                                "Oops! No  Data 👎",
+                              ),
+                            ]
+                          : List.generate(
+                              //::::::::cheking1st page 5 item ::::::::::
+                              newList.length > 5 ? 5 : newList.length,
+                              (index) {
+                                final value = newList[index];
+                                return Column(
+                                  children: [
+                                    TransactionSlidable(value: value),
+                                    const SizedBox(
+                                      height: 10,
+                                    )
+                                  ],
+                                );
+                              },
+                            ),
                     ),
                   )
                 ],
@@ -85,7 +95,7 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
             ),
           ),
 
-          //flotting action button
+          //:::::::::::flotting action button::::::::::::::
           floatingActionButton: const CustomFABWidget(),
         );
       },
@@ -94,44 +104,6 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
 }
 
 //::::::::::::::::::::::::::::::::::::::::::MySearchDelegate search the trancaction::::::::::::::::
-
-class MySearchDelegate extends SearchDelegate {
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    return [
-      IconButton(
-        onPressed: () {
-          if (query.isEmpty) {
-            close(context, null);
-          } else {
-            query = '';
-          }
-        },
-        icon: const Icon(
-          Icons.clear,
-        ),
-      )
-    ];
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    return IconButton(
-      onPressed: () => close(context, null),
-      icon: const Icon(Icons.arrow_back),
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return Container();
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return Container();
-  }
-}
 
 String parseDate(DateTime date) {
   final _date = DateFormat.MMMd().format(date);

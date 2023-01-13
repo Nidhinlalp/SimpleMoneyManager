@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../colors/colors.dart';
+import '../screens/home/search_function/main_search.dart';
 import 'expense_seeall.dart';
 import 'income_seall.dart';
 import 'overview_seeall.dart';
@@ -34,7 +35,12 @@ class _SeeAllDetailsState extends State<SeeAllDetails>
             SliverAppBar(
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: MySearchDelegate(),
+                    );
+                  },
                   icon: const Icon(
                     Icons.search,
                     color: Colors.black,

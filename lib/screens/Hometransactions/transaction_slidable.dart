@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:simplemoneymanager/screens/Hometransactions/screen_transaction.dart';
-import 'package:simplemoneymanager/screens/edit/edit.dart';
-
+import 'package:simplemoneymanager/screens/Update/edit.dart';
 import '../../models/cetegory/cetegory_models.dart';
 import '../../models/transaction/transaction_model.dart';
 import 'alert_snakbar_for_home.dart';
@@ -48,7 +47,7 @@ class TransactionSlidable extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>  EditeTransaction(value: value),
+                  builder: (context) => EditeTransaction(value: value),
                 ),
               );
             },

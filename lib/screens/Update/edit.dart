@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simplemoneymanager/constants/constants.dart';
@@ -9,102 +8,104 @@ import '../../colors/colors.dart';
 import '../../db_functions/category/category_db.dart';
 import '../category/category_add_popup.dart';
 
-class ScreenAddTransaction extends StatefulWidget {
-  const ScreenAddTransaction({super.key});
+class EditeTransaction extends StatefulWidget {
+  const EditeTransaction({Key? key, required this.value}) : super(key: key);
+  final TransactionModel value;
 
   @override
-  State<ScreenAddTransaction> createState() => _ScreenAddTransactionState();
+  State<EditeTransaction> createState() => _ScreenAddTransactionState();
 }
 
-class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
+class _ScreenAddTransactionState extends State<EditeTransaction> {
+  final _formKey = GlobalKey<FormState>();
   DateTime? _selectDate;
   String? dateString;
   CategoryType? _selectCategorytype;
   CategoryModels? _selectedcategorymodels;
+
   String? _categoryID;
+  // String val=widget.value.notes.toString();
 
-  final _formKey = GlobalKey<FormState>();
-
-  final _notesTextEditingController = TextEditingController();
-  final _amountTextEditingController = TextEditingController();
+  var _notesTextEditingController = TextEditingController();
+  var _amountTextEditingController = TextEditingController();
   String selectDAteemptyMassege = '';
   String selectcategoryemptyMassege = '';
 
   @override
   void initState() {
     _selectCategorytype = CategoryType.income;
-    // dateString = null;
-    // _selectDate = null;
-    // _categoryID = null;
-    // _selectedcategorymodels = null;
+    _notesTextEditingController =
+        TextEditingController(text: widget.value.notes);
+    _amountTextEditingController =
+        TextEditingController(text: widget.value.amount.toString());
+    _selectDate = widget.value.date;
+    // _selectCategorytype=widget.value.category;
     super.initState();
   }
 
   bool selectingchip = false;
   int? _value = 1;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Form(
       key: _formKey,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Text(
-            'Add Transaction',
+            'Update Transaction',
             textAlign: TextAlign.center,
             style: GoogleFonts.roboto(fontSize: 25, color: Colors.black),
           ),
         ),
-        backgroundColor: ColorConstants.kPrimaryColor,
+        backgroundColor: ColorConstants.kGravishBlueColor,
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(30.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   constHeight10,
 
-                  //:::::::::::::selectCategorySection:::::::::::::::
+                  //:::::::::::::::::::Categoryselection:::::::::::::::::::
+                  Categoryselection(context),
 
-                  selectCategorySection(context),
+                  //::::::::::::::::::category validation:::::::::::::::::
 
-                  //category validation
-                  SelectCategoryValidation(
+                  ValidationOfSelectCatogory(
                     selectcategoryemptyMassege: selectcategoryemptyMassege,
                   ),
-                  //
+
                   constHeight30,
-                  constHeight10,
-                  //:::::::::::::::selectCategoryTypeSection::::::
-                  selectCategoryTypeSection(),
+
+                  //::::::::::::::::SelectCategoryType:::::::::::::::::::::
+                  SelectCategoryType(),
+
                   constHeight30,
-                  constHeight20,
-                  //::::::::::::amountSection:::::::::::::::::::::
-                  amountSection(),
+
+                  //::::::::::::::SelectAmount:::::::::::::::::::::::::::
+                  SelectAmount(),
                   constHeight30,
-                  constHeight20,
-                  //::::::::::::::::selectDateSection:::::::::::::
+
+                  //:::::::::::::;selectDateSection::::::::::::::::::::::::
                   selectDateSection(context),
-                  constHeight30,
-                  //:::::::erro massege for form validation:::::::
-                  SeletionDateValidation(
+                  constHeight20,
+                  //::::::::::::::ValidationOfDate::::::::::::::;;::::::::
+
+                  ValidationOfDate(
                     selectDAteemptyMassege: selectDAteemptyMassege,
                   ),
 
-                  //::::::::::::::::::::noteSection:::::::::::::::
+                  //:::::::::::::::::::noteSection::::::::::::::::::::
                   noteSection(),
-                  constHeight30,
-                  constHeight20,
                   constHeight30,
                   constHeight30,
 
-                  //:::::::::::::::::::::addButtonSection::::::::
-                  addButtonSection(size),
+                  //::::::::::::::::::::elevetedButtonSection:::::::::
+                  elevetedButtonSection(size)
                 ],
               ),
             ),
@@ -114,63 +115,66 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     );
   }
 
-  //:::::::::::::::::::::;close::::::::::::::::::::::::
+  //:::::::::::::::::::::::::::::::::::::::::::::::::::;close the page::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
 
-  //::::::::::::::::::::::::::addButtonSection::::::::::::::::::::::::::::::::::::::::::::::
-
-  Container addButtonSection(Size size) {
-    return Container(
-      width: size.width / 3,
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [
-            Color.fromARGB(255, 49, 119, 172),
-            Color.fromARGB(77, 117, 167, 213),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(
-          20,
-        ),
-      ),
-      child: ElevatedButton(
-        onPressed: () {
-          if (_categoryID == null) {
-            setState(() {
-              selectcategoryemptyMassege = 'please select category';
-            });
-          }
-          if (_selectDate == null) {
-            setState(() {
-              selectDAteemptyMassege = 'please select date';
-            });
-          }
-          if (_formKey.currentState!.validate()) {
-            addTransaction();
-          }
-          // FocusManager.instance.primaryFocus?.unfocus();
-        },
-        // ignore: sort_child_properties_last
-        child: const Text(
-          'Add',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w500,
-            fontSize: 19,
+//:::::::::elevetedButtonSection:::::::::::::::::::::::::::::::::::::::
+  SizedBox elevetedButtonSection(Size size) {
+    return SizedBox(
+      height: 50.0,
+      child: Container(
+        width: size.width / 3,
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Color.fromARGB(255, 49, 119, 172),
+              Color.fromARGB(77, 117, 167, 213),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(
+            20,
           ),
         ),
-        style: ElevatedButton.styleFrom(
-          elevation: 20,
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.black,
-          shape: const StadiumBorder(),
+        child: ElevatedButton(
+          onPressed: () {
+            if (_categoryID == null) {
+              setState(() {
+                selectcategoryemptyMassege = 'please select category';
+              });
+            }
+            if (_selectDate == null) {
+              setState(() {
+                selectDAteemptyMassege = 'please select date';
+              });
+            }
+            if (_formKey.currentState!.validate()) {
+              //  var a=TransactionModel(amount:double.parse( _amountTextEditingController.value.text),category:_selectedcategorymodels! ,date:_selectDate! ,notes: _notesTextEditingController.text,type: _selectCategorytype!);
+              editTransaction();
+            }
+          },
+          // ignore: sort_child_properties_last
+          child: const Text(
+            'Upadate',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              fontSize: 19,
+            ),
+          ),
+          style: ElevatedButton.styleFrom(
+            elevation: 20,
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.black,
+            shape: const StadiumBorder(),
+          ),
         ),
       ),
     );
   }
 
-//::::::::::::::::::::::::::::::::::::::::::::::noteSection::::::::::::::::::::::::::::::
+  //::::::::;noteSection:::::::::::::::::::::::::::::::::::::::;
+
   Row noteSection() {
     return Row(
       children: [
@@ -218,7 +222,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.blueAccent,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -231,6 +235,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     );
   }
 
+//:::::::::::::::::::::::;selectDateSection::::::::::::::::::::::::::::::::::::::
   SizedBox selectDateSection(BuildContext context) {
     return SizedBox(
       height: 50.0,
@@ -298,11 +303,16 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               }
             },
             child: Text(
-              // _selectDate == null ? 'SelectDate' : _selectDate!.toString(),
               dateString == null ? 'SelectDate' : dateString!,
               style: const TextStyle(
                 fontSize: 20.0,
               ),
+              // _selectDate == null
+              //     ? 'SelectDate'
+              //     : _selectDate!.toString(),
+              // style: const TextStyle(
+              //   fontSize: 20.0,
+              // ),
             ),
           )
         ],
@@ -310,8 +320,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     );
   }
 
-//::::::::::::::::::::::::::::::::::::::::::::::::::::::amountSection:::::::::::::::::::::::::
-  Row amountSection() {
+//::::::::::::::::SelectAmount::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  Row SelectAmount() {
     return Row(
       children: [
         Container(
@@ -358,7 +368,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.blueAccent,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -372,9 +382,9 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     );
   }
 
-//:::::::::::::::::::::::::::selectCategoryTypeSection:::::::::::::::::
+  //::::::::::::SelectCategoryType::::::::::::::::::::::::::::::::::::::::::::::::::
 
-  Row selectCategoryTypeSection() {
+  Row SelectCategoryType() {
     return Row(
       children: [
         Container(
@@ -445,66 +455,13 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
             ),
           ],
         ),
-
-        // Row(
-        //   children: [
-        //     Radio(
-        //       fillColor: MaterialStateColor.resolveWith(
-        //           (states) =>
-        //               const Color.fromARGB(255, 56, 145, 60)),
-        //       focusColor: MaterialStateColor.resolveWith(
-        //           (states) =>
-        //               const Color.fromARGB(255, 64, 100, 65)),
-        //       value: CategoryType.income,
-        //       groupValue: _selectCategorytype,
-        //       onChanged: (newValue) {
-        //         setState(() {
-        //           _selectCategorytype = CategoryType.income;
-        //           _categoryID = null;
-        //         });
-        //       },
-        //     ),
-        //     const Text(
-        //       'Income',
-        //       style: TextStyle(
-        //         fontSize: 20.0,
-        //       ),
-        //     )
-        //   ],
-        // ),
-        // Row(
-        //   children: [
-        //     Radio(
-        //       fillColor: MaterialStateColor.resolveWith(
-        //           (states) =>
-        //               const Color.fromARGB(255, 166, 17, 17)),
-        //       focusColor: MaterialStateColor.resolveWith(
-        //           (states) =>
-        //               const Color.fromARGB(255, 145, 17, 17)),
-        //       value: CategoryType.expense,
-        //       groupValue: _selectCategorytype,
-        //       onChanged: (newValue) {
-        //         setState(() {
-        //           _selectCategorytype = CategoryType.expense;
-        //           _categoryID = null;
-        //         });
-        //       },
-        //     ),
-        //     const Text(
-        //       'Expense',
-        //       style: TextStyle(
-        //         fontSize: 20.0,
-        //       ),
-        //     )
-        //   ],
-        // ),
       ],
     );
   }
 
-//:::::::::::::::::::::::::::::::::::::::::selectCategorySection::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
+  //::::::::::::::::Categoryselection::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-  Row selectCategorySection(BuildContext context) {
+  Row Categoryselection(BuildContext context) {
     return Row(
       children: [
         Container(
@@ -587,8 +544,9 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     );
   }
 
-//::::::::::::::::::::::::::::addTransactionFunction:::::::::::::::::::::
-  Future<void> addTransaction() async {
+  //:::::::::::::::editTransaction:::::::::::::::::::::::::::::::::::::::
+
+  Future<void> editTransaction() async {
     final notesText = _notesTextEditingController.text;
     final amountText = _amountTextEditingController.text;
     if (notesText.isEmpty) {
@@ -613,40 +571,38 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     }
 
     final models = TransactionModel(
-      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      id: widget.value.id,
       notes: notesText,
       amount: parsedAmount,
       date: _selectDate!,
       type: _selectCategorytype!,
       category: _selectedcategorymodels!,
     );
-    await TransactionDb.instance.addTransaction(models);
+    await TransactionDb.instance.editTransaction(models);
     // ignore: use_build_context_synchronously
     Navigator.of(context).pop();
     TransactionDb.instance.refresh();
+    // final snackBar = SnackBar(duration: const Duration(milliseconds: 500),
+    //   elevation: 0,
+    //   behavior: SnackBarBehavior.floating,
+    //   backgroundColor: Colors.transparent,
+    //   content: AwesomeSnackbarContent(
+    //     title: 'On Snap!',
+    //     message: 'Transaction Add Successfully !',
+    //     contentType: ContentType.success,
+    //   ),
+    // );
 
-    //::::::::::::SnakBarTransaction Add Successfully !massege::::::::::::::
-
-    final snackBar = SnackBar(
-      elevation: 0,
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: Colors.transparent,
-      content: AwesomeSnackbarContent(
-        title: 'On Snap!',
-        message: 'Transaction Add Successfully !',
-        contentType: ContentType.success,
-      ),
-    );
-
-    // ignore: use_build_context_synchronously
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(snackBar);
+    // // ignore: use_build_context_synchronously
+    // ScaffoldMessenger.of(context)
+    //   ..hideCurrentSnackBar()
+    //   ..showSnackBar(snackBar);
   }
 }
 
-class SeletionDateValidation extends StatelessWidget {
-  const SeletionDateValidation({
+//:::::::::::::::::::::::ValidationOfDate::::::::::::::::::::::::::::::::::::::::::::::::
+class ValidationOfDate extends StatelessWidget {
+  const ValidationOfDate({
     Key? key,
     required this.selectDAteemptyMassege,
   }) : super(key: key);
@@ -656,20 +612,21 @@ class SeletionDateValidation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 125),
+      padding: const EdgeInsets.only(right: 100),
       child: Text(
         selectDAteemptyMassege,
         style: const TextStyle(
           color: Colors.red,
-          fontSize: 12.5,
         ),
       ),
     );
   }
 }
 
-class SelectCategoryValidation extends StatelessWidget {
-  const SelectCategoryValidation({
+//:::::::::::::::::::::::::::::::::::::::::ValidationOfSelectCatogory:::::::::::::::::::::::::::::::
+
+class ValidationOfSelectCatogory extends StatelessWidget {
+  const ValidationOfSelectCatogory({
     Key? key,
     required this.selectcategoryemptyMassege,
   }) : super(key: key);
@@ -679,12 +636,12 @@ class SelectCategoryValidation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 105),
+      padding: const EdgeInsets.only(right: 85),
       child: Text(
         selectcategoryemptyMassege,
         style: const TextStyle(
           color: Colors.red,
-          fontSize: 12.5,
+          fontSize: 12,
         ),
       ),
     );

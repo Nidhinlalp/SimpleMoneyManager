@@ -8,106 +8,117 @@ ValueNotifier<CategoryType> selectCategoryNotifire =
 
 Future<void> showCategoryAddPopup(BuildContext context) async {
   final nameEditingController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   showDialog(
     context: context,
     builder: (ctx) {
-      return SimpleDialog(
-        backgroundColor: const Color.fromARGB(255, 235, 245, 254),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        title: const Text('Add Category'),
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TextFormField(
-              controller: nameEditingController,
-              decoration: const InputDecoration(
-                labelText: 'Category Name',
-                floatingLabelStyle: TextStyle(
-                  color: Colors.black,
-                ),
-                border: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
+      return Form(
+        key: _formKey,
+        child: SimpleDialog(
+          backgroundColor: const Color.fromARGB(255, 235, 245, 254),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: const [
-                RadioButton(title: 'Income', type: CategoryType.income),
-                RadioButton(title: 'Expense', type: CategoryType.expense),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    Color.fromARGB(255, 49, 119, 172),
-                    Color.fromARGB(77, 117, 167, 213),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(
-                  20,
-                ),
-              ),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 20,
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.black,
-                  shape: const StadiumBorder(),
-                ),
-                onPressed: () {
-                  final name = nameEditingController.text;
-                  if (name.isEmpty) {
-                    return;
+          title: const Text('Add Category'),
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Category is empty';
                   }
-                  final type = selectCategoryNotifire.value;
-                  final category = CategoryModels(
-                    id: DateTime.now().millisecondsSinceEpoch.toString(),
-                    name: name,
-                    type: type,
-                  );
-
-                  CategoryDb().insertCategory(category);
-                  Navigator.of(ctx).pop();
-                  final snackBar = SnackBar(
-                    elevation: 0,
-                    behavior: SnackBarBehavior.floating,
-                    backgroundColor: Colors.transparent,
-                    content: AwesomeSnackbarContent(
-                      title: 'On Snap!',
-                      message: 'Category Add Successfully !',
-                      contentType: ContentType.success,
-                    ),
-                  );
-
-                  ScaffoldMessenger.of(context)
-                    ..hideCurrentSnackBar()
-                    ..showSnackBar(snackBar);
                 },
-                child: const Text(
-                  'Add',
-                  style: TextStyle(
+                controller: nameEditingController,
+                decoration: const InputDecoration(
+                  labelText: 'Category Name',
+                  floatingLabelStyle: TextStyle(
                     color: Colors.black,
-                    fontWeight: FontWeight.bold,
+                  ),
+                  border: OutlineInputBorder(),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: const [
+                  RadioButton(title: 'Income', type: CategoryType.income),
+                  RadioButton(title: 'Expense', type: CategoryType.expense),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Color.fromARGB(255, 49, 119, 172),
+                      Color.fromARGB(77, 117, 167, 213),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(
+                    20,
+                  ),
+                ),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    elevation: 20,
+                    backgroundColor: Colors.transparent,
+                    shadowColor: Colors.black,
+                    shape: const StadiumBorder(),
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      final name = nameEditingController.text;
+                      if (name.isEmpty) {
+                        return;
+                      }
+                      final type = selectCategoryNotifire.value;
+                      final category = CategoryModels(
+                        id: DateTime.now().millisecondsSinceEpoch.toString(),
+                        name: name,
+                        type: type,
+                      );
+
+                      CategoryDb().insertCategory(category);
+                      Navigator.of(ctx).pop();
+                      final snackBar = SnackBar(
+                        elevation: 0,
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.transparent,
+                        content: AwesomeSnackbarContent(
+                          title: 'On Snap!',
+                          message: 'Category Add Successfully !',
+                          contentType: ContentType.success,
+                        ),
+                      );
+
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(snackBar);
+                    }
+                  },
+                  child: const Text(
+                    'Add',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       );
     },
   );

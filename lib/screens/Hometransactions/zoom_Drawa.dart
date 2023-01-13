@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:simplemoneymanager/screens/home/screen_home.dart';
-import 'package:simplemoneymanager/screens/transactions/menu_bar.dart';
+import 'package:simplemoneymanager/screens/menu_bar_items/menu_bar.dart';
 
 class Hompage extends StatefulWidget {
   const Hompage(BuildContext context, {super.key});

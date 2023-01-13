@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
 
 class IntroPage3 extends StatelessWidget {
@@ -18,8 +19,8 @@ class IntroPage3 extends StatelessWidget {
               children: [
                 Expanded(
                   child: Shimmer.fromColors(
-                    baseColor: Colors.black,
-                    highlightColor: Colors.white30,
+                    baseColor: Colors.white30,
+                    highlightColor: Colors.white,
                     child: const Padding(
                       padding: EdgeInsets.only(
                         left: 20,
@@ -41,32 +42,36 @@ class IntroPage3 extends StatelessWidget {
             const SizedBox(
               height: 0,
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      filled: true,
-                      prefixIcon: Icon(
-                        Icons.person,
-                        color: Colors.black,
-                      ),
-                      labelText: 'Enter your Name',
-                      floatingLabelStyle: TextStyle(
-                        color: Colors.black,
-                      ),
-                      border: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+            // Column(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Padding(
+            //       padding: const EdgeInsets.all(10.0),
+            //       child: TextFormField(
+            //         decoration: const InputDecoration(
+            //           filled: true,
+            //           prefixIcon: Icon(
+            //             Icons.person,
+            //             color: Colors.black,
+            //           ),
+            //           labelText: 'Enter your Name',
+            //           floatingLabelStyle: TextStyle(
+            //             color: Colors.black,
+            //           ),
+            //           border: OutlineInputBorder(),
+            //           enabledBorder: OutlineInputBorder(
+            //             borderSide: BorderSide(
+            //               color: Colors.black,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            Lottie.network(
+              'https://assets7.lottiefiles.com/packages/lf20_qy2hc1lc.json',
+              width: 400,
             ),
           ],
         ),

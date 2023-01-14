@@ -15,16 +15,16 @@ class IncomeSeeAll extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: transactionListNotifire,
       builder: (BuildContext ctx, List<TransactionModel> newList, Widget? _) {
-        List<TransactionModel> AllincomeTransaction = [];
-        AllincomeTransaction = newList
+        List<TransactionModel> allincometransaction = [];
+        allincometransaction = newList
             .where((element) => element.type == CategoryType.income)
             .toList();
-        return AllincomeTransaction.isEmpty
+        return allincometransaction.isEmpty
             ? const Center(child: Text("Oops! No  Data 👎"))
             : ListView.separated(
                 padding: const EdgeInsets.all(20.0),
                 itemBuilder: (ctx, index) {
-                  final value = AllincomeTransaction[index];
+                  final value = allincometransaction[index];
                   return TransactionSlidable(value: value);
                 },
                 separatorBuilder: (ctx, index) {
@@ -32,7 +32,7 @@ class IncomeSeeAll extends StatelessWidget {
                     height: 10,
                   );
                 },
-                itemCount: AllincomeTransaction.length,
+                itemCount: allincometransaction.length,
               );
       },
     );

@@ -39,8 +39,8 @@ class IntroPage2 extends StatelessWidget {
                 ),
               ],
             ),
-            Lottie.network(
-              'https://assets7.lottiefiles.com/packages/lf20_qy2hc1lc.json',
+            Lottie.asset(
+              'assets/images/indroimage2.json',
               width: 400,
             ),
           ],

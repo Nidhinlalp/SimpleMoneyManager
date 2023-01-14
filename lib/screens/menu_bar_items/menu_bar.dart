@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/about.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/paivacy_polycy.dart';
-
 import '../../colors/colors.dart';
 import 'terms_and_condition.dart';
 
@@ -40,10 +39,15 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
           SizedBox(
             height: 105,
           ),
+          //:::::::::::AboutHeding::::::
           AboutHeding(),
+          //:::::::::::ResetHeding::::::
           ResetHeding(),
+          //::::::::ShareHeding:::
           ShareHeding(),
+          //:::::TermsConditionsHeding:::
           TermsConditionsHeding(),
+          //::::::PrivacyPolicyHeding:::
           PrivacyPolicyHeding(),
         ],
       ),
@@ -51,7 +55,10 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
   }
 }
 
+//:::::::::::::::::::::::::::::::::::::::::::::close::::::::::::::::::::::::::::::::::::::::::::::::::::
 // widget for hedings @settings
+
+//::::::PrivacyPolicyHeding:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
 
 class PrivacyPolicyHeding extends StatelessWidget {
   const PrivacyPolicyHeding({
@@ -72,8 +79,8 @@ class PrivacyPolicyHeding extends StatelessWidget {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(77, 149, 196, 244),
+              Color.fromARGB(255, 196, 201, 122),
+              Color.fromARGB(255, 221, 145, 254),
             ],
           ),
           borderRadius: BorderRadius.circular(
@@ -119,6 +126,7 @@ class PrivacyPolicyHeding extends StatelessWidget {
     );
   }
 }
+//:::::TermsConditionsHeding::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 class TermsConditionsHeding extends StatelessWidget {
   const TermsConditionsHeding({
@@ -135,8 +143,8 @@ class TermsConditionsHeding extends StatelessWidget {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(77, 149, 196, 244),
+              Color.fromARGB(255, 196, 201, 122),
+              Color.fromARGB(255, 221, 145, 254),
             ],
           ),
           borderRadius: BorderRadius.circular(
@@ -183,6 +191,7 @@ class TermsConditionsHeding extends StatelessWidget {
     );
   }
 }
+//::::::::ShareHeding::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
 
 class ShareHeding extends StatelessWidget {
   const ShareHeding({
@@ -199,8 +208,8 @@ class ShareHeding extends StatelessWidget {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(77, 149, 196, 244),
+              Color.fromARGB(255, 196, 201, 122),
+              Color.fromARGB(255, 221, 145, 254),
             ],
           ),
           borderRadius: BorderRadius.circular(
@@ -237,6 +246,7 @@ class ShareHeding extends StatelessWidget {
     );
   }
 }
+//:::::::::::ResetHeding::::::::::::::::::::::::::::::::::::::::::::::;
 
 class ResetHeding extends StatelessWidget {
   const ResetHeding({
@@ -253,8 +263,8 @@ class ResetHeding extends StatelessWidget {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(77, 149, 196, 244),
+              Color.fromARGB(255, 196, 201, 122),
+              Color.fromARGB(255, 221, 145, 254),
             ],
           ),
           borderRadius: BorderRadius.circular(
@@ -292,6 +302,7 @@ class ResetHeding extends StatelessWidget {
   }
 }
 
+//:::::::::::AboutHeding::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
 class AboutHeding extends StatelessWidget {
   const AboutHeding({
     Key? key,
@@ -307,8 +318,8 @@ class AboutHeding extends StatelessWidget {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(77, 149, 196, 244),
+              Color.fromARGB(255, 196, 201, 122),
+              Color.fromARGB(255, 221, 145, 254),
             ],
           ),
           borderRadius: BorderRadius.circular(

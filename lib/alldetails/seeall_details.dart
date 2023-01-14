@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../colors/colors.dart';
 import '../screens/home/search_function/main_search.dart';
@@ -56,8 +57,8 @@ class _SeeAllDetailsState extends State<SeeAllDetails>
                   'My Transactions',
                   style: TextStyle(color: Colors.black),
                 ),
-                background: Image.asset(
-                  'assets/images/mytransaction.gif',
+                background: Lottie.asset(
+                  'assets/images/indroimage.json',
                 ),
               ),
               floating: true,

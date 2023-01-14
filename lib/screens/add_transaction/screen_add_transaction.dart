@@ -417,7 +417,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               // onselected method
               onSelected: (bool selected) {
                 setState(() {
-                  _value = selected ? 1 : null;
+                  _value = 1;
                   _selectCategorytype = CategoryType.income;
                   _categoryID = null;
                 });
@@ -437,7 +437,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               // onselected method
               onSelected: (bool selected) {
                 setState(() {
-                  _value = selected ? 2 : null;
+                  _value = 2;
                   _selectCategorytype = CategoryType.expense;
                   _categoryID = null;
                 });

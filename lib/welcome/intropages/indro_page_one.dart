@@ -37,9 +37,9 @@ class IntroPage1 extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Lottie.network(
-                'https://assets2.lottiefiles.com/packages/lf20_1pxqjqps.json',
-                width: 400),
+            child: Lottie.asset(
+              'assets/images/indro1image.json',
+            ),
           )
         ],
       ),

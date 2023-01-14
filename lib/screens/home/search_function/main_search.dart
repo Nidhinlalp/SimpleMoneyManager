@@ -6,6 +6,7 @@ import '../../../models/transaction/transaction_model.dart';
 import '../../Hometransactions/transaction_slidable.dart';
 
 class MySearchDelegate extends SearchDelegate {
+  
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [

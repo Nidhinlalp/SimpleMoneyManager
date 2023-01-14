@@ -36,7 +36,7 @@ class _AboutState extends State<TemsAndCondition> {
           style: GoogleFonts.roboto(fontSize: 25, color: Colors.black),
         ),
       ),
-      backgroundColor: ColorConstants.kPrimaryColor,
+      backgroundColor: ColorConstants.kGravishBlueColor,
       body: Center(
         child: FlipCard(
           direction: FlipDirection.HORIZONTAL,

@@ -1,6 +1,5 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-
 import '../../db_functions/transaction/transaction_db.dart';
 
 alertAndSnakBar(BuildContext context, String id) {

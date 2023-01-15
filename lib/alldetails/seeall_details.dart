@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
 import '../../colors/colors.dart';
 import '../screens/home/search_function/main_search.dart';
 import 'expense_seeall.dart';

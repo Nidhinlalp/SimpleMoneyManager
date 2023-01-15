@@ -90,6 +90,7 @@ class TransactionSlidable extends StatelessWidget {
           child: ListTile(
             contentPadding: const EdgeInsets.all(5),
             visualDensity: const VisualDensity(horizontal: 4, vertical: 2),
+            //::::::::::::::show circledate:::::::::::::::::::
             leading: CircleAvatar(
               backgroundColor: value.type == CategoryType.income
                   ? Colors.green
@@ -100,6 +101,7 @@ class TransactionSlidable extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
+            //::::::::::::::show amound:::::::::::::::::
             trailing: Text(
               '₹ ${value.amount}',
               style: const TextStyle(
@@ -107,6 +109,7 @@ class TransactionSlidable extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            //:::::::::::::::shwo category:::::::::::::::::
             title: Text(
               value.category.name,
               style: const TextStyle(

@@ -22,7 +22,6 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   CategoryType? _selectCategorytype;
   CategoryModels? _selectedcategorymodels;
   String? _categoryID;
-
   final _formKey = GlobalKey<FormState>();
 
   final _notesTextEditingController = TextEditingController();

@@ -21,6 +21,7 @@ class TransactionSlidable extends StatelessWidget {
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
         children: [
+          //::::::::::::::::delate the transaction::::::::::::::::::::
           SlidableAction(
             borderRadius: BorderRadius.circular(
               15.0,
@@ -38,6 +39,7 @@ class TransactionSlidable extends StatelessWidget {
           const SizedBox(
             width: 3,
           ),
+          //:::::::::::::::;edite the transection::::::::::::::::::::::;
           SlidableAction(
             borderRadius: BorderRadius.circular(
               15.0,
@@ -84,12 +86,15 @@ class TransactionSlidable extends StatelessWidget {
               12,
             ),
           ),
+          //:::::::::::::::::::::::::start the list tile::::::::::::::::::::;
           child: ListTile(
+            contentPadding: const EdgeInsets.all(5),
+            visualDensity: const VisualDensity(horizontal: 4, vertical: 2),
             leading: CircleAvatar(
               backgroundColor: value.type == CategoryType.income
                   ? Colors.green
                   : Colors.redAccent[700],
-              radius: 50,
+              radius: 30,
               child: Text(
                 parseDate(value.date),
                 textAlign: TextAlign.center,

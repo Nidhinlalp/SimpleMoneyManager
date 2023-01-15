@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:simplemoneymanager/constants/constants.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/about.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/paivacy_polycy.dart';
 import '../../colors/colors.dart';
@@ -33,23 +34,31 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorConstants.kGravishBlueColor,
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          SizedBox(
-            height: 105,
-          ),
-          //:::::::::::AboutHeding::::::
-          AboutHeding(),
-          //:::::::::::ResetHeding::::::
-          ResetHeding(),
-          //::::::::ShareHeding:::
-          ShareHeding(),
-          //:::::TermsConditionsHeding:::
-          TermsConditionsHeding(),
-          //::::::PrivacyPolicyHeding:::
-          PrivacyPolicyHeding(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(
+              height: 105,
+            ),
+            //:::::::::::AboutHeding::::::
+            const AboutHeding(),
+            //:::::::::::ResetHeding::::::
+            const ResetHeding(),
+            //::::::::ShareHeding:::
+            const ShareHeding(),
+            //:::::TermsConditionsHeding:::
+            const TermsConditionsHeding(),
+            //::::::PrivacyPolicyHeding:::
+            const PrivacyPolicyHeding(),
+            constHeight30,
+            constHeight30,
+            const SizedBox(
+              width: 230,
+              child: Text('Version: 1.0.0'),
+            ),
+          ],
+        ),
       ),
     );
   }

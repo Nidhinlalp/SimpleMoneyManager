@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
-import '../db_functions/category/category_db.dart';
-import '../db_functions/transaction/transaction_db.dart';
-import '../models/transaction/transaction_model.dart';
-import '../screens/Hometransactions/transaction_slidable.dart';
+import '../../db_functions/category/category_db.dart';
+import '../../db_functions/transaction/transaction_db.dart';
+import '../../models/transaction/transaction_model.dart';
+import '../Hometransactions/transaction_slidable.dart';
 
 class IncomeSeeAll extends StatelessWidget {
   const IncomeSeeAll({super.key});

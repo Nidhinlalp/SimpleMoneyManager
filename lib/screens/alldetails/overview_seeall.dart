@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
-import '../db_functions/category/category_db.dart';
-import '../db_functions/transaction/transaction_db.dart';
-import '../models/transaction/transaction_model.dart';
-import '../screens/Hometransactions/transaction_slidable.dart';
+import 'package:intl/intl.dart';
+import 'package:simplemoneymanager/db_functions/category/category_db.dart';
+import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
+import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
+import '../Hometransactions/transaction_slidable.dart';
 
-class ExpenseSeeAll extends StatelessWidget {
-  const ExpenseSeeAll({super.key});
+class OverViewSeeAll extends StatelessWidget {
+  const OverViewSeeAll({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +15,14 @@ class ExpenseSeeAll extends StatelessWidget {
     return ValueListenableBuilder(
         valueListenable: transactionListNotifire,
         builder: (BuildContext ctx, List<TransactionModel> newList, Widget? _) {
-          List<TransactionModel> allexpenseTransaction = [];
-          allexpenseTransaction = newList
-              .where((element) => element.type == CategoryType.expense)
-              .toList();
-          return allexpenseTransaction.isEmpty
+          return newList.isEmpty
               ? const Center(
                   child: Text("Oops! No  Data 👎"),
                 )
               : ListView.separated(
                   padding: const EdgeInsets.all(20.0),
                   itemBuilder: (ctx, index) {
-                    final value = allexpenseTransaction[index];
+                    final value = newList[index];
                     return TransactionSlidable(value: value);
                   },
                   separatorBuilder: (ctx, index) {
@@ -34,8 +30,14 @@ class ExpenseSeeAll extends StatelessWidget {
                       height: 10,
                     );
                   },
-                  itemCount: allexpenseTransaction.length,
+                  itemCount: newList.length,
                 );
         });
+  }
+
+  String parseDate(DateTime date) {
+    final _date = DateFormat.MMMd().format(date);
+    final splitedDate = _date.split(' ');
+    return '${splitedDate.last}\n${splitedDate.first}';
   }
 }

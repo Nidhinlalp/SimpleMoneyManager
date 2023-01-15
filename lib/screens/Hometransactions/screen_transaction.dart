@@ -67,6 +67,7 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
+                      //::::::::::::::strat of the home list::::::::::::::::
                       children: newList.isEmpty
                           ? [
                               const Text(

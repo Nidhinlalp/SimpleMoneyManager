@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../../colors/colors.dart';
-import '../screens/home/search_function/main_search.dart';
+import '../../../colors/colors.dart';
+import '../home/search_function/main_search.dart';
 import 'expense_seeall.dart';
 import 'income_seall.dart';
 import 'overview_seeall.dart';
@@ -63,6 +63,15 @@ class _SeeAllDetailsState extends State<SeeAllDetails>
               floating: true,
               snap: true,
               pinned: true,
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                ),
+              ),
             ),
             // Container(height: 90,color: Colors.black,)
           ],

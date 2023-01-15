@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../alldetails/seeall_details.dart';
+import '../alldetails/seeall_details.dart';
 
 class RecentTransactionHeding extends StatelessWidget {
   const RecentTransactionHeding({

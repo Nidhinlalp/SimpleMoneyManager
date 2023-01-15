@@ -30,6 +30,20 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
   var _amountTextEditingController = TextEditingController();
   String selectDAteemptyMassege = '';
   String selectcategoryemptyMassege = '';
+  List<String> monthList = [
+    "Jan",
+    "Feb",
+    "Mrc",
+    "Apr",
+    "Mey",
+    "Jun",
+    "July",
+    "Aug",
+    "Spt",
+    "Oct",
+    "Nuv",
+    "Dec"
+  ];
 
   @override
   void initState() {
@@ -39,6 +53,8 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
     _amountTextEditingController =
         TextEditingController(text: widget.value.amount.toString());
     _selectDate = widget.value.date;
+    dateString =
+        "${_selectDate!.day} ${monthList[_selectDate!.month - 1]} ${_selectDate!.year} ";
     // _selectCategorytype=widget.value.category;
     super.initState();
   }
@@ -71,7 +87,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
                   constHeight10,
 
                   //:::::::::::::::::::Categoryselection:::::::::::::::::::
-                  Categoryselection(context),
+                  categoryselection(context),
 
                   //::::::::::::::::::category validation:::::::::::::::::
 
@@ -82,12 +98,12 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
                   constHeight30,
 
                   //::::::::::::::::SelectCategoryType:::::::::::::::::::::
-                  SelectCategoryType(),
+                  selectCategoryType(),
 
                   constHeight30,
 
                   //::::::::::::::SelectAmount:::::::::::::::::::::::::::
-                  SelectAmount(),
+                  selectAmount(),
                   constHeight30,
 
                   //:::::::::::::;selectDateSection::::::::::::::::::::::::
@@ -283,27 +299,15 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
               } else {
                 setState(() {
                   _selectDate = selectedDatetemp;
-                  List<String> monthList = [
-                    "Jan",
-                    "Feb",
-                    "Mrc",
-                    "Apr",
-                    "Mey",
-                    "Jun",
-                    "July",
-                    "Aug",
-                    "Spt",
-                    "Oct",
-                    "Nuv",
-                    "Dec"
-                  ];
+
                   dateString =
                       "${selectedDatetemp.day} ${monthList[selectedDatetemp.month - 1]} ${selectedDatetemp.year} ";
                 });
               }
             },
             child: Text(
-              dateString == null ? 'SelectDate' : dateString!,
+              //already store the date
+              dateString!,
               style: const TextStyle(
                 fontSize: 20.0,
               ),
@@ -321,7 +325,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
   }
 
 //::::::::::::::::SelectAmount::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-  Row SelectAmount() {
+  Row selectAmount() {
     return Row(
       children: [
         Container(
@@ -384,7 +388,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 
   //::::::::::::SelectCategoryType::::::::::::::::::::::::::::::::::::::::::::::::::
 
-  Row SelectCategoryType() {
+  Row selectCategoryType() {
     return Row(
       children: [
         Container(
@@ -461,7 +465,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 
   //::::::::::::::::Categoryselection::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-  Row Categoryselection(BuildContext context) {
+  Row categoryselection(BuildContext context) {
     return Row(
       children: [
         Container(

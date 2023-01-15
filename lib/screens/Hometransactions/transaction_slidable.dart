@@ -39,7 +39,7 @@ class TransactionSlidable extends StatelessWidget {
           const SizedBox(
             width: 3,
           ),
-          //:::::::::::::::;edite the transection::::::::::::::::::::::;
+          //::::::::::::::::Edite the transection::::::::::::::::::::::;
           SlidableAction(
             borderRadius: BorderRadius.circular(
               15.0,
@@ -86,22 +86,29 @@ class TransactionSlidable extends StatelessWidget {
               12,
             ),
           ),
-          //:::::::::::::::::::::::::start the list tile::::::::::::::::::::;
+          //:::::::::::::::::::::::::start the list tile::::::::
           child: ListTile(
             contentPadding: const EdgeInsets.all(5),
             visualDensity: const VisualDensity(horizontal: 4, vertical: 2),
             //::::::::::::::show circledate:::::::::::::::::::
             leading: CircleAvatar(
               backgroundColor: value.type == CategoryType.income
-                  ? Colors.green
+                  //:::::::show the color in circleavathar::::::
+                  ? Colors.greenAccent[700]
                   : Colors.redAccent[700],
               radius: 30,
               child: Text(
+                //::::::::show the date in circleavathar::::::::
                 parseDate(value.date),
+                // ignore: prefer_const_constructors
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
-            //::::::::::::::show amound:::::::::::::::::
+            //::::::::::::::show amound::::::::::::::::::::::::
             trailing: Text(
               '₹ ${value.amount}',
               style: const TextStyle(
@@ -109,7 +116,7 @@ class TransactionSlidable extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            //:::::::::::::::shwo category:::::::::::::::::
+            //::::::::::shwo category:::::::::::::::::::::::::
             title: Text(
               value.category.name,
               style: const TextStyle(

@@ -50,6 +50,15 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Text(

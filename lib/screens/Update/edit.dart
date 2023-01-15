@@ -69,6 +69,15 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
       key: _formKey,
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Text(
@@ -431,7 +440,8 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
               // onselected method
               onSelected: (bool selected) {
                 setState(() {
-                  _value = selected ? 1 : null;
+                  _value = 1;
+                  // _value = selected ? 1 : null;
                   _selectCategorytype = CategoryType.income;
                   _categoryID = null;
                 });
@@ -451,7 +461,8 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
               // onselected method
               onSelected: (bool selected) {
                 setState(() {
-                  _value = selected ? 2 : null;
+                  _value = 2;
+                  // _value = selected ? 2 : null;
                   _selectCategorytype = CategoryType.expense;
                   _categoryID = null;
                 });

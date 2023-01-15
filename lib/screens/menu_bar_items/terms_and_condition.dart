@@ -34,6 +34,15 @@ class _AboutState extends State<TemsAndCondition> {
           textAlign: TextAlign.center,
           style: GoogleFonts.roboto(fontSize: 25, color: Colors.black),
         ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
       ),
       backgroundColor: ColorConstants.kGravishBlueColor,
       body: Center(

@@ -25,7 +25,7 @@ class CurrentBalance extends StatelessWidget {
                 height: 340,
                 width: double.infinity,
                 decoration: const BoxDecoration(
-                  color: Colors.white30, 
+                  color: Colors.white30,
                   //         gradient: LinearGradient(
                   //           begin: Alignment.topRight,
                   //           end: Alignment.bottomLeft,
@@ -49,6 +49,7 @@ class CurrentBalance extends StatelessWidget {
                     ),
                   ],
                 ),
+                //:::::::::::::::::::::::::::::::::strat the 1st flip::::::::::::::::::::::::::::::::::::::::::::::::
                 child: Column(
                   children: <Widget>[
                     Row(
@@ -172,7 +173,7 @@ class CurrentBalance extends StatelessWidget {
                 ),
               ),
 
-              //Start the second flip
+              //L::::::::::::::::::::::::::::::::Start the second flip:::::::::::::::::::::::::::::::::::::
 
               back: Container(
                 height: 340,

@@ -10,7 +10,10 @@ alertAndSnakBar(BuildContext context, String id) {
     builder: (BuildContext context) {
       return AlertDialog(
         shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15))),
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
+          ),
+        ),
         title: const Text(
           'Alert',
         ),

@@ -615,7 +615,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
   }
 }
 
-//:::::::::::::::::::::::ValidationOfDate::::::::::::::::::::::::::::::::::::::::::::::::
+//:::::::::::::::::::::::ValidationOf Date::::::::::::::::::::::::::::::::::::::::::::::::
 class ValidationOfDate extends StatelessWidget {
   const ValidationOfDate({
     Key? key,

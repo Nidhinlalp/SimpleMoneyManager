@@ -18,6 +18,7 @@ class MySearchDelegate extends SearchDelegate {
         },
         icon: const Icon(
           Icons.clear,
+          color: Colors.black,
         ),
       )
     ];
@@ -27,7 +28,10 @@ class MySearchDelegate extends SearchDelegate {
   Widget? buildLeading(BuildContext context) {
     return IconButton(
       onPressed: () => close(context, null),
-      icon: const Icon(Icons.arrow_back),
+      icon: const Icon(
+        Icons.arrow_back,
+        color: Colors.black,
+      ),
     );
   }
 

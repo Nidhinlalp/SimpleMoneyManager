@@ -39,7 +39,7 @@ class TransactionDb implements TransactionDbFunctions {
   @override
   Future<List<TransactionModel>> getAllTransaction() async {
     final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
-    return db.values.toList();
+    return db.values.toList().reversed.toList();
   }
 
   @override
@@ -48,10 +48,10 @@ class TransactionDb implements TransactionDbFunctions {
     await db.delete(id);
     refresh();
   }
+
   Future<void> editTransaction(TransactionModel value) async {
     final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
     await db.put(value.id, value);
     refresh();
   }
-
 }

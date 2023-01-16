@@ -28,7 +28,7 @@ class TransactionSlidable extends StatelessWidget {
             ),
             flex: 2,
             onPressed: (context) {
-              alertAndSnakBar(context, value.id!);
+              alertAndSnakBar(context, modelId: value.id!);
               //  TransactionDb.instance.deleteTransaction(value.id!);
             },
             backgroundColor: Colors.red,

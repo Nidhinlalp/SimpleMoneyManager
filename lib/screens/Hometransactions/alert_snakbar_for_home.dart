@@ -2,7 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import '../../db_functions/transaction/transaction_db.dart';
 
-alertAndSnakBar(BuildContext context, String id) {
+alertAndSnakBar(BuildContext context, {required String modelId}) {
   showDialog<bool>(
     context: context,
     barrierDismissible: false,
@@ -43,10 +43,10 @@ alertAndSnakBar(BuildContext context, String id) {
           TextButton(
             child: const Text('Confirm'),
             onPressed: () {
-              TransactionDb.instance.deleteTransaction(id);
+              TransactionDb.instance.deleteTransaction(modelId);
               Navigator.of(context).pop(true);
               final snackBar = SnackBar(
-                duration: const Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 700),
                 elevation: 0,
                 behavior: SnackBarBehavior.floating,
                 backgroundColor: Colors.transparent,

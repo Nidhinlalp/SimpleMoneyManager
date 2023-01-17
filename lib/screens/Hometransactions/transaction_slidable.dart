@@ -57,7 +57,7 @@ class TransactionSlidable extends StatelessWidget {
             backgroundColor: Colors.blue,
             foregroundColor: Colors.white,
             icon: Icons.edit_note,
-            label: 'Edite',
+            label: 'Edit',
           ),
         ],
       ),

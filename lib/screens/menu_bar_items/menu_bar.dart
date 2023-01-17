@@ -14,6 +14,8 @@ class MenuBar extends StatelessWidget {
   Widget build(BuildContext context) => IconButton(
         icon: const Icon(
           Icons.menu_open,
+          size: 30,
+          shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
           color: Colors.black,
         ),
         onPressed: () => ZoomDrawer.of(context)!.toggle(),

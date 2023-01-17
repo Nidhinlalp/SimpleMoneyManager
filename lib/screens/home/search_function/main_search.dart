@@ -19,7 +19,9 @@ class MySearchDelegate extends SearchDelegate {
         },
         icon: const Icon(
           Icons.clear,
-          color: Colors.black,
+          size: 30,
+          shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
+          color: Colors.black54,
         ),
       )
     ];
@@ -31,7 +33,9 @@ class MySearchDelegate extends SearchDelegate {
       onPressed: () => close(context, null),
       icon: const Icon(
         Icons.arrow_back,
-        color: Colors.black,
+        size: 30,
+        shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
+        color: Colors.black54,
       ),
     );
   }

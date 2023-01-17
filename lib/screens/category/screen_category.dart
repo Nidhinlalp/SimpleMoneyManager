@@ -81,7 +81,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
                 borderRadius: BorderRadius.circular(
                   50,
                 ),
-                color: const Color.fromARGB(250, 65, 153, 248),
+                color: Colors.blueGrey,
               ),
               tabs: [
                 Tab(

@@ -39,9 +39,11 @@ class _SeeAllDetailsState extends State<SeeAllDetails> {
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.black,
+              size: 30,
+              shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
             )),
         actions: [
-          //:::::::::search botton:::::::::::
+          //:::::::::search botton:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
           IconButton(
             onPressed: () {
               showSearch(
@@ -51,13 +53,14 @@ class _SeeAllDetailsState extends State<SeeAllDetails> {
             },
             icon: const Icon(
               Icons.search,
+              size: 30,
+              shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
               color: Colors.black,
             ),
           ),
-          const SizedBox(
-            width: 0,
-          ),
+          //:::::::::::::::::::::::::::::::::filtter:::::::::::::::::::::::::::::::::::::::::::::::::
           const FiltterSeeAllDetails(),
+          //:::::::::typesof see all detials:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
           const TypeOfSeeAllDetails(),
         ],
       ),

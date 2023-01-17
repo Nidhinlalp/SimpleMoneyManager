@@ -72,6 +72,10 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
                 icon: const Center(
                   child: Icon(
                     Icons.search,
+                    size: 30,
+                    shadows: <Shadow>[
+                      Shadow(color: Colors.white, blurRadius: 15.0)
+                    ],
                     color: Colors.black,
                   ),
                 ),

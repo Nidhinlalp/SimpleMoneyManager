@@ -17,18 +17,6 @@ class _AboutState extends State<TemsAndCondition> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        // flexibleSpace: Container(
-        //   decoration: const BoxDecoration(
-        //     gradient: LinearGradient(
-        //       begin: Alignment.topCenter,
-        //       end: Alignment.bottomCenter,
-        //       colors: <Color>[
-        //         Color.fromARGB(255, 201, 122, 198),
-        //         Color.fromARGB(255, 221, 145, 254),
-        //       ],
-        //     ),
-        //   ),
-        // ),
         title: Text(
           'Terms and Conditions',
           textAlign: TextAlign.center,
@@ -44,7 +32,7 @@ class _AboutState extends State<TemsAndCondition> {
           ),
         ),
       ),
-      backgroundColor: ColorConstants.kGravishBlueColor,
+      backgroundColor: bgColor,
       body: Center(
         child: FlipCard(
           direction: FlipDirection.HORIZONTAL,
@@ -53,28 +41,21 @@ class _AboutState extends State<TemsAndCondition> {
           front: Container(
             height: 600.0,
             width: 300,
-            decoration: const BoxDecoration(
-              color: Colors.white30,
-              // gradient: LinearGradient(
-              //   begin: Alignment.topRight,
-              //   end: Alignment.bottomLeft,
-              //   colors: [
-              //     Color.fromARGB(255, 195, 221, 236),
-              //     Color.fromARGB(255, 145, 187, 221),
-              //   ],
-              // ),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(50),
-                topRight: Radius.circular(50),
-                bottomLeft: Radius.circular(50),
-                bottomRight: Radius.circular(50),
-              ),
+            decoration: BoxDecoration(
+              color: bgColor,
+              borderRadius: BorderRadius.circular(50),
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromARGB(255, 49, 44, 49),
-                  blurRadius: 20,
+                  color: Colors.grey.shade500,
+                  blurRadius: 15,
                   spreadRadius: 1,
-                  offset: Offset.infinite,
+                  offset: const Offset(5, 5),
+                ),
+                const BoxShadow(
+                  color: Colors.white,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: Offset(-5, -5),
                 ),
               ],
             ),
@@ -136,28 +117,21 @@ class _AboutState extends State<TemsAndCondition> {
           back: Container(
             height: 300,
             width: 300,
-            decoration: const BoxDecoration(
-              color: Colors.white30,
-              // gradient: LinearGradient(
-              //   begin: Alignment.topRight,
-              //   end: Alignment.bottomLeft,
-              //   colors: [
-              //     Color.fromARGB(255, 195, 221, 236),
-              //     Color.fromARGB(255, 145, 187, 221),
-              //   ],
-              // ),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(50),
-                topRight: Radius.circular(50),
-                bottomLeft: Radius.circular(50),
-                bottomRight: Radius.circular(50),
-              ),
+            decoration: BoxDecoration(
+              color: bgColor,
+              borderRadius: BorderRadius.circular(50),
               boxShadow: [
                 BoxShadow(
-                  color: Color.fromARGB(255, 49, 44, 49),
-                  blurRadius: 20,
+                  color: Colors.grey.shade500,
+                  blurRadius: 15,
                   spreadRadius: 1,
-                  offset: Offset.infinite,
+                  offset: const Offset(5, 5),
+                ),
+                const BoxShadow(
+                  color: Colors.white,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: Offset(-5, -5),
                 ),
               ],
             ),

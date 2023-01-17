@@ -1,5 +1,6 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:simplemoneymanager/colors/colors.dart';
 
 class CurrentBalance extends StatelessWidget {
   const CurrentBalance({
@@ -22,30 +23,23 @@ class CurrentBalance extends StatelessWidget {
               speed: 1000,
               onFlipDone: (status) {},
               front: Container(
-                height: 340,
+                height: 320,
                 width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Colors.white30,
-                  //         gradient: LinearGradient(
-                  //           begin: Alignment.topRight,
-                  //           end: Alignment.bottomLeft,
-                  //           colors: [
-                  //  Color.fromARGB(255, 223, 225, 226),
-                  //            Color.fromARGB(255, 229, 227, 227),
-                  //           ],
-                  //         ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50),
-                    bottomLeft: Radius.circular(50),
-                    bottomRight: Radius.circular(50),
-                  ),
+                decoration: BoxDecoration(
+                  color: bgColor,
+                  borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(
-                      color: Color.fromARGB(255, 49, 44, 49),
-                      blurRadius: 20,
+                      color: Colors.grey.shade500,
+                      blurRadius: 15,
                       spreadRadius: 1,
-                      offset: Offset.infinite,
+                      offset: const Offset(5, 5),
+                    ),
+                    const BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: Offset(-5, -5),
                     ),
                   ],
                 ),
@@ -162,13 +156,6 @@ class CurrentBalance extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Click here to Somthing ',
-                            style: Theme.of(context).textTheme.bodyText1),
-                      ],
-                    )
                   ],
                 ),
               ),
@@ -176,30 +163,23 @@ class CurrentBalance extends StatelessWidget {
               //L::::::::::::::::::::::::::::::::Start the second flip:::::::::::::::::::::::::::::::::::::
 
               back: Container(
-                height: 340,
+                height: 320,
                 width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Colors.white30,
-                  // gradient: LinearGradient(
-                  //   begin: Alignment.topRight,
-                  //   end: Alignment.bottomLeft,
-                  //   colors: [
-                  //     Color.fromARGB(255, 195, 221, 236),
-                  //     Color.fromARGB(255, 145, 187, 221),
-                  //   ],
-                  // ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50),
-                    bottomLeft: Radius.circular(50),
-                    bottomRight: Radius.circular(50),
-                  ),
+                decoration: BoxDecoration(
+                  color: bgColor,
+                  borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(
-                      color: Color.fromARGB(255, 49, 44, 49),
-                      blurRadius: 20,
+                      color: Colors.grey.shade500,
+                      blurRadius: 15,
                       spreadRadius: 1,
-                      offset: Offset.infinite,
+                      offset: const Offset(5, 5),
+                    ),
+                    const BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: Offset(-5, -5),
                     ),
                   ],
                 ),

@@ -1,5 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 
@@ -15,7 +16,7 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
       return Form(
         key: _formKey,
         child: SimpleDialog(
-          backgroundColor: const Color.fromARGB(255, 235, 245, 254),
+          backgroundColor: bgColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -57,17 +58,22 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
               padding: const EdgeInsets.all(30.0),
               child: Container(
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Color.fromARGB(255, 49, 119, 172),
-                      Color.fromARGB(77, 117, 167, 213),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(
-                    20,
-                  ),
+                  color: bgColor,
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade500,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: const Offset(5, 5),
+                    ),
+                    const BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: Offset(-5, -5),
+                    ),
+                  ],
                 ),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(

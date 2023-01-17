@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
-import '../Hometransactions/transaction_slidable.dart';
+import '../hometransactions/transaction_slidable.dart';
 
 class OverViewSeeAll extends StatelessWidget {
   const OverViewSeeAll({super.key});
@@ -13,7 +13,7 @@ class OverViewSeeAll extends StatelessWidget {
     TransactionDb.instance.refresh();
     CategoryDb.instance.refreshUI();
     return ValueListenableBuilder(
-        valueListenable: transactionListNotifire,
+        valueListenable: TransactionDb.transactionListNotifire,
         builder: (BuildContext ctx, List<TransactionModel> newList, Widget? _) {
           return newList.isEmpty
               ? const Center(

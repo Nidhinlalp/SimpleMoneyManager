@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/screens/category/screen_category.dart';
 import 'package:simplemoneymanager/screens/graph/screen_graph.dart';
 import 'package:simplemoneymanager/screens/home/widgets/bottom_navigation.dart';
-import 'package:simplemoneymanager/screens/Hometransactions/screen_transaction.dart';
+import 'package:simplemoneymanager/screens/hometransactions/screen_transaction.dart';
 
 class ScreenHome extends StatelessWidget {
   ScreenHome({super.key});

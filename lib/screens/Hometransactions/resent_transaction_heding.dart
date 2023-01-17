@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simplemoneymanager/colors/colors.dart';
 import '../alldetails/seeall_details.dart';
 
 class RecentTransactionHeding extends StatelessWidget {
@@ -33,15 +34,22 @@ class RecentTransactionHeding extends StatelessWidget {
               height: 30,
               width: 85,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                gradient: const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[
-                    Color.fromARGB(255, 196, 201, 122),
-                    Color.fromARGB(255, 221, 145, 254),
-                  ],
-                ),
+                color: bgColor,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade500,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: const Offset(5, 5),
+                  ),
+                  const BoxShadow(
+                    color: Colors.white,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: Offset(-5, -5),
+                  ),
+                ],
               ),
               child: const Center(
                 child: Text(

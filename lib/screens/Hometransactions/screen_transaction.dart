@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/menu_bar.dart';
-import 'package:simplemoneymanager/screens/Hometransactions/resent_transaction_heding.dart';
-import 'package:simplemoneymanager/screens/Hometransactions/transaction_slidable.dart';
+import 'package:simplemoneymanager/screens/hometransactions/resent_transaction_heding.dart';
+import 'package:simplemoneymanager/screens/hometransactions/transaction_slidable.dart';
 import '../../colors/colors.dart';
 import '../add_transaction/floting_animation.dart';
 import '../home/search_function/main_search.dart';
@@ -24,17 +25,39 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
     TransactionDb.instance.refresh();
     CategoryDb.instance.refreshUI();
     return ValueListenableBuilder(
-      valueListenable: transactionListNotifire,
+      valueListenable: TransactionDb.transactionListNotifire,
       builder: (BuildContext ctx, List<TransactionModel> newList, Widget? _) {
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
             backgroundColor: Colors.transparent,
-            title: Center(
-              child: Image.asset(
-                'assets/images/money-transfer-2647242-2208355.png',
-                fit: BoxFit.contain,
-                height: 30,
+            title: Container(
+              height: 40,
+              width: 50,
+              decoration: BoxDecoration(
+                color: bgColor,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade300,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: const Offset(5, 5),
+                  ),
+                  const BoxShadow(
+                    color: Colors.white60,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: Offset(-5, -5),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: Image.asset(
+                  'assets/images/money-transfer-2647242-2208355.png',
+                  fit: BoxFit.contain,
+                  height: 30,
+                ),
               ),
             ),
             leading: const MenuBar(),
@@ -46,15 +69,17 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
                     delegate: MySearchDelegate(),
                   );
                 },
-                icon: const Icon(
-                  Icons.search,
-                  color: Colors.black,
+                icon: const Center(
+                  child: Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ],
             elevation: 0,
           ),
-          backgroundColor: ColorConstants.kPrimaryColor,
+          backgroundColor: bgColor,
           body: SingleChildScrollView(
             child: SafeArea(
               child: Column(
@@ -70,9 +95,10 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
                       //::::::::::::::strat of the home list::::::::::::::::
                       children: newList.isEmpty
                           ? [
-                              const Text(
-                                "Oops! No  Data 👎",
-                              ),
+                              Center(
+                                child: Lottie.asset('assets/images/empty.json',
+                                    width: 200),
+                              )
                             ]
                           : List.generate(
                               //::::::::cheking1st page 5 item ::::::::::
@@ -97,7 +123,26 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
           ),
 
           //:::::::::::flotting action button::::::::::::::
-          floatingActionButton: const CustomFABWidget(),
+          floatingActionButton: Container(
+              decoration: BoxDecoration(
+                color: bgColor,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade500,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: const Offset(5, 5),
+                  ),
+                  const BoxShadow(
+                    color: Colors.white,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: Offset(-5, -5),
+                  ),
+                ],
+              ),
+              child: const CustomFABWidget()),
         );
       },
     );

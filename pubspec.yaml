@@ -74,6 +74,8 @@ flutter:
     - assets/images/indro1image.json
     - assets/images/indroimage2.json
     - assets/images/indroimage3.json
+    - assets/images/empty.json
+    - assets/images/nosearchresultsanimation.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

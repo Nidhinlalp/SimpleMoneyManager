@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
+import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
+import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
+import 'package:simplemoneymanager/screens/hometransactions/transaction_slidable.dart';
 import '../../../colors/colors.dart';
 import '../home/search_function/main_search.dart';
-import 'expense_seeall.dart';
-import 'income_seall.dart';
-import 'overview_seeall.dart';
+import 'filtter_of_see_all_details.dart';
+import 'type_of_transaction_pop_down.dart';
+
+ValueNotifier showCategory = ValueNotifier("All");
 
 class SeeAllDetails extends StatefulWidget {
   const SeeAllDetails({super.key});
@@ -13,203 +19,86 @@ class SeeAllDetails extends StatefulWidget {
   State<SeeAllDetails> createState() => _SeeAllDetailsState();
 }
 
-class _SeeAllDetailsState extends State<SeeAllDetails>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-  @override
-  void initState() {
-    _tabController = TabController(
-      length: 3,
-      vsync: this,
-    );
-    super.initState();
-  }
-
+class _SeeAllDetailsState extends State<SeeAllDetails> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: ColorConstants.kGravishBlueColor,
-        body: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            SliverAppBar(
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    showSearch(
-                      context: context,
-                      delegate: MySearchDelegate(),
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.search,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              expandedHeight: 240,
-              flexibleSpace: FlexibleSpaceBar(
-                title: const Text(
-                  textAlign: TextAlign.center,
-                  'My Transactions',
-                  style: TextStyle(color: Colors.black),
-                ),
-                background: Lottie.asset(
-                  'assets/images/indroimage.json',
-                ),
-              ),
-              floating: true,
-              snap: true,
-              pinned: true,
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            // Container(height: 90,color: Colors.black,)
-          ],
-          body: Column(
-            children: [
-              const SizedBox(
-                height: 55,
-              ),
-              TabBar(
-                // isScrollable: true,
-                controller: _tabController,
-                unselectedLabelColor: Colors.black,
-                indicatorSize: TabBarIndicatorSize.label,
-                indicator: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    50,
-                  ),
-                  color: const Color.fromARGB(250, 65, 153, 248),
-                ),
-                tabs: [
-                  Tab(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          50,
-                        ),
-                      ),
-                      child: const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Overview",
-                        ),
-                      ),
-                    ),
-                  ),
-                  Tab(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          50,
-                        ),
-                      ),
-                      child: const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Income",
-                        ),
-                      ),
-                    ),
-                  ),
-                  Tab(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          50,
-                        ),
-                      ),
-                      child: const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Expense",
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  PopupMenuButton<int>(
-                    shape: ContinuousRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        50,
-                      ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.only(
-                        right: 30.0,
-                      ),
-                      child: Icon(
-                        Icons.filter_list_rounded,
-                        size: 30,
-                        shadows: <Shadow>[
-                          Shadow(color: Colors.white, blurRadius: 15.0)
-                        ],
-                        color: Colors.black,
-                      ),
-                    ),
-                    itemBuilder: (conext) => [
-                      const PopupMenuItem(
-                        value: 1,
-                        child: Text(
-                          "All",
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        value: 2,
-                        child: Text(
-                          "Today",
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        value: 2,
-                        child: Text(
-                          "Yesterday",
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        value: 2,
-                        child: Text(
-                          "Week",
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        value: 2,
-                        child: Text(
-                          "Month",
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: const [
-                    OverViewSeeAll(),
-                    IncomeSeeAll(),
-                    ExpenseSeeAll(),
-                  ],
-                ),
-              ),
-            ],
-          ),
+    showCategory.value = "All";
+    return Scaffold(
+      backgroundColor: bgColor,
+      appBar: AppBar(
+        title: Text(
+          'My Transactions',
+          style: GoogleFonts.roboto(fontSize: 25, color: Colors.black),
         ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )),
+        actions: [
+          //:::::::::search botton:::::::::::
+          IconButton(
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: MySearchDelegate(),
+              );
+            },
+            icon: const Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
+          ),
+          const SizedBox(
+            width: 0,
+          ),
+          const FiltterSeeAllDetails(),
+          const TypeOfSeeAllDetails(),
+        ],
       ),
+      body: ValueListenableBuilder(
+          valueListenable: TransactionDb.transactionListNotifire,
+          builder: (context, newList, _) {
+            return ValueListenableBuilder(
+                valueListenable: showCategory,
+                builder: (context, showCategory, widget) {
+                  var displayList = [];
+                  if (showCategory == "Income") {
+                    List<TransactionModel> allincometransaction = [];
+                    allincometransaction = newList
+                        .where((element) => element.type == CategoryType.income)
+                        .toList();
+                    displayList = allincometransaction;
+                  } else if (showCategory == "Expense") {
+                    List<TransactionModel> allincometransaction = [];
+                    allincometransaction = newList
+                        .where(
+                            (element) => element.type == CategoryType.expense)
+                        .toList();
+                    displayList = allincometransaction;
+                  } else {
+                    displayList = newList;
+                  }
+                  return Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: displayList.isEmpty
+                        ? Center(
+                            child: Lottie.asset('assets/images/empty.json'))
+                        : ListView.builder(
+                            itemCount: displayList.length,
+                            itemBuilder: (context, index) {
+                              return TransactionSlidable(
+                                  value: displayList[index]);
+                            },
+                          ),
+                  );
+                });
+          }),
     );
   }
 }

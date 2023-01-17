@@ -13,11 +13,9 @@ class ScreenCategory extends StatefulWidget {
   State<ScreenCategory> createState() => _ScreenCategoryState();
 }
 
-
 class _ScreenCategoryState extends State<ScreenCategory>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
 
   @override
   void initState() {
@@ -25,7 +23,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
       length: 2,
       vsync: this,
     );
-  
+
     CategoryDb().refreshUI();
     super.initState();
   }
@@ -44,11 +42,9 @@ class _ScreenCategoryState extends State<ScreenCategory>
             height: 30,
           ),
         ),
-
-       
         elevation: 0,
       ),
-      backgroundColor: ColorConstants.kPrimaryColor,
+      backgroundColor: bgColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -110,18 +106,38 @@ class _ScreenCategoryState extends State<ScreenCategory>
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //  print('ia, category');
-          showCategoryAddPopup(context);
-          
-        },
-        // ignore: sort_child_properties_last
-        child: const Icon(
-          Icons.add,
+      floatingActionButton: Container(
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(50),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade500,
+              blurRadius: 15,
+              spreadRadius: 1,
+              offset: const Offset(5, 5),
+            ),
+            const BoxShadow(
+              color: Colors.white,
+              blurRadius: 15,
+              spreadRadius: 1,
+              offset: Offset(-5, -5),
+            ),
+          ],
         ),
-        foregroundColor: const Color.fromARGB(255, 10, 10, 10),
-        splashColor: const Color.fromARGB(255, 245, 245, 245),
+        child: FloatingActionButton(
+          onPressed: () {
+            //  print('ia, category');
+            showCategoryAddPopup(context);
+          },
+          // ignore: sort_child_properties_last
+          child: const Icon(
+            Icons.add,
+          ),
+          foregroundColor: const Color.fromARGB(255, 10, 10, 10),
+          splashColor: const Color.fromARGB(255, 245, 245, 245),
+          backgroundColor: bgColor,
+        ),
       ),
     );
   }

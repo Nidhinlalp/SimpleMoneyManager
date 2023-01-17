@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/screens/home/screen_home.dart';
 
 import '../../../colors/colors.dart';
+import '../../../colors/colors.dart';
 
 class MoneyManagerBottomNavigation extends StatefulWidget {
   const MoneyManagerBottomNavigation({super.key});
@@ -27,18 +28,21 @@ class _MoneyManagerBottomNavigationState
               milliseconds: 400,
             ),
             height: 60,
-            color:ColorConstants.kGravishBlueColor,
-            backgroundColor: ColorConstants.kPrimaryColor,
-            buttonBackgroundColor: const Color.fromARGB(255, 105, 148, 192),
+            color: Colors.blueGrey,
+            backgroundColor: bgColor,
+            buttonBackgroundColor: Colors.blueGrey,
             items: const [
               Icon(
                 Icons.home_outlined,
+                color: Colors.white,
               ),
               Icon(
                 Icons.category_outlined,
+                color: Colors.white,
               ),
               Icon(
                 Icons.bar_chart_outlined,
+                color: Colors.white,
               ),
             ],
             onTap: (index) {

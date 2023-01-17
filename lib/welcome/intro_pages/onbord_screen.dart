@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simplemoneymanager/screens/Hometransactions/zoom_Drawa.dart';
-import 'package:simplemoneymanager/welcome/intropages/indro_page_one.dart';
-import 'package:simplemoneymanager/welcome/intropages/indro_page_tree.dart';
-import 'package:simplemoneymanager/welcome/intropages/indro_page_two.dart';
+import 'package:simplemoneymanager/welcome/intro_pages/indro_page_one.dart';
+import 'package:simplemoneymanager/welcome/intro_pages/indro_page_tree.dart';
+import 'package:simplemoneymanager/welcome/intro_pages/indro_page_two.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnbordScreen extends StatefulWidget {
@@ -40,16 +40,17 @@ class _OnbordScreenState extends State<OnbordScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 // skip
-
-                GestureDetector(
-                  onTap: () {
-                    controller.jumpToPage(2);
-                  },
-                  child: const Text(
-                    'Skip',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                onLastPage
+                    ? Text('')
+                    : GestureDetector(
+                        onTap: () {
+                          controller.jumpToPage(2);
+                        },
+                        child: const Text(
+                          'Skip',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
 
                 SmoothPageIndicator(
                   controller: controller,

@@ -67,7 +67,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
             style: GoogleFonts.roboto(fontSize: 25, color: Colors.black),
           ),
         ),
-        backgroundColor: ColorConstants.kPrimaryColor,
+        backgroundColor: bgColor,
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
@@ -130,17 +130,22 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     return Container(
       width: size.width / 3,
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [
-            Color.fromARGB(255, 49, 119, 172),
-            Color.fromARGB(77, 117, 167, 213),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(
-          20,
-        ),
+        color: bgColor,
+        borderRadius: BorderRadius.circular(50),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade500,
+            blurRadius: 15,
+            spreadRadius: 1,
+            offset: const Offset(5, 5),
+          ),
+          const BoxShadow(
+            color: Colors.white,
+            blurRadius: 15,
+            spreadRadius: 1,
+            offset: Offset(-5, -5),
+          ),
+        ],
       ),
       child: ElevatedButton(
         onPressed: () {
@@ -184,17 +189,22 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       children: [
         Container(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 49, 119, 172),
-                Color.fromARGB(77, 117, 167, 213),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(
-              26,
-            ),
+            color: bgColor,
+            borderRadius: BorderRadius.circular(50),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade500,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(5, 5),
+              ),
+              const BoxShadow(
+                color: Colors.white,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: Offset(-5, -5),
+              ),
+            ],
           ),
           padding: const EdgeInsets.all(
             12.0,
@@ -246,17 +256,22 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
         children: [
           Container(
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Color.fromARGB(255, 49, 119, 172),
-                  Color.fromARGB(77, 117, 167, 213),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(
-                26,
-              ),
+              color: bgColor,
+              borderRadius: BorderRadius.circular(50),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade500,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: const Offset(5, 5),
+                ),
+                const BoxShadow(
+                  color: Colors.white,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: Offset(-5, -5),
+                ),
+              ],
             ),
             padding: const EdgeInsets.all(
               12.0,
@@ -324,17 +339,22 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       children: [
         Container(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 49, 119, 172),
-                Color.fromARGB(77, 117, 167, 213),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(
-              26,
-            ),
+            color: bgColor,
+            borderRadius: BorderRadius.circular(50),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade500,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(5, 5),
+              ),
+              const BoxShadow(
+                color: Colors.white,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: Offset(-5, -5),
+              ),
+            ],
           ),
           padding: const EdgeInsets.all(
             12.0,
@@ -387,17 +407,22 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       children: [
         Container(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 49, 119, 172),
-                Color.fromARGB(77, 117, 167, 213),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(
-              26,
-            ),
+            color: bgColor,
+            borderRadius: BorderRadius.circular(50),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade500,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(5, 5),
+              ),
+              const BoxShadow(
+                color: Colors.white,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: Offset(-5, -5),
+              ),
+            ],
           ),
           padding: const EdgeInsets.all(
             12.0,
@@ -453,59 +478,6 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
             ),
           ],
         ),
-
-        // Row(
-        //   children: [
-        //     Radio(
-        //       fillColor: MaterialStateColor.resolveWith(
-        //           (states) =>
-        //               const Color.fromARGB(255, 56, 145, 60)),
-        //       focusColor: MaterialStateColor.resolveWith(
-        //           (states) =>
-        //               const Color.fromARGB(255, 64, 100, 65)),
-        //       value: CategoryType.income,
-        //       groupValue: _selectCategorytype,
-        //       onChanged: (newValue) {
-        //         setState(() {
-        //           _selectCategorytype = CategoryType.income;
-        //           _categoryID = null;
-        //         });
-        //       },
-        //     ),
-        //     const Text(
-        //       'Income',
-        //       style: TextStyle(
-        //         fontSize: 20.0,
-        //       ),
-        //     )
-        //   ],
-        // ),
-        // Row(
-        //   children: [
-        //     Radio(
-        //       fillColor: MaterialStateColor.resolveWith(
-        //           (states) =>
-        //               const Color.fromARGB(255, 166, 17, 17)),
-        //       focusColor: MaterialStateColor.resolveWith(
-        //           (states) =>
-        //               const Color.fromARGB(255, 145, 17, 17)),
-        //       value: CategoryType.expense,
-        //       groupValue: _selectCategorytype,
-        //       onChanged: (newValue) {
-        //         setState(() {
-        //           _selectCategorytype = CategoryType.expense;
-        //           _categoryID = null;
-        //         });
-        //       },
-        //     ),
-        //     const Text(
-        //       'Expense',
-        //       style: TextStyle(
-        //         fontSize: 20.0,
-        //       ),
-        //     )
-        //   ],
-        // ),
       ],
     );
   }
@@ -517,17 +489,22 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       children: [
         Container(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 49, 119, 172),
-                Color.fromARGB(77, 117, 167, 213),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(
-              26,
-            ),
+            color: bgColor,
+            borderRadius: BorderRadius.circular(50),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade500,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(5, 5),
+              ),
+              const BoxShadow(
+                color: Colors.white,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: Offset(-5, -5),
+              ),
+            ],
           ),
           padding: const EdgeInsets.all(
             12.0,

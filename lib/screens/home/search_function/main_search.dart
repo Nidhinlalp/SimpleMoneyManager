@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import '../../../db_functions/category/category_db.dart';
 import '../../../db_functions/transaction/transaction_db.dart';
 import '../../../models/transaction/transaction_model.dart';
-import '../../Hometransactions/transaction_slidable.dart';
+import '../../hometransactions/transaction_slidable.dart';
 
 class MySearchDelegate extends SearchDelegate {
   @override
@@ -45,16 +46,17 @@ class MySearchDelegate extends SearchDelegate {
     TransactionDb.instance.refresh();
     CategoryDb.instance.refreshUI();
     return ValueListenableBuilder(
-      valueListenable: transactionListNotifire,
+      valueListenable: TransactionDb.transactionListNotifire,
       builder: (BuildContext ctx, List<TransactionModel> newList, Widget? _) {
         List<TransactionModel> searchResult = [];
         searchResult = newList
             .where((element) => element.category.name.contains(query))
             .toList();
         return searchResult.isEmpty
-            ? (const Center(
-                child: Text("Oops! No search Result 🥲"),
-              ))
+            ? Center(
+                child:
+                    Lottie.asset('assets/images/nosearchresultsanimation.json'),
+              )
             : ListView.separated(
                 padding: const EdgeInsets.all(20.0),
                 itemBuilder: (ctx, index) {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:simplemoneymanager/screens/Hometransactions/screen_transaction.dart';
-import 'package:simplemoneymanager/screens/Update/edit.dart';
+import 'package:simplemoneymanager/colors/colors.dart';
+import 'package:simplemoneymanager/screens/hometransactions/screen_transaction.dart';
+import 'package:simplemoneymanager/screens/update/edit.dart';
 import '../../models/cetegory/cetegory_models.dart';
 import '../../models/transaction/transaction_model.dart';
 import 'alert_snakbar_for_home.dart';
@@ -74,17 +75,22 @@ class TransactionSlidable extends StatelessWidget {
           height: 75,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 49, 119, 172),
-                Color.fromARGB(77, 117, 167, 213),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(
-              12,
-            ),
+            color: bgColor,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade500,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(5, 5),
+              ),
+              const BoxShadow(
+                color: Colors.white,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: Offset(-5, -5),
+              ),
+            ],
           ),
           //:::::::::::::::::::::::::start the list tile::::::::
           child: ListTile(

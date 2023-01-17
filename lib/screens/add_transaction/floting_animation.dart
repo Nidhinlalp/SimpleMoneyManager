@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/screens/add_transaction/screen_add_transaction.dart';
 
 const double fabSize = 56;
@@ -14,7 +15,7 @@ class CustomFABWidget extends StatelessWidget {
         transitionDuration: const Duration(milliseconds: 600),
         openBuilder: (context, _) => const ScreenAddTransaction(),
         closedShape: const CircleBorder(),
-        closedColor: Theme.of(context).primaryColor,
+        closedColor: bgColor,
         closedBuilder: (context, openContainer) => Container(
           decoration: const BoxDecoration(
             shape: BoxShape.circle,
@@ -24,7 +25,7 @@ class CustomFABWidget extends StatelessWidget {
           width: fabSize,
           child: const Icon(
             Icons.add,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       );

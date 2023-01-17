@@ -38,28 +38,33 @@ class _ScreenGraphState extends State<ScreenGraph>
         ),
         elevation: 0,
       ),
-      backgroundColor: ColorConstants.kPrimaryColor,
+      backgroundColor: bgColor,
       body: SafeArea(
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 30, right: 60, bottom: 30),
+              padding: const EdgeInsets.only(top: 30, right: 10, bottom: 30),
               child: Container(
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Color.fromARGB(255, 49, 119, 172),
-                      Color.fromARGB(77, 117, 167, 213),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(
-                    20,
-                  ),
+                  color: bgColor,
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade500,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: const Offset(5, 5),
+                    ),
+                    const BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: Offset(-5, -5),
+                    ),
+                  ],
                 ),
                 height: 40,
-                width: 300,
+                width: 350,
                 child: Row(
                   children: [
                     const SizedBox(

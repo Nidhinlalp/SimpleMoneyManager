@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import '../../models/cetegory/cetegory_models.dart';
 import 'alert_snak_for_category.dart';
@@ -12,7 +14,7 @@ class ExpenseCategoyList extends StatelessWidget {
       valueListenable: CategoryDb().expenseCategoryListListener,
       builder: (BuildContext ctx, List<CategoryModels> newlIst, Widget? _) {
         return newlIst.isEmpty
-            ? const Center(child: Text("Oops! No search Result 🥲"))
+            ? Center(child: Lottie.asset('assets/images/empty.json'))
             : GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -41,17 +43,22 @@ class ExpenseCategoyList extends StatelessWidget {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                              Color.fromARGB(255, 49, 119, 172),
-                              Color.fromARGB(77, 117, 167, 213),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(
-                            20,
-                          ),
+                          color: bgColor,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.shade500,
+                              blurRadius: 15,
+                              spreadRadius: 1,
+                              offset: const Offset(5, 5),
+                            ),
+                            const BoxShadow(
+                              color: Colors.white,
+                              blurRadius: 15,
+                              spreadRadius: 1,
+                              offset: Offset(-5, -5),
+                            ),
+                          ],
                         ),
                         child: ListTile(
                           title: Center(

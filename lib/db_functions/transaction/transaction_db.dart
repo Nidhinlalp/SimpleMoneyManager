@@ -2,19 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 
-const TRANSACTION_DB_NAME = 'transaction-db';
+const transactionDbName = 'transaction-db';
 
 abstract class TransactionDbFunctions {
   Future<void> addTransaction(TransactionModel obj);
   Future<List<TransactionModel>> getAllTransaction();
   Future<void> deleteTransaction(String id);
-}
-
-ValueNotifier<List<TransactionModel>> transactionListNotifire =
-    ValueNotifier([]);
+} //includer class
 
 class TransactionDb implements TransactionDbFunctions {
   TransactionDb._internal();
+
+  static ValueNotifier<List<TransactionModel>> transactionListNotifire =
+      ValueNotifier([]);
 
   static TransactionDb instance = TransactionDb._internal();
 
@@ -24,7 +24,7 @@ class TransactionDb implements TransactionDbFunctions {
 
   @override
   Future<void> addTransaction(TransactionModel obj) async {
-    final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
+    final db = await Hive.openBox<TransactionModel>(transactionDbName);
     await db.put(obj.id, obj);
   }
 
@@ -38,19 +38,19 @@ class TransactionDb implements TransactionDbFunctions {
 
   @override
   Future<List<TransactionModel>> getAllTransaction() async {
-    final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
+    final db = await Hive.openBox<TransactionModel>(transactionDbName);
     return db.values.toList().reversed.toList();
   }
 
   @override
   Future<void> deleteTransaction(String id) async {
-    final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
+    final db = await Hive.openBox<TransactionModel>(transactionDbName);
     await db.delete(id);
     refresh();
   }
 
   Future<void> editTransaction(TransactionModel value) async {
-    final db = await Hive.openBox<TransactionModel>(TRANSACTION_DB_NAME);
+    final db = await Hive.openBox<TransactionModel>(transactionDbName);
     await db.put(value.id, value);
     refresh();
   }

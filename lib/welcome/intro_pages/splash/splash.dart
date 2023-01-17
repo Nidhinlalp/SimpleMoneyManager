@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:simplemoneymanager/screens/Hometransactions/zoom_Drawa.dart';
-import 'package:simplemoneymanager/welcome/intropages/onbord_screen.dart';
+import 'package:simplemoneymanager/screens/hometransactions/zoom_Drawa.dart';
+import 'package:simplemoneymanager/welcome/intro_pages/onbord_screen.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});

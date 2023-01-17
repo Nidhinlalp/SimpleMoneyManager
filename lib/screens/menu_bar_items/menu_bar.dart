@@ -33,24 +33,55 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstants.kGravishBlueColor,
+      backgroundColor: bgColor,
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(
-              height: 105,
+              height: 205,
             ),
             //:::::::::::AboutHeding::::::
-            const AboutHeding(),
+            MenuBarButton(
+                icon: Icons.person,
+                name: "About",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const About(),
+                    ),
+                  );
+                }),
             //:::::::::::ResetHeding::::::
-            const ResetHeding(),
+            MenuBarButton(icon: Icons.restore, name: "Reset", onPressed: () {}),
             //::::::::ShareHeding:::
-            const ShareHeding(),
+            MenuBarButton(icon: Icons.share, name: "Share", onPressed: () {}),
             //:::::TermsConditionsHeding:::
-            const TermsConditionsHeding(),
+            MenuBarButton(
+                icon: Icons.document_scanner_outlined,
+                name: "Terms & Conditions",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const TemsAndCondition(),
+                    ),
+                  );
+                }),
             //::::::PrivacyPolicyHeding:::
-            const PrivacyPolicyHeding(),
+            MenuBarButton(
+              name: "Privacy Policy",
+              icon: Icons.privacy_tip_outlined,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PraivacyPolicy(),
+                  ),
+                );
+              },
+            ),
             constHeight30,
             constHeight30,
             const SizedBox(
@@ -65,15 +96,20 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
 }
 
 //:::::::::::::::::::::::::::::::::::::::::::::close::::::::::::::::::::::::::::::::::::::::::::::::::::
-// widget for hedings @settings
 
-//::::::PrivacyPolicyHeding:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
+//::::::MenuBarButton:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
 
-class PrivacyPolicyHeding extends StatelessWidget {
-  const PrivacyPolicyHeding({
+class MenuBarButton extends StatelessWidget {
+  const MenuBarButton({
     Key? key,
+    required this.icon,
+    required this.name,
+    required this.onPressed,
   }) : super(key: key);
 
+  final IconData icon;
+  final String name;
+  final Function onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -84,284 +120,46 @@ class PrivacyPolicyHeding extends StatelessWidget {
       ),
       child: Container(
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Color.fromARGB(255, 196, 201, 122),
-              Color.fromARGB(255, 221, 145, 254),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(
-            20,
-          ),
+          color: Colors.blueGrey,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.blueGrey.shade500,
+              blurRadius: 15,
+              spreadRadius: 1,
+              offset: const Offset(5, 5),
+            ),
+            const BoxShadow(
+              color: Colors.white,
+              blurRadius: 15,
+              spreadRadius: 1,
+              offset: Offset(-5, -5),
+            ),
+          ],
         ),
         child: Card(
           color: Colors.transparent,
           elevation: 10.0,
-          shadowColor: Colors.grey.withOpacity(
-            0.5,
-          ),
+          shadowColor: Colors.grey.withOpacity(0.5),
           child: Row(
             children: [
-              const Icon(
-                Icons.privacy_tip_outlined,
+              Icon(
+                icon,
+                color: Colors.white.withOpacity(.8),
               ),
               const SizedBox(
                 width: 10,
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const PraivacyPolicy(),
-                    ),
-                  );
+                  onPressed();
                 },
-                child: const Text(
-                  'Privacy Policy',
+                child: Text(
+                  name,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-//:::::TermsConditionsHeding::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-class TermsConditionsHeding extends StatelessWidget {
-  const TermsConditionsHeding({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Color.fromARGB(255, 196, 201, 122),
-              Color.fromARGB(255, 221, 145, 254),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(
-            20,
-          ),
-        ),
-        child: Card(
-          color: Colors.transparent,
-          elevation: 10.0,
-          shadowColor: Colors.grey.withOpacity(0.5),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          child: Row(
-            children: [
-              const Icon(
-                Icons.document_scanner_outlined,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const TemsAndCondition(),
-                    ),
-                  );
-                },
-                child: const Text(
-                  'Terms & Conditions',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-//::::::::ShareHeding::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
-
-class ShareHeding extends StatelessWidget {
-  const ShareHeding({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Color.fromARGB(255, 196, 201, 122),
-              Color.fromARGB(255, 221, 145, 254),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(
-            20,
-          ),
-        ),
-        child: Card(
-          color: Colors.transparent,
-          elevation: 10.0,
-          shadowColor: Colors.grey.withOpacity(0.5),
-          child: Row(
-            children: [
-              const Icon(
-                Icons.share,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Share',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-//:::::::::::ResetHeding::::::::::::::::::::::::::::::::::::::::::::::;
-
-class ResetHeding extends StatelessWidget {
-  const ResetHeding({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Color.fromARGB(255, 196, 201, 122),
-              Color.fromARGB(255, 221, 145, 254),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(
-            20,
-          ),
-        ),
-        child: Card(
-          color: Colors.transparent,
-          elevation: 10.0,
-          shadowColor: Colors.grey.withOpacity(0.5),
-          child: Row(
-            children: [
-              const Icon(
-                Icons.restore,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Reset',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-//:::::::::::AboutHeding::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
-class AboutHeding extends StatelessWidget {
-  const AboutHeding({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, top: 90, bottom: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Color.fromARGB(255, 196, 201, 122),
-              Color.fromARGB(255, 221, 145, 254),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(
-            20,
-          ),
-        ),
-        child: Card(
-          color: Colors.transparent,
-          elevation: 10.0,
-          shadowColor: Colors.grey.withOpacity(0.5),
-          child: Row(
-            children: [
-              const Icon(
-                Icons.person,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const About(),
-                    ),
-                  );
-                },
-                child: const Text(
-                  'About',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color: Colors.white.withOpacity(0.9),
                   ),
                 ),
               )

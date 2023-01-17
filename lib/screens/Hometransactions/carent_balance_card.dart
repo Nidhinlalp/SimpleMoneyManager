@@ -56,21 +56,26 @@ class CurrentBalance extends StatelessWidget {
                           child: Text(
                             'CURRENT BALANCE',
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                               color: Colors.black,
-                              fontSize: 20,
+                              fontSize: 23,
                             ),
                           ),
                         )
                       ],
                     ),
-                    const Text(
-                      '₹ 4800/-',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          '₹ 4800/-',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            color: Colors.black,
+                            fontSize: 35,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 30,
@@ -83,20 +88,24 @@ class CurrentBalance extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: const [
                           CircleAvatar(
+                            // ignore: sort_child_properties_last
                             child: Icon(
                               Icons.arrow_upward,
-                              color: Colors.black,
+                              color: Colors.white38,
+                              size: 36,
                             ),
                             radius: 30,
-                            backgroundColor: Colors.white,
+                            backgroundColor: Colors.blueGrey,
                           ),
                           CircleAvatar(
+                            // ignore: sort_child_properties_last
                             child: Icon(
                               Icons.arrow_downward,
-                              color: Colors.black,
+                              size: 36,
+                              color: Colors.white38,
                             ),
                             radius: 30,
-                            backgroundColor: Colors.white,
+                            backgroundColor: Colors.blueGrey,
                           ),
                         ],
                       ),
@@ -111,17 +120,17 @@ class CurrentBalance extends StatelessWidget {
                           Text(
                             'Income',
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                               color: Colors.black,
-                              fontSize: 20,
+                              fontSize: 22,
                             ),
                           ),
                           Text(
                             'Expense',
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                               color: Colors.black,
-                              fontSize: 20,
+                              fontSize: 22,
                             ),
                           ),
                         ],
@@ -137,7 +146,7 @@ class CurrentBalance extends StatelessWidget {
                           Text(
                             '₹ 50000',
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w800,
                               color: Colors.black,
                               fontSize: 17,
                             ),
@@ -145,7 +154,7 @@ class CurrentBalance extends StatelessWidget {
                           Text(
                             '₹ 2000',
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w800,
                               color: Colors.black,
                               fontSize: 17,
                             ),
@@ -228,143 +237,6 @@ class CurrentBalance extends StatelessWidget {
                 ),
               ),
             ),
-            // child: Container(
-            //   height: 340,
-            //   width: double.infinity,
-            //   decoration: const BoxDecoration(
-            //     gradient: LinearGradient(
-            //       begin: Alignment.topRight,
-            //       end: Alignment.bottomLeft,
-            //       colors: [
-            //         Color.fromARGB(255, 49, 119, 172),
-            //         Color.fromARGB(77, 117, 167, 213),
-            //       ],
-            //     ),
-            //     borderRadius: BorderRadius.only(
-            //       topLeft: Radius.circular(50),
-            //       topRight: Radius.circular(50),
-            //       bottomLeft: Radius.circular(50),
-            //       bottomRight: Radius.circular(50),
-            //     ),
-            //     boxShadow: [
-            //       BoxShadow(
-            //         color: Color.fromARGB(255, 190, 115, 190),
-            //         blurRadius: 20,
-            //         spreadRadius: 1,
-            //         offset: Offset.infinite,
-            //       ),
-            //     ],
-            //   ),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     children: [
-            //       const Padding(
-            //         padding: EdgeInsets.only(
-            //           top: 50,
-            //           bottom: 30,
-            //         ),
-            //         child: Text(
-            //           'CURRENT BALANCE',
-            //           style: TextStyle(
-            //             fontWeight: FontWeight.w500,
-            //             color: Colors.black,
-            //             fontSize: 20,
-            //           ),
-            //         ),
-            //       ),
-            //       const Text(
-            //         '₹ 4800/-',
-            //         style: TextStyle(
-            //           fontWeight: FontWeight.w600,
-            //           color: Colors.black,
-            //           fontSize: 20,
-            //         ),
-            //       ),
-            //       const SizedBox(
-            //         height: 30,
-            //       ),
-            //       Padding(
-            //         padding: const EdgeInsets.all(
-            //           10.0,
-            //         ),
-            //         child: Row(
-            //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //           children: const [
-            //             CircleAvatar(
-            //               child: Icon(
-            //                 Icons.arrow_upward,
-            //                 color: Colors.black,
-            //               ),
-            //               radius: 25,
-            //               backgroundColor: Colors.white30,
-            //             ),
-            //             CircleAvatar(
-            //               child: Icon(
-            //                 Icons.arrow_downward,
-            //                 color: Colors.black,
-            //               ),
-            //               radius: 25,
-            //               backgroundColor: Colors.white30,
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       Padding(
-            //         padding: const EdgeInsets.only(
-            //           left: 12,
-            //         ),
-            //         child: Row(
-            //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //           children: const [
-            //             Text(
-            //               'Income',
-            //               style: TextStyle(
-            //                 fontWeight: FontWeight.w500,
-            //                 color: Colors.black,
-            //                 fontSize: 20,
-            //               ),
-            //             ),
-            //             Text(
-            //               'Expense',
-            //               style: TextStyle(
-            //                 fontWeight: FontWeight.w500,
-            //                 color: Colors.black,
-            //                 fontSize: 20,
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       Padding(
-            //         padding: const EdgeInsets.all(
-            //           10.0,
-            //         ),
-            //         child: Row(
-            //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //           children: const [
-            //             Text(
-            //               '₹ 50000',
-            //               style: TextStyle(
-            //                 fontWeight: FontWeight.w500,
-            //                 color: Colors.black,
-            //                 fontSize: 17,
-            //               ),
-            //             ),
-            //             Text(
-            //               '₹ 2000',
-            //               style: TextStyle(
-            //                 fontWeight: FontWeight.w500,
-            //                 color: Colors.black,
-            //                 fontSize: 17,
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
           ),
         ],
       ),

@@ -365,6 +365,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
         ),
         Expanded(
           child: TextFormField(
+            maxLength: 10,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please enter amound';

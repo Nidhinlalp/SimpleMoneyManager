@@ -681,7 +681,7 @@ class ValidationOfSelectCatogory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 85),
+      padding: const EdgeInsets.only(right: 105),
       child: Text(
         selectcategoryemptyMassege,
         style: const TextStyle(

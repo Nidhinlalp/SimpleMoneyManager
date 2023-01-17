@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 
-const CATEGORY_DB_NAME = 'category-database';
+const categoryDbName = 'category-database';
 
 abstract class CatageryDbFunctions {
   Future<List<CategoryModels>> getCategories();
@@ -26,14 +26,14 @@ class CategoryDb implements CatageryDbFunctions {
 
   @override
   Future<void> insertCategory(CategoryModels value) async {
-    final categoryDB = await Hive.openBox<CategoryModels>(CATEGORY_DB_NAME);
+    final categoryDB = await Hive.openBox<CategoryModels>(categoryDbName);
     await categoryDB.put(value.id, value);
     refreshUI();
   }
 
   @override
   Future<List<CategoryModels>> getCategories() async {
-    final categoryDB = await Hive.openBox<CategoryModels>(CATEGORY_DB_NAME);
+    final categoryDB = await Hive.openBox<CategoryModels>(categoryDbName);
     return categoryDB.values.toList().reversed.toList();
   }
 
@@ -57,7 +57,7 @@ class CategoryDb implements CatageryDbFunctions {
 
   @override
   Future<void> deleteCategory(String categoryID) async {
-    final categoryDB = await Hive.openBox<CategoryModels>(CATEGORY_DB_NAME);
+    final categoryDB = await Hive.openBox<CategoryModels>(categoryDbName);
     await categoryDB.delete(categoryID);
     refreshUI();
   }

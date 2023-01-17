@@ -95,12 +95,12 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
                 children: [
                   constHeight10,
 
-                  //:::::::::::::::::::Categoryselection:::::::::::::::::::
+                  //:::::::::::::::::::::SelectCategoryType:::::::::::::::::
                   selectCategoryType(),
 
                   constHeight30,
 
-                  //::::::::::::::::SelectCategoryType:::::::::::::::::::::
+                  //::::::::::::::::Categoryselection:::::::::::::::::::::
 
                   categoryselection(context),
                   //::::::::::::::::::category validation:::::::::::::::::

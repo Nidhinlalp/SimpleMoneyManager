@@ -82,33 +82,27 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                   selectCategoryTypeSection(),
 
                   constHeight30,
-                  constHeight10,
                   //:::::::::::::::::::selectCategorySection:::::::::;
                   selectCategorySection(context),
-
                   //category validation
-
                   SelectCategoryValidation(
                     selectcategoryemptyMassege: selectcategoryemptyMassege,
                   ),
                   constHeight30,
-                  constHeight20,
+
                   //::::::::::::amountSection:::::::::::::::::::::
                   amountSection(),
                   constHeight30,
-                  constHeight20,
                   //::::::::::::::::selectDateSection:::::::::::::
                   selectDateSection(context),
-                  constHeight30,
+
                   //:::::::erro massege for form validation:::::::
                   SeletionDateValidation(
                     selectDAteemptyMassege: selectDAteemptyMassege,
                   ),
-
+                  constHeight20,
                   //::::::::::::::::::::noteSection:::::::::::::::
                   noteSection(),
-                  constHeight30,
-                  constHeight20,
                   constHeight30,
                   constHeight30,
 

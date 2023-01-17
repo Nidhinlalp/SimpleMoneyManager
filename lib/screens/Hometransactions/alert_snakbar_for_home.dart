@@ -46,7 +46,7 @@ alertAndSnakBar(BuildContext context, {required String modelId}) {
               TransactionDb.instance.deleteTransaction(modelId);
               Navigator.of(context).pop(true);
               final snackBar = SnackBar(
-                duration: const Duration(milliseconds: 700),
+                duration: const Duration(milliseconds: 500),
                 elevation: 0,
                 behavior: SnackBarBehavior.floating,
                 backgroundColor: Colors.transparent,

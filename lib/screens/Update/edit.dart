@@ -86,7 +86,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
             style: GoogleFonts.roboto(fontSize: 25, color: Colors.black),
           ),
         ),
-        backgroundColor: ColorConstants.kGravishBlueColor,
+        backgroundColor: bgColor,
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
@@ -96,18 +96,18 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
                   constHeight10,
 
                   //:::::::::::::::::::Categoryselection:::::::::::::::::::
-                  categoryselection(context),
+                  selectCategoryType(),
 
+                  constHeight30,
+
+                  //::::::::::::::::SelectCategoryType:::::::::::::::::::::
+
+                  categoryselection(context),
                   //::::::::::::::::::category validation:::::::::::::::::
 
                   ValidationOfSelectCatogory(
                     selectcategoryemptyMassege: selectcategoryemptyMassege,
                   ),
-
-                  constHeight30,
-
-                  //::::::::::::::::SelectCategoryType:::::::::::::::::::::
-                  selectCategoryType(),
 
                   constHeight30,
 
@@ -149,17 +149,22 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
       child: Container(
         width: size.width / 3,
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Color.fromARGB(255, 49, 119, 172),
-              Color.fromARGB(77, 117, 167, 213),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(
-            20,
-          ),
+          color: bgColor,
+          borderRadius: BorderRadius.circular(50),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade500,
+              blurRadius: 15,
+              spreadRadius: 1,
+              offset: const Offset(5, 5),
+            ),
+            const BoxShadow(
+              color: Colors.white,
+              blurRadius: 15,
+              spreadRadius: 1,
+              offset: Offset(-5, -5),
+            ),
+          ],
         ),
         child: ElevatedButton(
           onPressed: () {
@@ -205,17 +210,22 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
       children: [
         Container(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 49, 119, 172),
-                Color.fromARGB(77, 117, 167, 213),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(
-              26,
-            ),
+            color: bgColor,
+            borderRadius: BorderRadius.circular(50),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade500,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(5, 5),
+              ),
+              const BoxShadow(
+                color: Colors.white,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: Offset(-5, -5),
+              ),
+            ],
           ),
           padding: const EdgeInsets.all(
             12.0,
@@ -268,17 +278,22 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
         children: [
           Container(
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Color.fromARGB(255, 49, 119, 172),
-                  Color.fromARGB(77, 117, 167, 213),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(
-                26,
-              ),
+              color: bgColor,
+              borderRadius: BorderRadius.circular(50),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade500,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: const Offset(5, 5),
+                ),
+                const BoxShadow(
+                  color: Colors.white,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: Offset(-5, -5),
+                ),
+              ],
             ),
             padding: const EdgeInsets.all(
               12.0,
@@ -339,17 +354,22 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
       children: [
         Container(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 49, 119, 172),
-                Color.fromARGB(77, 117, 167, 213),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(
-              26,
-            ),
+            color: bgColor,
+            borderRadius: BorderRadius.circular(50),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade500,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(5, 5),
+              ),
+              const BoxShadow(
+                color: Colors.white,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: Offset(-5, -5),
+              ),
+            ],
           ),
           padding: const EdgeInsets.all(
             12.0,
@@ -402,17 +422,22 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
       children: [
         Container(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 49, 119, 172),
-                Color.fromARGB(77, 117, 167, 213),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(
-              26,
-            ),
+            color: bgColor,
+            borderRadius: BorderRadius.circular(50),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade500,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(5, 5),
+              ),
+              const BoxShadow(
+                color: Colors.white,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: Offset(-5, -5),
+              ),
+            ],
           ),
           padding: const EdgeInsets.all(
             12.0,
@@ -481,17 +506,22 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
       children: [
         Container(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Color.fromARGB(255, 49, 119, 172),
-                Color.fromARGB(77, 117, 167, 213),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(
-              26,
-            ),
+            color: bgColor,
+            borderRadius: BorderRadius.circular(50),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade500,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(5, 5),
+              ),
+              const BoxShadow(
+                color: Colors.white,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: Offset(-5, -5),
+              ),
+            ],
           ),
           padding: const EdgeInsets.all(
             12.0,

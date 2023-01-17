@@ -62,43 +62,43 @@ class _SeeAllDetailsState extends State<SeeAllDetails> {
         ],
       ),
       body: ValueListenableBuilder(
-          valueListenable: TransactionDb.transactionListNotifire,
-          builder: (context, newList, _) {
-            return ValueListenableBuilder(
-                valueListenable: showCategory,
-                builder: (context, showCategory, widget) {
-                  var displayList = [];
-                  if (showCategory == "Income") {
-                    List<TransactionModel> allincometransaction = [];
-                    allincometransaction = newList
-                        .where((element) => element.type == CategoryType.income)
-                        .toList();
-                    displayList = allincometransaction;
-                  } else if (showCategory == "Expense") {
-                    List<TransactionModel> allincometransaction = [];
-                    allincometransaction = newList
-                        .where(
-                            (element) => element.type == CategoryType.expense)
-                        .toList();
-                    displayList = allincometransaction;
-                  } else {
-                    displayList = newList;
-                  }
-                  return Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: displayList.isEmpty
-                        ? Center(
-                            child: Lottie.asset('assets/images/empty.json'))
-                        : ListView.builder(
-                            itemCount: displayList.length,
-                            itemBuilder: (context, index) {
-                              return TransactionSlidable(
-                                  value: displayList[index]);
-                            },
-                          ),
-                  );
-                });
-          }),
+        valueListenable: TransactionDb.transactionListNotifire,
+        builder: (context, newList, _) {
+          return ValueListenableBuilder(
+            valueListenable: showCategory,
+            builder: (context, showCategory, widget) {
+              var displayList = [];
+              if (showCategory == "Income") {
+                List<TransactionModel> allincometransaction = [];
+                allincometransaction = newList
+                    .where((element) => element.type == CategoryType.income)
+                    .toList();
+                displayList = allincometransaction;
+              } else if (showCategory == "Expense") {
+                List<TransactionModel> allincometransaction = [];
+                allincometransaction = newList
+                    .where((element) => element.type == CategoryType.expense)
+                    .toList();
+                displayList = allincometransaction;
+              } else {
+                displayList = newList;
+              }
+              return displayList.isEmpty
+                  ? Center(child: Lottie.asset('assets/images/empty.json'))
+                  : ListView.builder(
+                      itemCount: displayList.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20.0, right: 20, bottom: 5, top: 10),
+                          child: TransactionSlidable(value: displayList[index]),
+                        );
+                      },
+                    );
+            },
+          );
+        },
+      ),
     );
   }
 }

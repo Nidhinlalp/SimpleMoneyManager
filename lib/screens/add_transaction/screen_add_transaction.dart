@@ -77,19 +77,20 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                 children: [
                   constHeight10,
 
-                  //:::::::::::::selectCategorySection:::::::::::::::
+                  //::::::::::::::::::::::::::::selectCategoryTypeSection::::::;
 
+                  selectCategoryTypeSection(),
+
+                  constHeight30,
+                  constHeight10,
+                  //:::::::::::::::::::selectCategorySection:::::::::;
                   selectCategorySection(context),
 
                   //category validation
+
                   SelectCategoryValidation(
                     selectcategoryemptyMassege: selectcategoryemptyMassege,
                   ),
-                  //
-                  constHeight30,
-                  constHeight10,
-                  //:::::::::::::::selectCategoryTypeSection::::::
-                  selectCategoryTypeSection(),
                   constHeight30,
                   constHeight20,
                   //::::::::::::amountSection:::::::::::::::::::::
@@ -614,6 +615,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
 
     final snackBar = SnackBar(
       elevation: 0,
+      duration: const Duration(milliseconds: 500),
       behavior: SnackBarBehavior.floating,
       backgroundColor: Colors.transparent,
       content: AwesomeSnackbarContent(

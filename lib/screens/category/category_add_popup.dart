@@ -99,6 +99,7 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                       Navigator.of(ctx).pop();
                       final snackBar = SnackBar(
                         elevation: 0,
+                        duration: const Duration(milliseconds: 500),
                         behavior: SnackBarBehavior.floating,
                         backgroundColor: Colors.transparent,
                         content: AwesomeSnackbarContent(

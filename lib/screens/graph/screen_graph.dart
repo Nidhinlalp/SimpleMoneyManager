@@ -29,11 +29,34 @@ class _ScreenGraphState extends State<ScreenGraph>
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
-        title: Center(
-          child: Image.asset(
-            'assets/images/money-transfer-2647242-2208355.png',
-            fit: BoxFit.contain,
-            height: 30,
+        centerTitle: true,
+        title: Container(
+          height: 40,
+          width: 50,
+          decoration: BoxDecoration(
+            color: bgColor,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade300,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(5, 5),
+              ),
+              const BoxShadow(
+                color: Colors.white60,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: Offset(-5, -5),
+              ),
+            ],
+          ),
+          child: Center(
+            child: Image.asset(
+              'assets/images/money-transfer-2647242-2208355.png',
+              fit: BoxFit.contain,
+              height: 30,
+            ),
           ),
         ),
         elevation: 0,

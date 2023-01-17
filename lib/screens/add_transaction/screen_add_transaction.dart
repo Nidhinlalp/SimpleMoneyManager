@@ -286,11 +286,31 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
             ),
             onPressed: () async {
               final selectedDatetemp = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime.now().subtract(const Duration(days: 30)),
-                lastDate: DateTime.now(),
-              );
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now().subtract(const Duration(days: 30)),
+                  lastDate: DateTime.now(),
+
+                  //::::::::::::::::::::colendercolor:::::::::::::::::::::::::::::::::::::::::;
+
+                  builder: (context, child) {
+                    return Theme(
+                      data: Theme.of(context).copyWith(
+                        colorScheme: ColorScheme.light(
+                          primary: bgColor,
+                          onPrimary: Colors.blueGrey,
+                          onSurface: Colors.black,
+                        ),
+                        textButtonTheme: TextButtonThemeData(
+                          style: TextButton.styleFrom(
+                            foregroundColor:
+                                Colors.blueGrey, // button text color
+                          ),
+                        ),
+                      ),
+                      child: child!,
+                    );
+                  });
               if (selectedDatetemp == null) {
                 return;
               } else {

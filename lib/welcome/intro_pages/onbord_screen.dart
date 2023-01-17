@@ -41,14 +41,16 @@ class _OnbordScreenState extends State<OnbordScreen> {
               children: [
                 // skip
                 onLastPage
-                    ? Text('')
+                    ? const Text('')
                     : GestureDetector(
                         onTap: () {
                           controller.jumpToPage(2);
                         },
                         child: const Text(
                           'Skip',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
                         ),
                       ),
 
@@ -69,6 +71,7 @@ class _OnbordScreenState extends State<OnbordScreen> {
                           prefs.setBool('seen', true);
                           // bool seen = (prefs.getBool('seen') ?? false);
 
+                          // ignore: use_build_context_synchronously
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
@@ -79,9 +82,9 @@ class _OnbordScreenState extends State<OnbordScreen> {
                         child: const Text(
                           'Start',
                           style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                              fontSize: 30,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.black),
                         ),
                       )
                     : GestureDetector(
@@ -93,9 +96,9 @@ class _OnbordScreenState extends State<OnbordScreen> {
                         child: const Text(
                           'Next',
                           style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.black),
                         ),
                       ),
               ],

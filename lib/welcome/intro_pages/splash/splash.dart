@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/screens/hometransactions/zoom_Drawa.dart';
 import 'package:simplemoneymanager/welcome/intro_pages/onbord_screen.dart';
 
@@ -40,39 +41,65 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(136, 20, 27, 38),
+      backgroundColor: bgColor,
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              SizedBox(
-                height: 1,
-              ),
-              Text(
-                'SIMPLE MONEY MANAGER',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color.fromARGB(255, 7, 255, 255),
-                  letterSpacing: 6,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: 200,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(40)),
-                  child: LinearProgressIndicator(
-                    color: Color.fromARGB(255, 7, 255, 255),
-                    backgroundColor: Colors.white,
-                    minHeight: 16,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    color: bgColor,
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade500,
+                        blurRadius: 15,
+                        spreadRadius: 1,
+                        offset: const Offset(5, 5),
+                      ),
+                      const BoxShadow(
+                        color: Colors.white,
+                        blurRadius: 15,
+                        spreadRadius: 1,
+                        offset: Offset(-5, -5),
+                      ),
+                    ],
+                  ),
+                  // ignore: prefer_const_constructors
+                  child: Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child: const Text(
+                      'SIMPLE MONEY MANAGER',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 6,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ],
+
+                // SizedBox(
+                //   width: 200,
+                //   child: ClipRRect(
+                //     borderRadius: BorderRadius.all(Radius.circular(40)),
+                //     child: LinearProgressIndicator(
+                //       color: Color.fromARGB(255, 7, 255, 255),
+                //       backgroundColor: Colors.white,
+                //       minHeight: 16,
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
           ),
         ),
       ),

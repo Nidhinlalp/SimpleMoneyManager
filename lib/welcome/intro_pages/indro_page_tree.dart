@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:simplemoneymanager/colors/colors.dart';
 
 class IntroPage3 extends StatelessWidget {
   const IntroPage3({super.key});
@@ -8,7 +9,7 @@ class IntroPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: bgColor,
       body: Padding(
         padding: const EdgeInsets.all(40.0),
         child: Column(
@@ -19,8 +20,8 @@ class IntroPage3 extends StatelessWidget {
               children: [
                 Expanded(
                   child: Shimmer.fromColors(
-                    baseColor: Colors.white30,
-                    highlightColor: Colors.white,
+                    baseColor: Colors.blueGrey,
+                    highlightColor: Colors.black,
                     child: const Padding(
                       padding: EdgeInsets.only(
                         left: 20,

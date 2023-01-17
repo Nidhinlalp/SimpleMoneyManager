@@ -59,6 +59,7 @@ class CurrentBalance extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               color: Colors.black,
                               fontSize: 23,
+                              letterSpacing: 2.5,
                             ),
                           ),
                         )
@@ -73,6 +74,7 @@ class CurrentBalance extends StatelessWidget {
                             fontWeight: FontWeight.w900,
                             color: Colors.black,
                             fontSize: 35,
+                            letterSpacing: 1.5,
                           ),
                         ),
                       ],
@@ -123,6 +125,7 @@ class CurrentBalance extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               color: Colors.black,
                               fontSize: 22,
+                              letterSpacing: 1.5,
                             ),
                           ),
                           Text(
@@ -131,6 +134,7 @@ class CurrentBalance extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               color: Colors.black,
                               fontSize: 22,
+                              letterSpacing: 1.5,
                             ),
                           ),
                         ],
@@ -146,17 +150,19 @@ class CurrentBalance extends StatelessWidget {
                           Text(
                             '₹ 50000',
                             style: TextStyle(
-                              fontWeight: FontWeight.w800,
+                              fontWeight: FontWeight.w900,
                               color: Colors.black,
-                              fontSize: 17,
+                              fontSize: 18,
+                              letterSpacing: 1.5,
                             ),
                           ),
                           Text(
                             '₹ 2000',
                             style: TextStyle(
-                              fontWeight: FontWeight.w800,
+                              fontWeight: FontWeight.w900,
                               color: Colors.black,
-                              fontSize: 17,
+                              fontSize: 18,
+                              letterSpacing: 1.5,
                             ),
                           ),
                         ],

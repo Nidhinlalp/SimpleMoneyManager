@@ -94,42 +94,74 @@ class TransactionSlidable extends StatelessWidget {
           ),
           //:::::::::::::::::::::::::start the list tile::::::::
           child: ListTile(
-            contentPadding: const EdgeInsets.all(5),
-            visualDensity: const VisualDensity(horizontal: 4, vertical: 2),
+            contentPadding: const EdgeInsets.all(8),
+            dense: true,
+            //   visualDensity: VisualDensity(horizontal: -2, vertical: -3),
+            // visualDensity: const VisualDensity(horizontal: 4, vertical: 1),
             //::::::::::::::show circledate:::::::::::::::::::
             leading: CircleAvatar(
-              backgroundColor: value.type == CategoryType.income
-                  //:::::::show the color in circleavathar::::::
-                  ? Colors.greenAccent[700]
-                  : Colors.redAccent[700],
+              backgroundColor: Colors.blueGrey,
+              // ignore: sort_child_properties_last
+              child: value.type == CategoryType.income
+                  ? const Icon(Icons.arrow_downward_outlined)
+                  : const Icon(Icons.arrow_upward_outlined),
+              // backgroundColor: value.type == CategoryType.income
+              //     //:::::::show the color in circleavathar::::::
+              //     ? Colors.greenAccent[700]
+              //     : Colors.redAccent[700],
               radius: 30,
-              child: Text(
-                //::::::::show the date in circleavathar::::::::
-                parseDate(value.date),
-                // ignore: prefer_const_constructors
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              // child: Text(
+              //   //::::::::show the date in circleavathar::::::::
+              //   parseDate(value.date),
+              //   // ignore: prefer_const_constructors
+              //   style: const TextStyle(
+              //     fontWeight: FontWeight.w500,
+              //     color: Colors.white,
+              //   ),
+              //   textAlign: TextAlign.center,
+              // ),
             ),
             //::::::::::::::show amound::::::::::::::::::::::::
-            trailing: Text(
-              '₹ ${value.amount}',
-              style: const TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            trailing: value.type == CategoryType.income
+                ? Text(
+                    '+ ${value.amount}',
+                    style: const TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                : Text(
+                    '- ${value.amount}',
+                    style: const TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
             //::::::::::shwo category:::::::::::::::::::::::::
-            title: Text(
-              value.category.name,
-              style: const TextStyle(
-                fontSize: 15.0,
-                fontWeight: FontWeight.w500,
-              ),
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  value.category.name,
+                  style: const TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  //::::::::show the date in circleavathar::::::::
+                  parseDate(value.date),
+                  // ignore: prefer_const_constructors
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black54,
+                      fontSize: 15),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
+            // subtitle:,
           ),
         ),
       ),

@@ -154,5 +154,5 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
 String parseDate(DateTime date) {
   final _date = DateFormat.MMMd().format(date);
   final splitedDate = _date.split(' ');
-  return '${splitedDate.last}\n${splitedDate.first}';
+  return '${splitedDate.last}  ${splitedDate.first}';
 }

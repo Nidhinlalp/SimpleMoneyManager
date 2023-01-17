@@ -37,31 +37,48 @@ class ExpenseCategoyList extends StatelessWidget {
                         20.0,
                       ),
                     ),
-                    child: InkWell(
-                      onLongPress: () {
-                        alertAndSnakForCategory(context, category.id);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: bgColor,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.shade500,
-                              blurRadius: 15,
-                              spreadRadius: 1,
-                              offset: const Offset(5, 5),
-                            ),
-                            const BoxShadow(
-                              color: Colors.white,
-                              blurRadius: 15,
-                              spreadRadius: 1,
-                              offset: Offset(-5, -5),
-                            ),
-                          ],
-                        ),
-                        child: ListTile(
-                          title: Center(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: bgColor,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.shade500,
+                            blurRadius: 15,
+                            spreadRadius: 1,
+                            offset: const Offset(5, 5),
+                          ),
+                          const BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 15,
+                            spreadRadius: 1,
+                            offset: Offset(-5, -5),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  alertAndSnakForCategory(context, category.id);
+                                },
+                                icon: const Icon(
+                                  Icons.clear_outlined,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      color: Colors.white,
+                                      blurRadius: 15.0,
+                                    )
+                                  ],
+                                  color: Colors.black54,
+                                ),
+                              )
+                            ],
+                          ),
+                          Center(
                             child: Text(
                               category.name,
                               style: const TextStyle(
@@ -69,7 +86,7 @@ class ExpenseCategoyList extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                   );

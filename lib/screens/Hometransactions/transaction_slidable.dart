@@ -122,6 +122,7 @@ class TransactionSlidable extends StatelessWidget {
               // ),
             ),
             //::::::::::::::show amound::::::::::::::::::::::::
+
             trailing: value.type == CategoryType.income
                 ? Text(
                     '+ ${value.amount}',

@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
+import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/menu_bar.dart';
 import 'package:simplemoneymanager/screens/hometransactions/resent_transaction_heding.dart';
 import 'package:simplemoneymanager/screens/hometransactions/transaction_slidable.dart';
@@ -24,6 +25,7 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
   Widget build(BuildContext context) {
     TransactionDb.instance.refresh();
     CategoryDb.instance.refreshUI();
+
     return ValueListenableBuilder(
       valueListenable: TransactionDb.transactionListNotifire,
       builder: (BuildContext ctx, List<TransactionModel> newList, Widget? _) {
@@ -92,7 +94,7 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
                   //:::::::::::::::curent balance card:::::::::::::::::
                   const CurrentBalance(),
                   //::::::::::::RecentTransactionHeding:::::::::::;
-                  const RecentTransactionHeding(),
+                  RecentTransactionHeding(newList: newList),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(

@@ -1,6 +1,7 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
+import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 
 class CurrentBalance extends StatelessWidget {
   const CurrentBalance({
@@ -23,7 +24,7 @@ class CurrentBalance extends StatelessWidget {
               speed: 1000,
               onFlipDone: (status) {},
               front: Container(
-                height: 320,
+                height: 335,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: bgColor,
@@ -51,32 +52,42 @@ class CurrentBalance extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.all(30.0),
-                          child: Text(
-                            'CURRENT BALANCE',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                              fontSize: 23,
-                              letterSpacing: 2.5,
-                            ),
-                          ),
+                        Padding(
+                          padding: const EdgeInsets.all(35.0),
+                          child: ValueListenableBuilder(
+                              valueListenable: totalbalanse,
+                              builder: (context, cerentbalanse, _) {
+                                return Text(
+                                  totalbalanse.value < 0
+                                      ? "Oops"
+                                      : 'CURRENT BALANCE',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                    fontSize: 23,
+                                    letterSpacing: 2.5,
+                                  ),
+                                );
+                              }),
                         )
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          '₹ 4800/-',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            color: Colors.black,
-                            fontSize: 35,
-                            letterSpacing: 1.5,
-                          ),
-                        ),
+                      children: [
+                        ValueListenableBuilder(
+                            valueListenable: totalbalanse,
+                            builder: (context, cerentbalanse, _) {
+                              return Text(
+                                '₹ ${totalbalanse.value}/-',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.black,
+                                  fontSize: 35,
+                                  letterSpacing: 1.5,
+                                ),
+                              );
+                            }),
                       ],
                     ),
                     const SizedBox(
@@ -146,25 +157,33 @@ class CurrentBalance extends StatelessWidget {
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: const [
-                          Text(
-                            '₹ 50000',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black,
-                              fontSize: 18,
-                              letterSpacing: 1.5,
-                            ),
-                          ),
-                          Text(
-                            '₹ 2000',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black,
-                              fontSize: 18,
-                              letterSpacing: 1.5,
-                            ),
-                          ),
+                        children: [
+                          ValueListenableBuilder(
+                              valueListenable: incomtotel,
+                              builder: (context, income, _) {
+                                return Text(
+                                  '₹ ${incomtotel.value}',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.black,
+                                    fontSize: 24,
+                                    letterSpacing: 1.5,
+                                  ),
+                                );
+                              }),
+                          ValueListenableBuilder(
+                              valueListenable: expensetotel,
+                              builder: (context, expense, _) {
+                                return Text(
+                                  '₹ ${expensetotel.value}',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.black,
+                                    fontSize: 24,
+                                    letterSpacing: 1.5,
+                                  ),
+                                );
+                              }),
                         ],
                       ),
                     ),

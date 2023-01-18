@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
+import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 
 const transactionDbName = 'transaction-db';
 
@@ -34,6 +35,7 @@ class TransactionDb implements TransactionDbFunctions {
     transactionListNotifire.value.clear();
     transactionListNotifire.value.addAll(list);
     transactionListNotifire.notifyListeners();
+    incomeandexpense();
   }
 
   @override

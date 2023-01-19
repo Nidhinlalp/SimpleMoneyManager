@@ -234,12 +234,3 @@ class _AboutState extends State<About> {
     );
   }
 }
-
-
-// onPressed: () async {
-//                           const url =
-//                               'https://www.linkedin.com/in/nidhinlal-p-02b87a236 ';
-//                           Uri uri = Uri.parse(url);
-
-//                           await launchUrl(uri);
-//                         }

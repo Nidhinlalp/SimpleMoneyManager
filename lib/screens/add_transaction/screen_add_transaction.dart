@@ -5,7 +5,6 @@ import 'package:simplemoneymanager/constants/constants.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
-import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import '../../colors/colors.dart';
 import '../../db_functions/category/category_db.dart';
 import '../category/category_add_popup.dart';
@@ -631,7 +630,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
 
     final snackBar = SnackBar(
       elevation: 0,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 600),
       behavior: SnackBarBehavior.floating,
       backgroundColor: Colors.transparent,
       content: AwesomeSnackbarContent(

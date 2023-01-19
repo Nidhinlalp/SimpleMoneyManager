@@ -103,8 +103,8 @@ class TransactionSlidable extends StatelessWidget {
               backgroundColor: Colors.blueGrey,
               // ignore: sort_child_properties_last
               child: value.type == CategoryType.income
-                  ? const Icon(Icons.arrow_downward_outlined)
-                  : const Icon(Icons.arrow_upward_outlined),
+                  ? const Icon(Icons.arrow_upward_outlined)
+                  : const Icon(Icons.arrow_downward_outlined),
               // backgroundColor: value.type == CategoryType.income
               //     //:::::::show the color in circleavathar::::::
               //     ? Colors.greenAccent[700]

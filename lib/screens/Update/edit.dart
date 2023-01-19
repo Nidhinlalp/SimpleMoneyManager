@@ -47,7 +47,8 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 
   @override
   void initState() {
-    _selectCategorytype = CategoryType.income;
+    _categoryID = widget.value.category.id.toString();
+    _selectCategorytype = widget.value.category.type;
     _notesTextEditingController =
         TextEditingController(text: widget.value.notes);
     _amountTextEditingController =
@@ -179,7 +180,6 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
               });
             }
             if (_formKey.currentState!.validate()) {
-              //  var a=TransactionModel(amount:double.parse( _amountTextEditingController.value.text),category:_selectedcategorymodels! ,date:_selectDate! ,notes: _notesTextEditingController.text,type: _selectCategorytype!);
               editTransaction();
             }
           },
@@ -625,9 +625,17 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
       category: _selectedcategorymodels!,
     );
     await TransactionDb.instance.editTransaction(models);
-    // ignore: use_build_context_synchronously
     Navigator.of(context).pop();
     TransactionDb.instance.refresh();
+    // final snackBar = SnackBar(
+    //   content: const Text('Hi, I am a SnackBar!'),
+    //   backgroundColor: (Colors.black12),
+    //   action: SnackBarAction(
+    //     label: 'dismiss',
+    //     onPressed: () {},
+    //   ),
+    // );
+    // ScaffoldMessenger.of(context).showSnackBar(snackBar);
     // final snackBar = SnackBar(duration: const Duration(milliseconds: 500),
     //   elevation: 0,
     //   behavior: SnackBarBehavior.floating,

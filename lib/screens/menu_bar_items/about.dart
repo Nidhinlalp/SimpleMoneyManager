@@ -1,6 +1,8 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../colors/colors.dart';
 
@@ -167,23 +169,35 @@ class _AboutState extends State<About> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.picture_as_pdf,
-                      ),
+                    GestureDetector(
+                      onTap: () async {
+                        const url =
+                            'https://www.linkedin.com/in/nidhinlal-p-02b87a236 ';
+                        Uri uri = Uri.parse(url);
+
+                        await launchUrl(uri);
+                      },
+                      child: Lottie.asset('assets/images/linkedin.json',
+                          width: 30),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.picture_as_pdf,
-                      ),
+                    GestureDetector(
+                      onTap: () async {
+                        const url = 'https://www.instagram.com/p/CkYfN57K8Mo/ ';
+                        Uri uri = Uri.parse(url);
+
+                        await launchUrl(uri);
+                      },
+                      child: Lottie.asset('assets/images/instagram.json',
+                          width: 30),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.picture_as_pdf,
-                      ),
+                    GestureDetector(
+                      onTap: () async {
+                        const url = 'https://mail.google.com/mail';
+                        Uri uri = Uri.parse(url);
+
+                        await launchUrl(uri);
+                      },
+                      child: Lottie.asset('assets/images/mail.json', width: 20),
                     ),
                   ],
                 ),
@@ -206,7 +220,7 @@ class _AboutState extends State<About> {
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
-                        'Click herte to Back ',
+                        'Click here to Back ',
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                     )
@@ -220,3 +234,12 @@ class _AboutState extends State<About> {
     );
   }
 }
+
+
+// onPressed: () async {
+//                           const url =
+//                               'https://www.linkedin.com/in/nidhinlal-p-02b87a236 ';
+//                           Uri uri = Uri.parse(url);
+
+//                           await launchUrl(uri);
+//                         }

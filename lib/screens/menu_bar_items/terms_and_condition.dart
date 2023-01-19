@@ -185,7 +185,8 @@ class _AboutState extends State<TemsAndCondition> {
                     ),
                     GestureDetector(
                       onTap: () async {
-                        const url = 'https://mail.google.com/mail';
+                        const url =
+                            'mailto:lalnidhinp02@gmail.com?subject=Help me&body=need help';
                         Uri uri = Uri.parse(url);
 
                         await launchUrl(uri);

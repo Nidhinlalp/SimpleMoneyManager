@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:hive/hive.dart';
+import 'package:share/share.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simplemoneymanager/constants/constants.dart';
+import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
+import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/about.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/paivacy_polycy.dart';
+import 'package:simplemoneymanager/welcome/intro_pages/splash/splash.dart';
 import '../../colors/colors.dart';
 import 'terms_and_condition.dart';
 
@@ -56,9 +62,63 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
                   );
                 }),
             //:::::::::::ResetHeding::::::
-            MenuBarButton(icon: Icons.restore, name: "Reset", onPressed: () {}),
+            MenuBarButton(
+              icon: Icons.restore,
+              name: "Reset",
+              onPressed: () {
+                {
+                  showDialog(
+                    context: context,
+                    builder: (contex) {
+                      return AlertDialog(
+                        actions: [
+                          TextButton(
+                              onPressed: () => Navigator.of(contex).pop(),
+                              child: const Text('No')),
+                          const SizedBox(
+                            width: 30,
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              await prefs.clear();
+                              SharedPreferences tectcontrol =
+                                  await SharedPreferences.getInstance();
+                              await tectcontrol.clear();
+                              final transationDb =
+                                  await Hive.openBox<TransactionModel>(
+                                      'transaction-db');
+                              final categorydb =
+                                  await Hive.openBox<CategoryModels>(
+                                      'category-database');
+
+                              categorydb.clear();
+                              transationDb.clear();
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => const Splash(),
+                                ),
+                              );
+                            },
+                            child: const Text('Yes'),
+                          )
+                        ],
+                        title: const Text('Do you want to restart'),
+                      );
+                    },
+                  );
+                }
+              },
+            ),
             //::::::::ShareHeding:::
-            MenuBarButton(icon: Icons.share, name: "Share", onPressed: () {}),
+            MenuBarButton(
+                icon: Icons.share,
+                name: "Share",
+                onPressed: () {
+                  // Share.share(
+                  //     "https://play.google.com/store/apps/details?id=com.instructivetech.testapp");
+                }),
             //:::::TermsConditionsHeding:::
             MenuBarButton(
                 icon: Icons.document_scanner_outlined,

@@ -2,11 +2,27 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
-class CurrentBalance extends StatelessWidget {
+class CurrentBalance extends StatefulWidget {
   const CurrentBalance({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<CurrentBalance> createState() => _CurrentBalanceState();
+}
+
+class _CurrentBalanceState extends State<CurrentBalance> {
+  late List<gdpdata> _chartdata;
+  late TooltipBehavior _tooltipBehavior;
+
+  @override
+  void initState() {
+    _chartdata = getchartdata();
+    _tooltipBehavior = TooltipBehavior(enable: true);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -220,42 +236,29 @@ class CurrentBalance extends StatelessWidget {
                   ),
                   child: Column(
                     children: <Widget>[
-                      const Padding(
-                        padding: EdgeInsets.all(30.0),
-                        child: Text(
-                          'CURRENT BALANCE',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            'Thank you !',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                      SfCircularChart(
+                        title: ChartTitle(text: 'Statistics'),
+                        legend: Legend(
+                            isVisible: true,
+                            overflowMode: LegendItemOverflowMode.scroll),
+                        tooltipBehavior: _tooltipBehavior,
+                        series: <CircularSeries>[
+                          DoughnutSeries<gdpdata, String>(
+                            dataSource: _chartdata,
+                            xValueMapper: (gdpdata data, _) => data.continent,
+                            yValueMapper: (gdpdata data, _) => data.gdp,
+                            enableTooltip: true,
+                            dataLabelSettings:
+                                const DataLabelSettings(isVisible: true),
                           )
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Text(
-                              'Click herte to Back ',
-                              style: Theme.of(context).textTheme.bodyText1,
-                            ),
+                          Text(
+                            'Click here to Back ',
+                            style: Theme.of(context).textTheme.bodyText1,
                           )
                         ],
                       )
@@ -269,4 +272,21 @@ class CurrentBalance extends StatelessWidget {
       ),
     );
   }
+
+  List<gdpdata> getchartdata() {
+    final List<gdpdata> chartdata = [
+      gdpdata('india', 200),
+      gdpdata('africa', 50),
+      gdpdata('jammu', 100),
+      gdpdata('ui', 500),
+      gdpdata('ui', 500),
+    ];
+    return chartdata;
+  }
+}
+
+class gdpdata {
+  gdpdata(this.continent, this.gdp);
+  final String continent;
+  final int gdp;
 }

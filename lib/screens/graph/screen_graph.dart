@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simplemoneymanager/screens/graph/pages/expense_graph.dart';
+import 'package:simplemoneymanager/screens/graph/pages/income_graph.dart';
+import 'package:simplemoneymanager/screens/graph/pages/overview_graph.dart';
 
 import '../../colors/colors.dart';
 
@@ -204,6 +207,16 @@ class _ScreenGraphState extends State<ScreenGraph>
                   ),
                 ),
               ],
+            ),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: const [
+                  OverViewGraph(),
+                  IncomGraph(),
+                  ExpenseGraph(),
+                ],
+              ),
             ),
           ],
         ),

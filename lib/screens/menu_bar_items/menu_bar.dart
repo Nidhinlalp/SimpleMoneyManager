@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:hive/hive.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simplemoneymanager/constants/constants.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
@@ -95,6 +95,7 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
 
                               categorydb.clear();
                               transationDb.clear();
+                              // ignore: use_build_context_synchronously
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) => const Splash(),
@@ -116,8 +117,8 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
                 icon: Icons.share,
                 name: "Share",
                 onPressed: () {
-                  // Share.share(
-                  //     "https://play.google.com/store/apps/details?id=com.instructivetech.testapp");
+                  Share.share(
+                      'hey! check out this new app https://play.google.com/store/search?q=pub%3ADivTag&c=apps');
                 }),
             //:::::TermsConditionsHeding:::
             MenuBarButton(

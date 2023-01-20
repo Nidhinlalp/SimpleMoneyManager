@@ -102,7 +102,7 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
                           ? [
                               Center(
                                 child: Lottie.asset('assets/images/empty.json',
-                                    width: 200),
+                                    width: 210),
                               )
                             ]
                           : List.generate(

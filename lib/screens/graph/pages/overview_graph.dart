@@ -34,7 +34,17 @@ class _OverViewGraphState extends State<OverViewGraph> {
                       Lottie.asset('assets/images/emptygraph.json'),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [Text('No Data')],
+                        children: const [
+                          Text(
+                            'No Data !',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontSize: 22,
+                              letterSpacing: 1.5,
+                            ),
+                          )
+                        ],
                       ),
                     ],
                   )

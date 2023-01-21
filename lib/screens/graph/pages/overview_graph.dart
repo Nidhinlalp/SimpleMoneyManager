@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
@@ -26,29 +27,42 @@ class _OverViewGraphState extends State<OverViewGraph> {
       body: ValueListenableBuilder(
           valueListenable: TransactionDb.transactionListNotifire,
           builder: (context, allData, _) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SfCircularChart(
-                  //   title: ChartTitle(text: 'Statistics'),
-                  legend: Legend(
-                      isVisible: true,
-                      overflowMode: LegendItemOverflowMode.wrap),
-                  tooltipBehavior: _tooltipBehavior,
-                  series: <CircularSeries>[
-                    PieSeries<TransactionModel, String>(
-                      dataSource: TransactionDb.transactionListNotifire.value,
-                      xValueMapper: (TransactionModel data, _) =>
-                          data.category.name,
-                      yValueMapper: (TransactionModel data, _) => data.amount,
-                      enableTooltip: true,
-                      dataLabelSettings:
-                          const DataLabelSettings(isVisible: true),
-                    )
-                  ],
-                ),
-              ],
-            );
+            return allData.isEmpty
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Lottie.asset('assets/images/emptygraph.json'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [Text('No Data')],
+                      ),
+                    ],
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SfCircularChart(
+                        //   title: ChartTitle(text: 'Statistics'),
+                        legend: Legend(
+                            isVisible: true,
+                            overflowMode: LegendItemOverflowMode.wrap),
+                        tooltipBehavior: _tooltipBehavior,
+                        series: <CircularSeries>[
+                          PieSeries<TransactionModel, String>(
+                            dataSource:
+                                TransactionDb.transactionListNotifire.value,
+                            xValueMapper: (TransactionModel data, _) =>
+                                data.category.name,
+                            yValueMapper: (TransactionModel data, _) =>
+                                data.amount,
+                            enableTooltip: true,
+                            dataLabelSettings:
+                                const DataLabelSettings(isVisible: true),
+                          )
+                        ],
+                      ),
+                    ],
+                  );
           }),
     );
   }

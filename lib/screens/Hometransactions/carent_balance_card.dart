@@ -1,5 +1,6 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
@@ -240,27 +241,41 @@ class _CurrentBalanceState extends State<CurrentBalance> {
                       valueListenable: TransactionDb.transactionListNotifire,
                       builder: (context, allData, _) {
                         return Column(
-                          children: <Widget>[
-                            SfCircularChart(
-                              title: ChartTitle(text: 'Statistics'),
-                              legend: Legend(
-                                  isVisible: true,
-                                  overflowMode: LegendItemOverflowMode.scroll),
-                              tooltipBehavior: _tooltipBehavior,
-                              series: <CircularSeries>[
-                                DoughnutSeries<TransactionModel, String>(
-                                  dataSource: TransactionDb
-                                      .transactionListNotifire.value,
-                                  xValueMapper: (TransactionModel data, _) =>
-                                      data.category.name,
-                                  yValueMapper: (TransactionModel data, _) =>
-                                      data.amount,
-                                  enableTooltip: true,
-                                  dataLabelSettings:
-                                      const DataLabelSettings(isVisible: true),
-                                )
-                              ],
-                            ),
+                          children: [
+                            allData.isEmpty
+                                ? Center(
+                                    child: Lottie.asset(
+                                        'assets/images/emptygraph.json'),
+                                  )
+                                : Column(
+                                    children: <Widget>[
+                                      SfCircularChart(
+                                        title: ChartTitle(text: 'Statistics'),
+                                        legend: Legend(
+                                            isVisible: true,
+                                            overflowMode:
+                                                LegendItemOverflowMode.scroll),
+                                        tooltipBehavior: _tooltipBehavior,
+                                        series: <CircularSeries>[
+                                          DoughnutSeries<TransactionModel,
+                                              String>(
+                                            dataSource: TransactionDb
+                                                .transactionListNotifire.value,
+                                            xValueMapper:
+                                                (TransactionModel data, _) =>
+                                                    data.category.name,
+                                            yValueMapper:
+                                                (TransactionModel data, _) =>
+                                                    data.amount,
+                                            enableTooltip: true,
+                                            dataLabelSettings:
+                                                const DataLabelSettings(
+                                                    isVisible: true),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

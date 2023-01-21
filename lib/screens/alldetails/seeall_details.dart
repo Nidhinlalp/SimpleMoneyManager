@@ -26,8 +26,9 @@ class _SeeAllDetailsState extends State<SeeAllDetails> {
     return Scaffold(
       backgroundColor: bgColor,
       appBar: AppBar(
+        //centerTitle: true,
         title: Text(
-          'My Transactions',
+          'Over View',
           style: GoogleFonts.roboto(fontSize: 25, color: Colors.black),
         ),
         elevation: 0,

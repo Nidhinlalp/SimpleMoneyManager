@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
+import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
+import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
+import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class IncomGraph extends StatefulWidget {
@@ -10,11 +13,9 @@ class IncomGraph extends StatefulWidget {
 }
 
 class _IncomGraphState extends State<IncomGraph> {
-  late List<gdpdata> _chartdata;
   late TooltipBehavior _tooltipBehavior;
   @override
   void initState() {
-    _chartdata = getchartdata();
     _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
   }
@@ -23,43 +24,37 @@ class _IncomGraphState extends State<IncomGraph> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SfCircularChart(
-            //   title: ChartTitle(text: 'Statistics'),
-            // legend: Legend(
-            //     isVisible: true, overflowMode: LegendItemOverflowMode.wrap),
-            tooltipBehavior: _tooltipBehavior,
-            series: <CircularSeries>[
-              PieSeries<gdpdata, String>(
-                dataSource: _chartdata,
-                xValueMapper: (gdpdata data, _) => data.continent,
-                yValueMapper: (gdpdata data, _) => data.gdp,
-                enableTooltip: true,
-                dataLabelSettings: const DataLabelSettings(isVisible: true),
-              )
-            ],
-          ),
-        ],
-      ),
+      body: ValueListenableBuilder(
+          valueListenable: TransactionDb.transactionListNotifire,
+          builder: (context, allIncomData, _) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SfCircularChart(
+                  //   title: ChartTitle(text: 'Statistics'),
+                  legend: Legend(
+                      isVisible: true,
+                      overflowMode: LegendItemOverflowMode.scroll,
+                      alignment: ChartAlignment.center),
+                  tooltipBehavior: _tooltipBehavior,
+                  series: <CircularSeries>[
+                    PieSeries<TransactionModel, String>(
+                      dataSource: allIncomData
+                          .where((element) =>
+                              element.category.type == CategoryType.income)
+                          .toList(),
+                      xValueMapper: (TransactionModel data, _) =>
+                          data.category.name,
+                      yValueMapper: (TransactionModel data, _) => data.amount,
+                      enableTooltip: true,
+                      dataLabelSettings:
+                          const DataLabelSettings(isVisible: true),
+                    )
+                  ],
+                ),
+              ],
+            );
+          }),
     );
   }
-
-  List<gdpdata> getchartdata() {
-    final List<gdpdata> chartdata = [
-      gdpdata('india', 200),
-      gdpdata('africa', 50),
-      gdpdata('jammu', 100),
-      gdpdata('ui', 500),
-      gdpdata('ui', 500),
-    ];
-    return chartdata;
-  }
-}
-
-class gdpdata {
-  gdpdata(this.continent, this.gdp);
-  final String continent;
-  final int gdp;
 }

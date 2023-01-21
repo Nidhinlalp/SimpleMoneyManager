@@ -71,6 +71,11 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
                     context: context,
                     builder: (contex) {
                       return AlertDialog(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(15),
+                          ),
+                        ),
                         actions: [
                           TextButton(
                               onPressed: () => Navigator.of(contex).pop(),
@@ -105,7 +110,9 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
                             child: const Text('Yes'),
                           )
                         ],
-                        title: const Text('Do you want to restart'),
+                        title: const Text("Reset App"),
+                        content: const Text(
+                            "Are you sure you want to reset the app?"),
                       );
                     },
                   );

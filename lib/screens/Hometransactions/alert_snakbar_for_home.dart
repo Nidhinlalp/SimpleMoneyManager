@@ -13,35 +13,20 @@ alertAndSnakBar(BuildContext context, {required String modelId}) {
             Radius.circular(15),
           ),
         ),
-        title: const Text(
-          'Alert',
-        ),
-        content: Container(
-          width: 50.0,
-          height: 30.0,
-          decoration: const BoxDecoration(
-            shape: BoxShape.rectangle,
-            color: Colors.white30,
-          ),
-          child: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Text(
-                  'Do you Want To Delete',
-                ),
-              ],
-            ),
-          ),
-        ),
+        title: const Text("Confirm"),
+        content: const Text("Are you sure you wish to delete this item?"),
         actions: <Widget>[
           TextButton(
-            child: const Text('Cancel'),
+            child: const Text("Cancel"),
             onPressed: () {
               Navigator.of(context).pop(false);
             },
           ),
           TextButton(
-            child: const Text('Confirm'),
+            child: const Text(
+              "Delete",
+              style: TextStyle(color: Colors.redAccent),
+            ),
             onPressed: () {
               TransactionDb.instance.deleteTransaction(modelId);
               Navigator.of(context).pop(true);
@@ -64,6 +49,63 @@ alertAndSnakBar(BuildContext context, {required String modelId}) {
           ),
         ],
       );
+      // return AlertDialog(
+      //   shape: const RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.all(
+      //       Radius.circular(15),
+      //     ),
+      //   ),
+      //   title: const Text(
+      //     'Alert',
+      //   ),
+      //   content: Container(
+      //     width: 50.0,
+      //     height: 30.0,
+      //     decoration: const BoxDecoration(
+      //       shape: BoxShape.rectangle,
+      //       color: Colors.white30,
+      //     ),
+      //     child: SingleChildScrollView(
+      //       child: ListBody(
+      //         children: const <Widget>[
+      //           Text(
+      //             'Do you Want To Delete',
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ),
+      //   actions: <Widget>[
+      //     TextButton(
+      //       child: const Text('Cancel'),
+      //       onPressed: () {
+      //         Navigator.of(context).pop(false);
+      //       },
+      //     ),
+      //     TextButton(
+      //       child: const Text('Confirm'),
+      //       onPressed: () {
+      //         TransactionDb.instance.deleteTransaction(modelId);
+      //         Navigator.of(context).pop(true);
+      //         final snackBar = SnackBar(
+      //           duration: const Duration(milliseconds: 600),
+      //           elevation: 0,
+      //           behavior: SnackBarBehavior.floating,
+      //           backgroundColor: Colors.transparent,
+      //           content: AwesomeSnackbarContent(
+      //             title: 'On Snap!',
+      //             message: 'You Deleted One item !',
+      //             contentType: ContentType.failure,
+      //           ),
+      //         );
+
+      //         ScaffoldMessenger.of(context)
+      //           ..hideCurrentSnackBar()
+      //           ..showSnackBar(snackBar);
+      //       },
+      //     ),
+      //   ],
+      // );
     },
   );
 }

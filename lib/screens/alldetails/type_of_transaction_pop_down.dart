@@ -45,7 +45,7 @@ class TypeOfSeeAllDetails extends StatelessWidget {
           },
         ),
         PopupMenuItem(
-          value: 2,
+          value: 3,
           child: const Text(
             "Expense",
           ),

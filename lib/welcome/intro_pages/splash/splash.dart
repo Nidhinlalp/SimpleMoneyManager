@@ -86,18 +86,6 @@ class _SplashState extends State<Splash> {
                     ),
                   ),
                 ),
-
-                // SizedBox(
-                //   width: 200,
-                //   child: ClipRRect(
-                //     borderRadius: BorderRadius.all(Radius.circular(40)),
-                //     child: LinearProgressIndicator(
-                //       color: Color.fromARGB(255, 7, 255, 255),
-                //       backgroundColor: Colors.white,
-                //       minHeight: 16,
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),

@@ -46,7 +46,7 @@ class _ExpenseGraphState extends State<ExpenseGraph> {
                         //   title: ChartTitle(text: 'Statistics'),
                         legend: Legend(
                             isVisible: true,
-                            overflowMode: LegendItemOverflowMode.wrap),
+                            overflowMode: LegendItemOverflowMode.scroll),
                         tooltipBehavior: _tooltipBehavior,
                         series: <CircularSeries>[
                           PieSeries<TransactionModel, String>(

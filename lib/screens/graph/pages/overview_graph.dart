@@ -45,7 +45,7 @@ class _OverViewGraphState extends State<OverViewGraph> {
                         //   title: ChartTitle(text: 'Statistics'),
                         legend: Legend(
                             isVisible: true,
-                            overflowMode: LegendItemOverflowMode.wrap),
+                            overflowMode: LegendItemOverflowMode.scroll),
                         tooltipBehavior: _tooltipBehavior,
                         series: <CircularSeries>[
                           PieSeries<TransactionModel, String>(

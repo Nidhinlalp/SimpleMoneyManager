@@ -135,12 +135,6 @@ class _ScreenGraphState extends State<ScreenGraph>
                         const PopupMenuItem(
                           value: 2,
                           child: Text(
-                            "Week",
-                          ),
-                        ),
-                        const PopupMenuItem(
-                          value: 2,
-                          child: Text(
                             "Month",
                           ),
                         ),

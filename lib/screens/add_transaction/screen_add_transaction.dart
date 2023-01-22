@@ -97,7 +97,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                   //:::::::erro massege for form validation:::::::
 
                   DateValidation(isVisibleDate: _isVisibleDate),
-                  constHeight20,
+                  constHeight30,
                   //::::::::::::::::::::noteSection:::::::::::::::
                   noteSection(),
                   constHeight30,

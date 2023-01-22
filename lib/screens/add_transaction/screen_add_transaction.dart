@@ -23,11 +23,10 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   CategoryModels? _selectedcategorymodels;
   String? _categoryID;
   final _formKey = GlobalKey<FormState>();
-
+  bool _isVisibleDate = false;
+  bool _isVisibleCategory = false;
   final _notesTextEditingController = TextEditingController();
   final _amountTextEditingController = TextEditingController();
-  String selectDAteemptyMassege = '';
-  String selectcategoryemptyMassege = '';
 
   @override
   void initState() {
@@ -85,9 +84,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                   //:::::::::::::::::::selectCategorySection:::::::::;
                   selectCategorySection(context),
                   //category validation
-                  SelectCategoryValidation(
-                    selectcategoryemptyMassege: selectcategoryemptyMassege,
-                  ),
+                  CategoryValidation(isVisibleCategory: _isVisibleCategory),
+
                   constHeight30,
 
                   //::::::::::::amountSection:::::::::::::::::::::
@@ -97,9 +95,8 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                   selectDateSection(context),
 
                   //:::::::erro massege for form validation:::::::
-                  SeletionDateValidation(
-                    selectDAteemptyMassege: selectDAteemptyMassege,
-                  ),
+
+                  DateValidation(isVisibleDate: _isVisibleDate),
                   constHeight20,
                   //::::::::::::::::::::noteSection:::::::::::::::
                   noteSection(),
@@ -146,12 +143,20 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
         onPressed: () {
           if (_categoryID == null) {
             setState(() {
-              selectcategoryemptyMassege = 'please select category';
+              _isVisibleCategory = true;
+            });
+          } else {
+            setState(() {
+              _isVisibleCategory = false;
             });
           }
           if (_selectDate == null) {
             setState(() {
-              selectDAteemptyMassege = 'please select date';
+              _isVisibleDate = true;
+            });
+          } else {
+            setState(() {
+              _isVisibleDate = false;
             });
           }
           if (_formKey.currentState!.validate()) {
@@ -647,46 +652,60 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   }
 }
 
-class SeletionDateValidation extends StatelessWidget {
-  const SeletionDateValidation({
+class DateValidation extends StatelessWidget {
+  const DateValidation({
     Key? key,
-    required this.selectDAteemptyMassege,
-  }) : super(key: key);
+    required bool isVisibleDate,
+  })  : _isVisibleDate = isVisibleDate,
+        super(key: key);
 
-  final String selectDAteemptyMassege;
+  final bool _isVisibleDate;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 125),
-      child: Text(
-        selectDAteemptyMassege,
-        style: const TextStyle(
-          color: Colors.red,
-          fontSize: 12.5,
+      padding: const EdgeInsets.only(right: 130),
+      child: Visibility(
+        visible: _isVisibleDate,
+        child: const Padding(
+          padding: EdgeInsets.all(3.0),
+          child: Text(
+            'please Select Date',
+            style: TextStyle(
+              color: Color.fromARGB(255, 192, 29, 17),
+              fontSize: 12,
+            ),
+          ),
         ),
       ),
     );
   }
 }
 
-class SelectCategoryValidation extends StatelessWidget {
-  const SelectCategoryValidation({
+class CategoryValidation extends StatelessWidget {
+  const CategoryValidation({
     Key? key,
-    required this.selectcategoryemptyMassege,
-  }) : super(key: key);
+    required bool isVisibleCategory,
+  })  : _isVisibleCategory = isVisibleCategory,
+        super(key: key);
 
-  final String selectcategoryemptyMassege;
+  final bool _isVisibleCategory;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 105),
-      child: Text(
-        selectcategoryemptyMassege,
-        style: const TextStyle(
-          color: Colors.red,
-          fontSize: 12.5,
+      child: Visibility(
+        visible: _isVisibleCategory,
+        child: const Padding(
+          padding: EdgeInsets.all(3.0),
+          child: Text(
+            'please Select Category',
+            style: TextStyle(
+              color: Color.fromARGB(255, 192, 29, 17),
+              fontSize: 12,
+            ),
+          ),
         ),
       ),
     );

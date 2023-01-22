@@ -27,7 +27,11 @@ class _ExpenseGraphState extends State<ExpenseGraph> {
       backgroundColor: bgColor,
       body: ValueListenableBuilder(
           valueListenable: TransactionDb.transactionListNotifire,
-          builder: (context, allExpenceData, _) {
+          builder: (context, allData, _) {
+            var allExpenceData = allData
+                .where(
+                    (element) => element.category.type == CategoryType.expense)
+                .toList();
             return allExpenceData.isEmpty
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -60,11 +64,7 @@ class _ExpenseGraphState extends State<ExpenseGraph> {
                         tooltipBehavior: _tooltipBehavior,
                         series: <CircularSeries>[
                           PieSeries<TransactionModel, String>(
-                            dataSource: allExpenceData
-                                .where((element) =>
-                                    element.category.type ==
-                                    CategoryType.expense)
-                                .toList(),
+                            dataSource: allExpenceData,
                             xValueMapper: (TransactionModel data, _) =>
                                 data.category.name,
                             yValueMapper: (TransactionModel data, _) =>

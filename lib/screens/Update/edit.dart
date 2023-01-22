@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simplemoneymanager/constants/constants.dart';
@@ -47,7 +48,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 
   @override
   void initState() {
-    //  _categoryID = widget.value.category.id.toString();
+    //_categoryID = widget.value.category.id.toString();
     _selectCategorytype = widget.value.category.type;
     _notesTextEditingController =
         TextEditingController(text: widget.value.notes);
@@ -180,8 +181,9 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
               });
             }
             if (_formKey.currentState!.validate()) {
-              editTransaction();
+              editTransactions();
             }
+            // Navigator.of(context).pop();
           },
           // ignore: sort_child_properties_last
           child: const Text(
@@ -313,11 +315,28 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
             ),
             onPressed: () async {
               final selectedDatetemp = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime.now().subtract(const Duration(days: 30)),
-                lastDate: DateTime.now(),
-              );
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now().subtract(const Duration(days: 30)),
+                  lastDate: DateTime.now(),
+                  builder: (context, child) {
+                    return Theme(
+                      data: Theme.of(context).copyWith(
+                        colorScheme: ColorScheme.light(
+                          primary: bgColor,
+                          onPrimary: Colors.blueGrey,
+                          onSurface: Colors.black,
+                        ),
+                        textButtonTheme: TextButtonThemeData(
+                          style: TextButton.styleFrom(
+                            foregroundColor:
+                                Colors.blueGrey, // button text color
+                          ),
+                        ),
+                      ),
+                      child: child!,
+                    );
+                  });
               if (selectedDatetemp == null) {
                 return;
               } else {
@@ -592,7 +611,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 
   //:::::::::::::::editTransaction:::::::::::::::::::::::::::::::::::::::
 
-  Future<void> editTransaction() async {
+  Future<void> editTransactions() async {
     final notesText = _notesTextEditingController.text;
     final amountText = _amountTextEditingController.text;
     if (notesText.isEmpty) {
@@ -624,33 +643,23 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
       type: _selectCategorytype!,
       category: _selectedcategorymodels!,
     );
-    await TransactionDb.instance.editTransaction(models);
-    Navigator.of(context).pop();
-    TransactionDb.instance.refresh();
-    // final snackBar = SnackBar(
-    //   content: const Text('Hi, I am a SnackBar!'),
-    //   backgroundColor: (Colors.black12),
-    //   action: SnackBarAction(
-    //     label: 'dismiss',
-    //     onPressed: () {},
-    //   ),
-    // );
-    // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    // final snackBar = SnackBar(duration: const Duration(milliseconds: 500),
-    //   elevation: 0,
-    //   behavior: SnackBarBehavior.floating,
-    //   backgroundColor: Colors.transparent,
-    //   content: AwesomeSnackbarContent(
-    //     title: 'On Snap!',
-    //     message: 'Transaction Add Successfully !',
-    //     contentType: ContentType.success,
-    //   ),
-    // );
+    await TransactionDb.instance.dbEditTransaction(models);
+    //Navigator.of(context).pop();
+    final snackBar = SnackBar(
+      duration: const Duration(milliseconds: 500),
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: 'On Snap!',
+        message: 'Transaction Edit Successfully !',
+        contentType: ContentType.success,
+      ),
+    );
 
-    // // ignore: use_build_context_synchronously
-    // ScaffoldMessenger.of(context)
-    //   ..hideCurrentSnackBar()
-    //   ..showSnackBar(snackBar);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
   }
 }
 

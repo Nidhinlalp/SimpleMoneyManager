@@ -51,7 +51,7 @@ class TransactionDb implements TransactionDbFunctions {
     refresh();
   }
 
-  Future<void> editTransaction(TransactionModel value) async {
+  Future<void> dbEditTransaction(TransactionModel value) async {
     final db = await Hive.openBox<TransactionModel>(transactionDbName);
     await db.put(value.id, value);
     refresh();

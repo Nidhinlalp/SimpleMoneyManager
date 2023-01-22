@@ -27,7 +27,11 @@ class _IncomGraphState extends State<IncomGraph> {
       backgroundColor: bgColor,
       body: ValueListenableBuilder(
           valueListenable: TransactionDb.transactionListNotifire,
-          builder: (context, allIncomData, _) {
+          builder: (context, allData, _) {
+            var allIncomData = allData
+                .where(
+                    (element) => element.category.type == CategoryType.income)
+                .toList();
             return allIncomData.isEmpty
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -61,11 +65,7 @@ class _IncomGraphState extends State<IncomGraph> {
                         tooltipBehavior: _tooltipBehavior,
                         series: <CircularSeries>[
                           PieSeries<TransactionModel, String>(
-                            dataSource: allIncomData
-                                .where((element) =>
-                                    element.category.type ==
-                                    CategoryType.income)
-                                .toList(),
+                            dataSource: allIncomData,
                             xValueMapper: (TransactionModel data, _) =>
                                 data.category.name,
                             yValueMapper: (TransactionModel data, _) =>

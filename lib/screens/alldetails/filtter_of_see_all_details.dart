@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
+import 'package:simplemoneymanager/screens/alldetails/seeall_details.dart';
 
 class FiltterSeeAllDetails extends StatelessWidget {
   const FiltterSeeAllDetails({
@@ -25,36 +27,61 @@ class FiltterSeeAllDetails extends StatelessWidget {
         ),
       ),
       itemBuilder: (conext) => [
-        const PopupMenuItem(
+        PopupMenuItem(
           value: 1,
-          child: Text(
+          child: const Text(
             "All",
           ),
+          onTap: () {
+            overviewTransactions.value =
+                TransactionDb.transactionListNotifire.value;
+          },
         ),
-        const PopupMenuItem(
+        PopupMenuItem(
           value: 2,
-          child: Text(
+          child: const Text(
             "Today",
           ),
+          onTap: () {
+            overviewTransactions.value =
+                TransactionDb.transactionListNotifire.value;
+            overviewTransactions.value = overviewTransactions.value
+                .where((element) =>
+                    element.date.day == DateTime.now().day &&
+                    element.date.month == DateTime.now().month &&
+                    element.date.year == DateTime.now().year)
+                .toList();
+          },
         ),
-        const PopupMenuItem(
-          value: 2,
-          child: Text(
-            "Yesterday",
-          ),
-        ),
-        const PopupMenuItem(
-          value: 2,
-          child: Text(
-            "Week",
-          ),
-        ),
-        const PopupMenuItem(
-          value: 2,
-          child: Text(
-            "Month",
-          ),
-        ),
+        PopupMenuItem(
+            value: 2,
+            child: const Text(
+              "Yesterday",
+            ),
+            onTap: () {
+              overviewTransactions.value =
+                  TransactionDb.transactionListNotifire.value;
+              overviewTransactions.value = overviewTransactions.value
+                  .where((element) =>
+                      element.date.day == DateTime.now().day - 1 &&
+                      element.date.month == DateTime.now().month &&
+                      element.date.year == DateTime.now().year)
+                  .toList();
+            }),
+        PopupMenuItem(
+            value: 2,
+            child: const Text(
+              "Month",
+            ),
+            onTap: () {
+              overviewTransactions.value =
+                  TransactionDb.transactionListNotifire.value;
+              overviewTransactions.value = overviewTransactions.value
+                  .where((element) =>
+                      element.date.month == DateTime.now().month &&
+                      element.date.year == DateTime.now().year)
+                  .toList();
+            }),
       ],
     );
   }

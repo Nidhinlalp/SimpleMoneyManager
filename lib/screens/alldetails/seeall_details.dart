@@ -11,6 +11,8 @@ import 'filtter_of_see_all_details.dart';
 import 'type_of_transaction_pop_down.dart';
 
 ValueNotifier showCategory = ValueNotifier("All");
+ValueNotifier<List<TransactionModel>> overviewTransactions =
+    ValueNotifier(TransactionDb.transactionListNotifire.value);
 
 class SeeAllDetails extends StatefulWidget {
   const SeeAllDetails({super.key});
@@ -66,7 +68,7 @@ class _SeeAllDetailsState extends State<SeeAllDetails> {
         ],
       ),
       body: ValueListenableBuilder(
-        valueListenable: TransactionDb.transactionListNotifire,
+        valueListenable: overviewTransactions,
         builder: (context, newList, _) {
           return ValueListenableBuilder(
             valueListenable: showCategory,

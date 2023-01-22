@@ -44,7 +44,7 @@ class _CurrentBalanceState extends State<CurrentBalance> {
                 speed: 1000,
                 onFlipDone: (status) {},
                 front: Container(
-                  height: 340,
+                  // height: 340,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: bgColor,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/screens/graph/pages/expense_graph.dart';
 import 'package:simplemoneymanager/screens/graph/pages/income_graph.dart';
 import 'package:simplemoneymanager/screens/graph/pages/overview_graph.dart';
@@ -15,8 +16,8 @@ class ScreenGraph extends StatefulWidget {
 class _ScreenGraphState extends State<ScreenGraph>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  String dateFilterTitle = "All";
 
-  @override
   @override
   void initState() {
     super.initState();
@@ -24,6 +25,8 @@ class _ScreenGraphState extends State<ScreenGraph>
       length: 3,
       vsync: this,
     );
+    overviewGraphTransactions.value =
+        TransactionDb.transactionListNotifire.value;
   }
 
   @override
@@ -96,8 +99,8 @@ class _ScreenGraphState extends State<ScreenGraph>
                     const SizedBox(
                       width: 10,
                     ),
-                    const Text(
-                      'All',
+                    Text(
+                      dateFilterTitle,
                     ),
                     PopupMenuButton<int>(
                       shape: ContinuousRectangleBorder(
@@ -114,29 +117,85 @@ class _ScreenGraphState extends State<ScreenGraph>
                         ),
                       ),
                       itemBuilder: (context) => [
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 1,
-                          child: Text(
+                          child: const Text(
                             "All",
                           ),
+                          onTap: () {
+                            overviewGraphTransactions.value =
+                                TransactionDb.transactionListNotifire.value;
+                            setState(() {
+                              dateFilterTitle = "All";
+                            });
+                          },
                         ),
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 2,
-                          child: Text(
+                          child: const Text(
                             "Today",
                           ),
+                          onTap: () {
+                            overviewGraphTransactions.value =
+                                TransactionDb.transactionListNotifire.value;
+                            overviewGraphTransactions.value =
+                                overviewGraphTransactions.value
+                                    .where((element) =>
+                                        element.date.day ==
+                                            DateTime.now().day &&
+                                        element.date.month ==
+                                            DateTime.now().month &&
+                                        element.date.year ==
+                                            DateTime.now().year)
+                                    .toList();
+                            setState(() {
+                              dateFilterTitle = "Today";
+                            });
+                          },
                         ),
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 2,
-                          child: Text(
+                          child: const Text(
                             "Yesterday",
                           ),
+                          onTap: () {
+                            overviewGraphTransactions.value =
+                                TransactionDb.transactionListNotifire.value;
+                            overviewGraphTransactions.value =
+                                overviewGraphTransactions.value
+                                    .where((element) =>
+                                        element.date.day ==
+                                            DateTime.now().day - 1 &&
+                                        element.date.month ==
+                                            DateTime.now().month &&
+                                        element.date.year ==
+                                            DateTime.now().year)
+                                    .toList();
+                            setState(() {
+                              dateFilterTitle = "Yesterday";
+                            });
+                          },
                         ),
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 2,
-                          child: Text(
+                          child: const Text(
                             "Month",
                           ),
+                          onTap: () {
+                            overviewGraphTransactions.value =
+                                TransactionDb.transactionListNotifire.value;
+                            overviewGraphTransactions.value =
+                                overviewGraphTransactions.value
+                                    .where((element) =>
+                                        element.date.month ==
+                                            DateTime.now().month &&
+                                        element.date.year ==
+                                            DateTime.now().year)
+                                    .toList();
+                            setState(() {
+                              dateFilterTitle = "Month";
+                            });
+                          },
                         ),
                       ],
                     ),

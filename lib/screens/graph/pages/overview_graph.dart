@@ -5,6 +5,9 @@ import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart'
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+ValueNotifier<List<TransactionModel>> overviewGraphTransactions =
+    ValueNotifier(TransactionDb.transactionListNotifire.value);
+
 class OverViewGraph extends StatefulWidget {
   const OverViewGraph({super.key});
 
@@ -25,7 +28,7 @@ class _OverViewGraphState extends State<OverViewGraph> {
     return Scaffold(
       backgroundColor: bgColor,
       body: ValueListenableBuilder(
-          valueListenable: TransactionDb.transactionListNotifire,
+          valueListenable: overviewGraphTransactions,
           builder: (context, allData, _) {
             return allData.isEmpty
                 ? Column(
@@ -59,8 +62,7 @@ class _OverViewGraphState extends State<OverViewGraph> {
                         tooltipBehavior: _tooltipBehavior,
                         series: <CircularSeries>[
                           PieSeries<TransactionModel, String>(
-                            dataSource:
-                                TransactionDb.transactionListNotifire.value,
+                            dataSource: allData,
                             xValueMapper: (TransactionModel data, _) =>
                                 data.category.name,
                             yValueMapper: (TransactionModel data, _) =>

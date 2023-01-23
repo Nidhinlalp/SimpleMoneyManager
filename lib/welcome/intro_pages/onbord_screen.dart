@@ -50,6 +50,7 @@ class _OnbordScreenState extends State<OnbordScreen> {
                           'Skip',
                           style: TextStyle(
                             color: Colors.black,
+                            fontSize: 15,
                           ),
                         ),
                       ),

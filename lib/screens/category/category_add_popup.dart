@@ -9,12 +9,12 @@ ValueNotifier<CategoryType> selectCategoryNotifire =
 
 Future<void> showCategoryAddPopup(BuildContext context) async {
   final nameEditingController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   showDialog(
     context: context,
     builder: (ctx) {
       return Form(
-        key: _formKey,
+        key: formKey,
         child: SimpleDialog(
           backgroundColor: bgColor,
           shape: RoundedRectangleBorder(
@@ -83,7 +83,7 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                     shape: const StadiumBorder(),
                   ),
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
+                    if (formKey.currentState!.validate()) {
                       final name = nameEditingController.text;
                       if (name.isEmpty) {
                         return;

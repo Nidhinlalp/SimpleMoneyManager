@@ -17,12 +17,10 @@ class CurrentBalance extends StatefulWidget {
 }
 
 class _CurrentBalanceState extends State<CurrentBalance> {
-  late List<gdpdata> _chartdata;
   late TooltipBehavior _tooltipBehavior;
 
   @override
   void initState() {
-    _chartdata = getchartdata();
     _tooltipBehavior = TooltipBehavior(enable: true);
     super.initState();
   }
@@ -318,21 +316,4 @@ class _CurrentBalanceState extends State<CurrentBalance> {
       ),
     );
   }
-
-  List<gdpdata> getchartdata() {
-    final List<gdpdata> chartdata = [
-      gdpdata('india', 200),
-      gdpdata('africa', 50),
-      gdpdata('jammu', 100),
-      gdpdata('ui', 500),
-      gdpdata('ui', 500),
-    ];
-    return chartdata;
-  }
-}
-
-class gdpdata {
-  gdpdata(this.continent, this.gdp);
-  final String continent;
-  final int gdp;
 }

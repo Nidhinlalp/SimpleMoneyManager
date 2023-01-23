@@ -657,6 +657,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
       ),
     );
 
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(snackBar);

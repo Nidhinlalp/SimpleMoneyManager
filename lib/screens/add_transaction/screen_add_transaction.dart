@@ -664,7 +664,7 @@ class DateValidation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 130),
+      padding: const EdgeInsets.only(right: 115),
       child: Visibility(
         visible: _isVisibleDate,
         child: const Padding(
@@ -694,7 +694,7 @@ class CategoryValidation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 105),
+      padding: const EdgeInsets.only(right: 90),
       child: Visibility(
         visible: _isVisibleCategory,
         child: const Padding(

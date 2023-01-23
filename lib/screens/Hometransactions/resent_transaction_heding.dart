@@ -15,7 +15,7 @@ class RecentTransactionHeding extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 35.0, right: 35.0, top: 35.0),
       child: newList.isEmpty
-          ? SizedBox()
+          ? const SizedBox()
           : Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

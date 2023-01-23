@@ -1,8 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/screens/graph/pages/expense_graph.dart';
 import 'package:simplemoneymanager/screens/graph/pages/income_graph.dart';
 import 'package:simplemoneymanager/screens/graph/pages/overview_graph.dart';
+import 'package:simplemoneymanager/screens/menu_bar_items/menu_bar.dart';
 
 import '../../colors/colors.dart';
 
@@ -33,6 +36,7 @@ class _ScreenGraphState extends State<ScreenGraph>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const MenuBar(),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         centerTitle: true,
@@ -94,112 +98,117 @@ class _ScreenGraphState extends State<ScreenGraph>
                 ),
                 height: 40,
                 width: 350,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      dateFilterTitle,
-                    ),
-                    PopupMenuButton<int>(
-                      shape: ContinuousRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          50,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        dateFilterTitle,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.only(
-                          right: 30.0,
+                      PopupMenuButton<int>(
+                        shape: ContinuousRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            50,
+                          ),
                         ),
-                        child: Icon(
-                          Icons.arrow_drop_down,
+                        child: const Padding(
+                          padding: EdgeInsets.only(
+                            right: 30.0,
+                          ),
+                          child: Icon(
+                            Icons.arrow_drop_down,
+                          ),
                         ),
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            value: 1,
+                            child: const Text(
+                              "All",
+                            ),
+                            onTap: () {
+                              overviewGraphTransactions.value =
+                                  TransactionDb.transactionListNotifire.value;
+                              setState(() {
+                                dateFilterTitle = "All";
+                              });
+                            },
+                          ),
+                          PopupMenuItem(
+                            value: 2,
+                            child: const Text(
+                              "Today",
+                            ),
+                            onTap: () {
+                              overviewGraphTransactions.value =
+                                  TransactionDb.transactionListNotifire.value;
+                              overviewGraphTransactions.value =
+                                  overviewGraphTransactions.value
+                                      .where((element) =>
+                                          element.date.day ==
+                                              DateTime.now().day &&
+                                          element.date.month ==
+                                              DateTime.now().month &&
+                                          element.date.year ==
+                                              DateTime.now().year)
+                                      .toList();
+                              setState(() {
+                                dateFilterTitle = "Today";
+                              });
+                            },
+                          ),
+                          PopupMenuItem(
+                            value: 2,
+                            child: const Text(
+                              "Yesterday",
+                            ),
+                            onTap: () {
+                              overviewGraphTransactions.value =
+                                  TransactionDb.transactionListNotifire.value;
+                              overviewGraphTransactions.value =
+                                  overviewGraphTransactions.value
+                                      .where((element) =>
+                                          element.date.day ==
+                                              DateTime.now().day - 1 &&
+                                          element.date.month ==
+                                              DateTime.now().month &&
+                                          element.date.year ==
+                                              DateTime.now().year)
+                                      .toList();
+                              setState(() {
+                                dateFilterTitle = "Yesterday";
+                              });
+                            },
+                          ),
+                          PopupMenuItem(
+                            value: 2,
+                            child: const Text(
+                              "Month",
+                            ),
+                            onTap: () {
+                              overviewGraphTransactions.value =
+                                  TransactionDb.transactionListNotifire.value;
+                              overviewGraphTransactions.value =
+                                  overviewGraphTransactions.value
+                                      .where((element) =>
+                                          element.date.month ==
+                                              DateTime.now().month &&
+                                          element.date.year ==
+                                              DateTime.now().year)
+                                      .toList();
+                              setState(() {
+                                dateFilterTitle = "Month";
+                              });
+                            },
+                          ),
+                        ],
                       ),
-                      itemBuilder: (context) => [
-                        PopupMenuItem(
-                          value: 1,
-                          child: const Text(
-                            "All",
-                          ),
-                          onTap: () {
-                            overviewGraphTransactions.value =
-                                TransactionDb.transactionListNotifire.value;
-                            setState(() {
-                              dateFilterTitle = "All";
-                            });
-                          },
-                        ),
-                        PopupMenuItem(
-                          value: 2,
-                          child: const Text(
-                            "Today",
-                          ),
-                          onTap: () {
-                            overviewGraphTransactions.value =
-                                TransactionDb.transactionListNotifire.value;
-                            overviewGraphTransactions.value =
-                                overviewGraphTransactions.value
-                                    .where((element) =>
-                                        element.date.day ==
-                                            DateTime.now().day &&
-                                        element.date.month ==
-                                            DateTime.now().month &&
-                                        element.date.year ==
-                                            DateTime.now().year)
-                                    .toList();
-                            setState(() {
-                              dateFilterTitle = "Today";
-                            });
-                          },
-                        ),
-                        PopupMenuItem(
-                          value: 2,
-                          child: const Text(
-                            "Yesterday",
-                          ),
-                          onTap: () {
-                            overviewGraphTransactions.value =
-                                TransactionDb.transactionListNotifire.value;
-                            overviewGraphTransactions.value =
-                                overviewGraphTransactions.value
-                                    .where((element) =>
-                                        element.date.day ==
-                                            DateTime.now().day - 1 &&
-                                        element.date.month ==
-                                            DateTime.now().month &&
-                                        element.date.year ==
-                                            DateTime.now().year)
-                                    .toList();
-                            setState(() {
-                              dateFilterTitle = "Yesterday";
-                            });
-                          },
-                        ),
-                        PopupMenuItem(
-                          value: 2,
-                          child: const Text(
-                            "Month",
-                          ),
-                          onTap: () {
-                            overviewGraphTransactions.value =
-                                TransactionDb.transactionListNotifire.value;
-                            overviewGraphTransactions.value =
-                                overviewGraphTransactions.value
-                                    .where((element) =>
-                                        element.date.month ==
-                                            DateTime.now().month &&
-                                        element.date.year ==
-                                            DateTime.now().year)
-                                    .toList();
-                            setState(() {
-                              dateFilterTitle = "Month";
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

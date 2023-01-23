@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -77,13 +78,13 @@ class _CurrentBalanceState extends State<CurrentBalance> {
                                 builder: (context, cerentbalanse, _) {
                                   return Text(
                                     totalbalanse.value < 0
-                                        ? "Oops"
+                                        ? "LOSS"
                                         : 'CURRENT BALANCE',
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black,
                                       fontSize: 25,
-                                      letterSpacing: 2.5,
+                                      letterSpacing: 1.5,
                                     ),
                                   );
                                 }),
@@ -96,7 +97,7 @@ class _CurrentBalanceState extends State<CurrentBalance> {
                           ValueListenableBuilder(
                               valueListenable: totalbalanse,
                               builder: (context, cerentbalanse, _) {
-                                return Text(
+                                return AutoSizeText(
                                   '₹ ${totalbalanse.value}/-',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w900,
@@ -179,26 +180,31 @@ class _CurrentBalanceState extends State<CurrentBalance> {
                             ValueListenableBuilder(
                                 valueListenable: incomtotel,
                                 builder: (context, income, _) {
-                                  return Text(
-                                    '₹ ${incomtotel.value}',
+                                  return AutoSizeText(
+                                    maxLines: 2,
+                                    '₹${incomtotel.value}',
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w900,
                                       color: Colors.black,
                                       fontSize: 24,
-                                      letterSpacing: 1.5,
+                                      letterSpacing: 0.5,
                                     ),
                                   );
                                 }),
+                            const SizedBox(
+                              width: 8,
+                            ),
                             ValueListenableBuilder(
                                 valueListenable: expensetotel,
                                 builder: (context, expense, _) {
-                                  return Text(
-                                    '₹ ${expensetotel.value}',
+                                  return AutoSizeText(
+                                    maxLines: 3,
+                                    '₹${expensetotel.value}',
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w900,
                                       color: Colors.black,
                                       fontSize: 24,
-                                      letterSpacing: 1.5,
+                                      letterSpacing: 0.5,
                                     ),
                                   );
                                 }),

@@ -236,7 +236,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.blueAccent,
+                  color: Colors.blueGrey,
                 ),
               ),
             ),
@@ -407,7 +407,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.blueAccent,
+                  color: Colors.blueGrey,
                 ),
               ),
             ),

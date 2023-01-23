@@ -32,17 +32,19 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                 },
                 controller: nameEditingController,
                 decoration: const InputDecoration(
-                  labelText: 'Category Name',
-                  floatingLabelStyle: TextStyle(
-                    color: Colors.black,
-                  ),
-                  border: OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
+                    labelText: 'Category Name',
+                    floatingLabelStyle: TextStyle(
                       color: Colors.black,
                     ),
-                  ),
-                ),
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.black,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(width: 3, color: Colors.blueGrey),
+                    )),
               ),
             ),
             Padding(

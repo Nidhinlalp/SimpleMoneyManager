@@ -3,6 +3,7 @@ import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/screens/category/category_add_popup.dart';
 import 'package:simplemoneymanager/screens/category/expense_category_list.dart';
 import 'package:simplemoneymanager/screens/category/income_category_list.dart';
+import 'package:simplemoneymanager/screens/menu_bar_items/menu_bar.dart';
 
 import '../../colors/colors.dart';
 
@@ -32,6 +33,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const MenuBar(),
         centerTitle: true,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,

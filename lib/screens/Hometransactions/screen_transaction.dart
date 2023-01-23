@@ -100,9 +100,14 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
                       //::::::::::::::strat of the home list::::::::::::::::
                       children: newList.isEmpty
                           ? [
-                              Center(
-                                child: Lottie.asset('assets/images/empty.json',
-                                    width: 210),
+                              Column(
+                                children: [
+                                  Center(
+                                    child: Lottie.asset(
+                                        'assets/images/empty.json',
+                                        width: 210),
+                                  ),
+                                ],
                               )
                             ]
                           : List.generate(

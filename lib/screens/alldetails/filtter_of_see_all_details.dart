@@ -15,16 +15,11 @@ class FiltterSeeAllDetails extends StatelessWidget {
           50,
         ),
       ),
-      child: const Padding(
-        padding: EdgeInsets.only(
-          right: 30.0,
-        ),
-        child: Icon(
-          Icons.filter_list_rounded,
-          size: 30,
-          shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
-          color: Colors.black,
-        ),
+      child: const Icon(
+        Icons.filter_list_rounded,
+        size: 30,
+        shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
+        color: Colors.black,
       ),
       itemBuilder: (conext) => [
         PopupMenuItem(

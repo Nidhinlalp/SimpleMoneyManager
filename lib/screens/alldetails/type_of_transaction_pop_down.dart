@@ -16,7 +16,7 @@ class TypeOfSeeAllDetails extends StatelessWidget {
       ),
       child: const Padding(
         padding: EdgeInsets.only(
-          right: 30.0,
+          right: 10.0,
         ),
         child: Icon(
           Icons.more_vert_outlined,

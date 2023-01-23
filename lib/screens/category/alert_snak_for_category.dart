@@ -33,13 +33,19 @@ alertAndSnakForCategory(BuildContext context, String id) {
         ),
         actions: <Widget>[
           TextButton(
-            child: const Text('Cancel'),
+            child: const Text(
+              'Cancel',
+              style: TextStyle(color: Colors.blueGrey),
+            ),
             onPressed: () {
               Navigator.of(context).pop(false);
             },
           ),
           TextButton(
-            child: const Text('Confirm'),
+            child: const Text(
+              'Confirm',
+              style: TextStyle(color: Colors.red),
+            ),
             onPressed: () {
               CategoryDb.instance.deleteCategory(id);
               Navigator.of(context).pop(true);

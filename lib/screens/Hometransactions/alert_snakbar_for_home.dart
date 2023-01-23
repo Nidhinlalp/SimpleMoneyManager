@@ -17,7 +17,10 @@ alertAndSnakBar(BuildContext context, {required String modelId}) {
         content: const Text("Are you sure you wish to delete this item?"),
         actions: <Widget>[
           TextButton(
-            child: const Text("Cancel"),
+            child: const Text(
+              "Cancel",
+              style: TextStyle(color: Colors.blueGrey),
+            ),
             onPressed: () {
               Navigator.of(context).pop(false);
             },

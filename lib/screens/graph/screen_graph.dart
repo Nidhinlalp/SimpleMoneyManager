@@ -36,6 +36,10 @@ class _ScreenGraphState extends State<ScreenGraph>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          //:::::::::::::::::::filttaration of graph::::::::::::::::::::::::::::::::
+          filtterationOfGraph(),
+        ],
         leading: const MenuBar(),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
@@ -75,142 +79,145 @@ class _ScreenGraphState extends State<ScreenGraph>
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30, right: 10, bottom: 30),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: bgColor,
-                  borderRadius: BorderRadius.circular(50),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.shade500,
-                      blurRadius: 15,
-                      spreadRadius: 1,
-                      offset: const Offset(5, 5),
-                    ),
-                    const BoxShadow(
-                      color: Colors.white,
-                      blurRadius: 15,
-                      spreadRadius: 1,
-                      offset: Offset(-5, -5),
-                    ),
-                  ],
-                ),
-                height: 40,
-                width: 350,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        dateFilterTitle,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      PopupMenuButton<int>(
-                        shape: ContinuousRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            50,
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.only(
-                            right: 30.0,
-                          ),
-                          child: Icon(
-                            Icons.arrow_drop_down,
-                          ),
-                        ),
-                        itemBuilder: (context) => [
-                          PopupMenuItem(
-                            value: 1,
-                            child: const Text(
-                              "All",
-                            ),
-                            onTap: () {
-                              overviewGraphTransactions.value =
-                                  TransactionDb.transactionListNotifire.value;
-                              setState(() {
-                                dateFilterTitle = "All";
-                              });
-                            },
-                          ),
-                          PopupMenuItem(
-                            value: 2,
-                            child: const Text(
-                              "Today",
-                            ),
-                            onTap: () {
-                              overviewGraphTransactions.value =
-                                  TransactionDb.transactionListNotifire.value;
-                              overviewGraphTransactions.value =
-                                  overviewGraphTransactions.value
-                                      .where((element) =>
-                                          element.date.day ==
-                                              DateTime.now().day &&
-                                          element.date.month ==
-                                              DateTime.now().month &&
-                                          element.date.year ==
-                                              DateTime.now().year)
-                                      .toList();
-                              setState(() {
-                                dateFilterTitle = "Today";
-                              });
-                            },
-                          ),
-                          PopupMenuItem(
-                            value: 2,
-                            child: const Text(
-                              "Yesterday",
-                            ),
-                            onTap: () {
-                              overviewGraphTransactions.value =
-                                  TransactionDb.transactionListNotifire.value;
-                              overviewGraphTransactions.value =
-                                  overviewGraphTransactions.value
-                                      .where((element) =>
-                                          element.date.day ==
-                                              DateTime.now().day - 1 &&
-                                          element.date.month ==
-                                              DateTime.now().month &&
-                                          element.date.year ==
-                                              DateTime.now().year)
-                                      .toList();
-                              setState(() {
-                                dateFilterTitle = "Yesterday";
-                              });
-                            },
-                          ),
-                          PopupMenuItem(
-                            value: 2,
-                            child: const Text(
-                              "Month",
-                            ),
-                            onTap: () {
-                              overviewGraphTransactions.value =
-                                  TransactionDb.transactionListNotifire.value;
-                              overviewGraphTransactions.value =
-                                  overviewGraphTransactions.value
-                                      .where((element) =>
-                                          element.date.month ==
-                                              DateTime.now().month &&
-                                          element.date.year ==
-                                              DateTime.now().year)
-                                      .toList();
-                              setState(() {
-                                dateFilterTitle = "Month";
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 30, right: 10, bottom: 30),
+            //   child: Container(
+            //     decoration: BoxDecoration(
+            //       color: bgColor,
+            //       borderRadius: BorderRadius.circular(50),
+            //       boxShadow: [
+            //         BoxShadow(
+            //           color: Colors.grey.shade500,
+            //           blurRadius: 15,
+            //           spreadRadius: 1,
+            //           offset: const Offset(5, 5),
+            //         ),
+            //         const BoxShadow(
+            //           color: Colors.white,
+            //           blurRadius: 15,
+            //           spreadRadius: 1,
+            //           offset: Offset(-5, -5),
+            //         ),
+            //       ],
+            //     ),
+            //     height: 40,
+            //     width: 350,
+            //     child: Padding(
+            //       padding: const EdgeInsets.only(left: 15.0),
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             dateFilterTitle,
+            //             style: const TextStyle(
+            //               fontSize: 16,
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //           ),
+            //           PopupMenuButton<int>(
+            //             shape: ContinuousRectangleBorder(
+            //               borderRadius: BorderRadius.circular(
+            //                 50,
+            //               ),
+            //             ),
+            //             child: const Padding(
+            //               padding: EdgeInsets.only(
+            //                 right: 30.0,
+            //               ),
+            //               child: Icon(
+            //                 Icons.arrow_drop_down,
+            //               ),
+            //             ),
+            //             itemBuilder: (context) => [
+            //               PopupMenuItem(
+            //                 value: 1,
+            //                 child: const Text(
+            //                   "All",
+            //                 ),
+            //                 onTap: () {
+            //                   overviewGraphTransactions.value =
+            //                       TransactionDb.transactionListNotifire.value;
+            //                   setState(() {
+            //                     dateFilterTitle = "All";
+            //                   });
+            //                 },
+            //               ),
+            //               PopupMenuItem(
+            //                 value: 2,
+            //                 child: const Text(
+            //                   "Today",
+            //                 ),
+            //                 onTap: () {
+            //                   overviewGraphTransactions.value =
+            //                       TransactionDb.transactionListNotifire.value;
+            //                   overviewGraphTransactions.value =
+            //                       overviewGraphTransactions.value
+            //                           .where((element) =>
+            //                               element.date.day ==
+            //                                   DateTime.now().day &&
+            //                               element.date.month ==
+            //                                   DateTime.now().month &&
+            //                               element.date.year ==
+            //                                   DateTime.now().year)
+            //                           .toList();
+            //                   setState(() {
+            //                     dateFilterTitle = "Today";
+            //                   });
+            //                 },
+            //               ),
+            //               PopupMenuItem(
+            //                 value: 2,
+            //                 child: const Text(
+            //                   "Yesterday",
+            //                 ),
+            //                 onTap: () {
+            //                   overviewGraphTransactions.value =
+            //                       TransactionDb.transactionListNotifire.value;
+            //                   overviewGraphTransactions.value =
+            //                       overviewGraphTransactions.value
+            //                           .where((element) =>
+            //                               element.date.day ==
+            //                                   DateTime.now().day - 1 &&
+            //                               element.date.month ==
+            //                                   DateTime.now().month &&
+            //                               element.date.year ==
+            //                                   DateTime.now().year)
+            //                           .toList();
+            //                   setState(() {
+            //                     dateFilterTitle = "Yesterday";
+            //                   });
+            //                 },
+            //               ),
+            //               PopupMenuItem(
+            //                 value: 2,
+            //                 child: const Text(
+            //                   "Month",
+            //                 ),
+            //                 onTap: () {
+            //                   overviewGraphTransactions.value =
+            //                       TransactionDb.transactionListNotifire.value;
+            //                   overviewGraphTransactions.value =
+            //                       overviewGraphTransactions.value
+            //                           .where((element) =>
+            //                               element.date.month ==
+            //                                   DateTime.now().month &&
+            //                               element.date.year ==
+            //                                   DateTime.now().year)
+            //                           .toList();
+            //                   setState(() {
+            //                     dateFilterTitle = "Month";
+            //                   });
+            //                 },
+            //               ),
+            //             ],
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            SizedBox(
+              height: 20,
             ),
             TabBar(
               controller: _tabController,
@@ -283,6 +290,100 @@ class _ScreenGraphState extends State<ScreenGraph>
           ],
         ),
       ),
+    );
+  }
+
+  //:::::::::::::::::::filttaration of graph::::::::::::::::::::::::::::::::
+
+  PopupMenuButton<int> filtterationOfGraph() {
+    return PopupMenuButton<int>(
+      shape: ContinuousRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          50,
+        ),
+      ),
+      child: const Padding(
+        padding: EdgeInsets.only(
+          right: 10.0,
+        ),
+        child: Icon(
+          Icons.more_vert_outlined,
+          size: 30,
+          shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
+          color: Colors.black,
+        ),
+      ),
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          value: 1,
+          child: const Text(
+            "All",
+          ),
+          onTap: () {
+            overviewGraphTransactions.value =
+                TransactionDb.transactionListNotifire.value;
+            setState(() {
+              dateFilterTitle = "All";
+            });
+          },
+        ),
+        PopupMenuItem(
+          value: 2,
+          child: const Text(
+            "Today",
+          ),
+          onTap: () {
+            overviewGraphTransactions.value =
+                TransactionDb.transactionListNotifire.value;
+            overviewGraphTransactions.value = overviewGraphTransactions.value
+                .where((element) =>
+                    element.date.day == DateTime.now().day &&
+                    element.date.month == DateTime.now().month &&
+                    element.date.year == DateTime.now().year)
+                .toList();
+            setState(() {
+              dateFilterTitle = "Today";
+            });
+          },
+        ),
+        PopupMenuItem(
+          value: 2,
+          child: const Text(
+            "Yesterday",
+          ),
+          onTap: () {
+            overviewGraphTransactions.value =
+                TransactionDb.transactionListNotifire.value;
+            overviewGraphTransactions.value = overviewGraphTransactions.value
+                .where((element) =>
+                    element.date.day == DateTime.now().day - 1 &&
+                    element.date.month == DateTime.now().month &&
+                    element.date.year == DateTime.now().year)
+                .toList();
+            setState(() {
+              dateFilterTitle = "Yesterday";
+            });
+          },
+        ),
+        PopupMenuItem(
+          value: 2,
+          child: const Text(
+            "Month",
+          ),
+          onTap: () {
+            overviewGraphTransactions.value =
+                TransactionDb.transactionListNotifire.value;
+            overviewGraphTransactions.value = overviewGraphTransactions.value
+                .where((element) =>
+                    element.date.month == DateTime.now().month &&
+                    element.date.year == DateTime.now().year)
+                .toList();
+            setState(() {
+              dateFilterTitle = "Month";
+            });
+          },
+        ),
+      ],
     );
   }
 }

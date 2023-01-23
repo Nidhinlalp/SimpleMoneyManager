@@ -35,8 +35,8 @@ class _CurrentBalanceState extends State<CurrentBalance> {
             Padding(
               padding: const EdgeInsets.only(
                 top: 40,
-                left: 20,
-                right: 20,
+                left: 25,
+                right: 25,
               ),
               child: FlipCard(
                 direction: FlipDirection.VERTICAL,
@@ -187,13 +187,10 @@ class _CurrentBalanceState extends State<CurrentBalance> {
                                       fontWeight: FontWeight.w900,
                                       color: Colors.black,
                                       fontSize: 24,
-                                      letterSpacing: 0.5,
+                                      letterSpacing: 0.8,
                                     ),
                                   );
                                 }),
-                            const SizedBox(
-                              width: 8,
-                            ),
                             ValueListenableBuilder(
                                 valueListenable: expensetotel,
                                 builder: (context, expense, _) {
@@ -204,7 +201,7 @@ class _CurrentBalanceState extends State<CurrentBalance> {
                                       fontWeight: FontWeight.w900,
                                       color: Colors.black,
                                       fontSize: 24,
-                                      letterSpacing: 0.5,
+                                      letterSpacing: 0.8,
                                     ),
                                   );
                                 }),

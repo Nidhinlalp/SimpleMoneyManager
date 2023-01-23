@@ -79,7 +79,10 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
                         actions: [
                           TextButton(
                               onPressed: () => Navigator.of(contex).pop(),
-                              child: const Text('No')),
+                              child: const Text(
+                                'No',
+                                style: TextStyle(color: Colors.blueGrey),
+                              )),
                           const SizedBox(
                             width: 30,
                           ),
@@ -107,7 +110,10 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
                                 ),
                               );
                             },
-                            child: const Text('Yes'),
+                            child: const Text(
+                              'Yes',
+                              style: TextStyle(color: Colors.red),
+                            ),
                           )
                         ],
                         title: const Text("Reset App"),
@@ -119,7 +125,7 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
                 }
               },
             ),
-            //::::::::ShareHeding:::
+            //::::::::ShareHeding:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             MenuBarButton(
                 icon: Icons.share,
                 name: "Share",
@@ -127,7 +133,7 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
                   Share.share(
                       'hey! check out this new app https://play.google.com/store/search?q=pub%3ADivTag&c=apps');
                 }),
-            //:::::TermsConditionsHeding:::
+            //:::::TermsConditionsHeding::::::::::::::::::::::::::::::::::::::::::::::::::::
             MenuBarButton(
                 icon: Icons.document_scanner_outlined,
                 name: "Terms & Conditions",
@@ -139,7 +145,7 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
                     ),
                   );
                 }),
-            //::::::PrivacyPolicyHeding:::
+            //::::::PrivacyPolicyHeding:::::::::::::::::::::::::::::::::::::::::::::::::::::::
             MenuBarButton(
               name: "Privacy Policy",
               icon: Icons.privacy_tip_outlined,

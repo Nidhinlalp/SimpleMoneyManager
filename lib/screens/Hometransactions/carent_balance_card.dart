@@ -34,7 +34,7 @@ class _CurrentBalanceState extends State<CurrentBalance> {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                top: 40,
+                top: 20,
                 left: 25,
                 right: 25,
               ),

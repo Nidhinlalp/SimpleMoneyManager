@@ -3,6 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
+import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 ValueNotifier<List<TransactionModel>> overviewGraphTransactions =
@@ -30,6 +31,9 @@ class _OverViewGraphState extends State<OverViewGraph> {
       body: ValueListenableBuilder(
           valueListenable: overviewGraphTransactions,
           builder: (context, allData, _) {
+            Map incomeMap = {"name": "Income", "amount": incomtotel.value};
+            Map expenseMap = {"name": "Expense", "amount": expensetotel.value};
+            List<Map> dataList = [incomeMap, expenseMap];
             return allData.isEmpty
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -61,12 +65,10 @@ class _OverViewGraphState extends State<OverViewGraph> {
                             overflowMode: LegendItemOverflowMode.scroll),
                         tooltipBehavior: _tooltipBehavior,
                         series: <CircularSeries>[
-                          PieSeries<TransactionModel, String>(
-                            dataSource: allData,
-                            xValueMapper: (TransactionModel data, _) =>
-                                data.category.name,
-                            yValueMapper: (TransactionModel data, _) =>
-                                data.amount,
+                          PieSeries<Map, String>(
+                            dataSource: dataList,
+                            xValueMapper: (Map data, _) => data['name'],
+                            yValueMapper: (Map data, _) => data['amount'],
                             enableTooltip: true,
                             dataLabelSettings:
                                 const DataLabelSettings(isVisible: true),

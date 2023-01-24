@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
+import 'package:simplemoneymanager/screens/graph/pages/overview_graph.dart';
 import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -97,8 +98,11 @@ class _CurrentBalanceState extends State<CurrentBalance> {
                           ValueListenableBuilder(
                               valueListenable: totalbalanse,
                               builder: (context, cerentbalanse, _) {
+                                var tBalance = totalbalanse.value;
+                                tBalance =
+                                    tBalance < 0 ? tBalance * -1 : tBalance;
                                 return AutoSizeText(
-                                  '₹ ${totalbalanse.value}/-',
+                                  '₹ ${tBalance}/-',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w900,
                                     color: Colors.black,
@@ -239,8 +243,17 @@ class _CurrentBalanceState extends State<CurrentBalance> {
                     ],
                   ),
                   child: ValueListenableBuilder(
-                      valueListenable: TransactionDb.transactionListNotifire,
+                      valueListenable: overviewGraphTransactions,
                       builder: (context, allData, _) {
+                        Map incomeMap = {
+                          "name": "Income",
+                          "amount": incomtotel.value
+                        };
+                        Map expenseMap = {
+                          "name": "Expence",
+                          "amount": expensetotel.value
+                        };
+                        List<Map> dataList = [incomeMap, expenseMap];
                         return Column(
                           children: [
                             allData.isEmpty
@@ -280,16 +293,12 @@ class _CurrentBalanceState extends State<CurrentBalance> {
                                                 LegendItemOverflowMode.scroll),
                                         tooltipBehavior: _tooltipBehavior,
                                         series: <CircularSeries>[
-                                          DoughnutSeries<TransactionModel,
-                                              String>(
-                                            dataSource: TransactionDb
-                                                .transactionListNotifire.value,
-                                            xValueMapper:
-                                                (TransactionModel data, _) =>
-                                                    data.category.name,
-                                            yValueMapper:
-                                                (TransactionModel data, _) =>
-                                                    data.amount,
+                                          DoughnutSeries<Map, String>(
+                                            dataSource: dataList,
+                                            xValueMapper: (Map data, _) =>
+                                                data['name'],
+                                            yValueMapper: (Map data, _) =>
+                                                data['amount'],
                                             enableTooltip: true,
                                             dataLabelSettings:
                                                 const DataLabelSettings(

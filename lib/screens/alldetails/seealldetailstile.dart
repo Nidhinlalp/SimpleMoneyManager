@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
+import 'package:simplemoneymanager/screens/alldetails/searchaeealldetails.dart';
 import 'package:simplemoneymanager/screens/alldetails/seeall_details.dart';
 import 'package:simplemoneymanager/screens/hometransactions/transaction_slidable.dart';
 

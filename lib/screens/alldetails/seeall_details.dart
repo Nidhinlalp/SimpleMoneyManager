@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
-import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
+import 'package:simplemoneymanager/screens/alldetails/searchaeealldetails.dart';
 import 'package:simplemoneymanager/screens/alldetails/seealldetailstile.dart';
-import 'package:simplemoneymanager/screens/hometransactions/transaction_slidable.dart';
 import '../../../colors/colors.dart';
-import '../home/search_function/main_search.dart';
 import 'filtter_of_see_all_details.dart';
 import 'type_of_transaction_pop_down.dart';
 
@@ -62,13 +59,20 @@ class _SeeAllDetailsState extends State<SeeAllDetails> {
           //     color: Colors.black,
           //   ),
           // ),
-          //:::::::::::::::::::::::::::::::::filtter:::::::::::::::::::::::::::::::::::::::::::::::::
+          //:::::::::::::::::::::::::::::::::filtter:::::::::::::::::::::::::::::::::::::::::::::::::::::
           FiltterSeeAllDetails(),
           //:::::::::typesof see all detials:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
           TypeOfSeeAllDetails(),
         ],
       ),
-      body: const SeeAllDetailsTiles(),
+      body: Column(
+        children: const [
+          SearchAllDetails(),
+          Expanded(
+            child: SeeAllDetailsTiles(),
+          )
+        ],
+      ),
     );
   }
 }

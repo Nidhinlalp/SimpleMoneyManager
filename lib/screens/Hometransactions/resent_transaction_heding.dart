@@ -24,26 +24,26 @@ class RecentTransactionHeding extends StatelessWidget {
               fontSize: 18,
             ),
           ),
-          TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SeeAllDetails(),
-                ),
-              );
-            },
-            child: newList.isEmpty
-                ? const Text(
-                    'No Data !',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                      fontSize: 22,
-                      letterSpacing: 1.5,
-                    ),
-                  )
-                : Container(
+          newList.isEmpty
+              ? const Text(
+                  'No Data !',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    fontSize: 22,
+                    letterSpacing: 1.5,
+                  ),
+                )
+              : TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SeeAllDetails(),
+                      ),
+                    );
+                  },
+                  child: Container(
                     height: 30,
                     width: 85,
                     decoration: BoxDecoration(
@@ -75,7 +75,7 @@ class RecentTransactionHeding extends StatelessWidget {
                       ),
                     ),
                   ),
-          )
+                )
         ],
       ),
     );

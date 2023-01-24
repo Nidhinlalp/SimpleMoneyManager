@@ -48,6 +48,8 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 
   @override
   void initState() {
+    _selectedcategorymodels = widget.value.category;
+    // _value = widget.value.type.index;
     _categoryID = widget.value.category.id;
     _selectCategorytype = widget.value.category.type;
     _notesTextEditingController =

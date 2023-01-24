@@ -33,17 +33,17 @@ class _ScreenCategoryState extends State<ScreenCategory>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_vert_outlined,
-              size: 30,
-              shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
-              color: Colors.black,
-            ),
-          )
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {},
+        //     icon: const Icon(
+        //       Icons.filter_list_rounded,
+        //       size: 30,
+        //       shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
+        //       color: Colors.black,
+        //     ),
+        //   )
+        // ],
         leading: const MenuBar(),
         centerTitle: true,
         automaticallyImplyLeading: false,

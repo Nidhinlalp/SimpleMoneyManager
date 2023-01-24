@@ -10,7 +10,7 @@ class FiltterSeeAllDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(right: 15.0),
       child: PopupMenuButton<int>(
         shape: ContinuousRectangleBorder(
           borderRadius: BorderRadius.circular(

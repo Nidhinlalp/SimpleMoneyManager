@@ -23,8 +23,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
   String? dateString;
   CategoryType? _selectCategorytype;
   CategoryModels? _selectedcategorymodels;
-  bool isVisibleDate = false;
-  bool isVisibleCategory = false;
+
   String? _categoryID;
   // String val=widget.value.notes.toString();
 
@@ -163,22 +162,6 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
         ),
         child: ElevatedButton(
           onPressed: () {
-            if (_categoryID == null) {
-              setState(() {
-                isVisibleCategory = true;
-              });
-            } else {
-              isVisibleCategory = false;
-            }
-            if (_selectDate == null) {
-              setState(() {
-                isVisibleDate = true;
-              });
-            } else {
-              setState(() {
-                isVisibleDate = false;
-              });
-            }
             if (_formKey.currentState!.validate()) {
               editTransactions();
             }
@@ -379,12 +362,6 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
               style: const TextStyle(
                 fontSize: 20.0,
               ),
-              // _selectDate == null
-              //     ? 'SelectDate'
-              //     : _selectDate!.toString(),
-              // style: const TextStyle(
-              //   fontSize: 20.0,
-              // ),
             ),
           )
         ],
@@ -793,61 +770,6 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 }
 //:::::::::::::::::::::::ValidationOf Date::::::::::::::::::::::::::::::::::::::::::::::::
 
-class DateValidation extends StatelessWidget {
-  const DateValidation({
-    Key? key,
-    required this.isVisibleDate,
-  }) : super(key: key);
 
-  final bool isVisibleDate;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 130),
-      child: Visibility(
-        visible: isVisibleDate,
-        child: const Padding(
-          padding: EdgeInsets.all(3.0),
-          child: Text(
-            'please Select Date',
-            style: TextStyle(
-              color: Color.fromARGB(255, 192, 29, 17),
-              fontSize: 12,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
 //:::::::::::::::::::::::::::::::::::::::::ValidationOfSelectCatogory:::::::::::::::::::::::::::::::
 
-class CategoryValidation extends StatelessWidget {
-  const CategoryValidation({
-    Key? key,
-    required this.isVisibleCategory,
-  }) : super(key: key);
-
-  final bool isVisibleCategory;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 105),
-      child: Visibility(
-        visible: isVisibleCategory,
-        child: const Padding(
-          padding: EdgeInsets.all(3.0),
-          child: Text(
-            'please Select Category',
-            style: TextStyle(
-              color: Color.fromARGB(255, 192, 29, 17),
-              fontSize: 12,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}

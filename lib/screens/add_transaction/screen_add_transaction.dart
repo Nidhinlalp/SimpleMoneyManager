@@ -673,14 +673,6 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               iconSize: 30,
               elevation: 16,
               style: const TextStyle(color: Colors.black),
-              // underline: Container(
-              //   decoration: const ShapeDecoration(
-              //     shape: RoundedRectangleBorder(
-              //       side: BorderSide(width: 0.50, style: BorderStyle.solid),
-              //       borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              //     ),
-              //   ),
-              // ),
               hint: const Text(
                 'Select Category',
                 style: TextStyle(

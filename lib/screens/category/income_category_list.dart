@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
-
 import '../../models/cetegory/cetegory_models.dart';
 import 'alert_snak_for_category.dart';
 

@@ -44,21 +44,6 @@ class _SeeAllDetailsState extends State<SeeAllDetails> {
               shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
             )),
         actions: const [
-          //:::::::::search botton:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-          // IconButton(
-          //   onPressed: () {
-          //     showSearch(
-          //       context: context,
-          //       delegate: MySearchDelegate(),
-          //     );
-          //   },
-          //   icon: const Icon(
-          //     Icons.search,
-          //     size: 30,
-          //     shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
-          //     color: Colors.black,
-          //   ),
-          // ),
           //:::::::::::::::::::::::::::::::::filtter:::::::::::::::::::::::::::::::::::::::::::::::::::::
           FiltterSeeAllDetails(),
           //:::::::::typesof see all detials:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

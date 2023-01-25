@@ -96,8 +96,7 @@ class TransactionSlidable extends StatelessWidget {
           child: ListTile(
             contentPadding: const EdgeInsets.all(8),
             dense: true,
-            //   visualDensity: VisualDensity(horizontal: -2, vertical: -3),
-            // visualDensity: const VisualDensity(horizontal: 4, vertical: 1),
+
             //::::::::::::::show circledate:::::::::::::::::::
             leading: CircleAvatar(
               backgroundColor: Colors.blueGrey,
@@ -105,21 +104,8 @@ class TransactionSlidable extends StatelessWidget {
               child: value.type == CategoryType.income
                   ? const Icon(Icons.arrow_upward_outlined)
                   : const Icon(Icons.arrow_downward_outlined),
-              // backgroundColor: value.type == CategoryType.income
-              //     //:::::::show the color in circleavathar::::::
-              //     ? Colors.greenAccent[700]
-              //     : Colors.redAccent[700],
+
               radius: 30,
-              // child: Text(
-              //   //::::::::show the date in circleavathar::::::::
-              //   parseDate(value.date),
-              //   // ignore: prefer_const_constructors
-              //   style: const TextStyle(
-              //     fontWeight: FontWeight.w500,
-              //     color: Colors.white,
-              //   ),
-              //   textAlign: TextAlign.center,
-              // ),
             ),
             //::::::::::::::show amound::::::::::::::::::::::::
 

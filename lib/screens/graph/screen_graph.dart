@@ -74,7 +74,7 @@ class _ScreenGraphState extends State<ScreenGraph>
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 20, right: 10, bottom: 30),
+              padding: const EdgeInsets.only(top: 20, bottom: 30),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

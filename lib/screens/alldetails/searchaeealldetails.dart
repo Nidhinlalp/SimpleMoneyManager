@@ -44,19 +44,19 @@ class _SearchAllDetailsState extends State<SearchAllDetails> {
           padding: const EdgeInsets.all(8.0),
           child: TextField(
             onChanged: (value) => searchresult(value),
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               hintText: 'Search',
-              suffixIcon: Icon(
+              suffixIcon: const Icon(
                 Icons.search_rounded,
                 color: Colors.black38,
                 size: 30,
               ),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: Colors.black12,
+                  color: bgColor,
                 ),
               ),
-              focusedBorder: UnderlineInputBorder(
+              focusedBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.blueGrey,
                 ),
@@ -73,7 +73,8 @@ class _SearchAllDetailsState extends State<SearchAllDetails> {
       overviewTransactions.value = TransactionDb.transactionListNotifire.value;
     } else {
       overviewTransactions.value = overviewTransactions.value
-          .where((element) => element.category.name.contains(qury))
+          .where(
+              (element) => element.category.name.toLowerCase().contains(qury))
           .toList();
     }
   }

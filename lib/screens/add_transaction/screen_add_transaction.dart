@@ -248,7 +248,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                     color: bgColor,
                   ),
                 ),
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: bgColor,

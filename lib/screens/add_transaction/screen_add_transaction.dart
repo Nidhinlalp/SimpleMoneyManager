@@ -654,7 +654,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                     color: bgColor,
                   ),
                 ),
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 errorBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: bgColor,
@@ -738,9 +738,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     if (_categoryID == null) {
       return;
     }
-    if (_selectDate == null) {
-      return;
-    }
+
     if (_selectedcategorymodels == null) {
       return;
     }

@@ -24,28 +24,53 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: TextFormField(
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Category is empty';
-                  }
-                  return null;
-                },
-                controller: nameEditingController,
-                decoration: const InputDecoration(
-                    labelText: 'Category Name',
-                    floatingLabelStyle: TextStyle(
-                      color: Colors.black,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: bgColor,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade500,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: const Offset(5, 5),
                     ),
-                    border: OutlineInputBorder(),
+                    const BoxShadow(
+                      color: Colors.white70,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: Offset(-5, -5),
+                    ),
+                  ],
+                ),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Category is empty';
+                    }
+                    return null;
+                  },
+                  controller: nameEditingController,
+                  decoration: InputDecoration(
+                    hintText: 'Category ',
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.black,
+                        color: bgColor,
                       ),
                     ),
+                    border: const OutlineInputBorder(),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(width: 3, color: Colors.blueGrey),
-                    )),
+                      borderSide: BorderSide(
+                        color: bgColor,
+                      ),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: bgColor,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
             Padding(

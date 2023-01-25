@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';

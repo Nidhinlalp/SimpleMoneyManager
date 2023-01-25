@@ -29,6 +29,7 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                   if (value == null || value.isEmpty) {
                     return 'Category is empty';
                   }
+                  return null;
                 },
                 controller: nameEditingController,
                 decoration: const InputDecoration(

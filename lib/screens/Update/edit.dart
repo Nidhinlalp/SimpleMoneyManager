@@ -108,7 +108,6 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 
                   categoryselection(context),
                   //::::::::::::::::::category validation:::::::::::::::::
-                  CategoryValidation(isVisibleCategory: isVisibleCategory),
 
                   constHeight30,
 
@@ -117,16 +116,14 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
                   constHeight30,
 
                   //:::::::::::::;selectDateSection::::::::::::::::::::::::
-                  selectDateSection(context),
-                  constHeight20,
-                  //::::::::::::::ValidationOfDate::::::::::::::;;::::::::
-                  DateValidation(isVisibleDate: isVisibleDate),
-
-                  //:::::::::::::::::::noteSection::::::::::::::::::::
                   noteSection(),
                   constHeight30,
-                  constHeight30,
+                  //::::::::::::::ValidationOfDate::::::::::::::;;::::::::
 
+                  //:::::::::::::::::::noteSection::::::::::::::::::::
+                  selectDateSection(context),
+                  constHeight30,
+                  constHeight30,
                   //::::::::::::::::::::elevetedButtonSection:::::::::
                   elevetedButtonSection(size)
                 ],
@@ -244,29 +241,55 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
           width: 12.0,
         ),
         Expanded(
-          child: TextFormField(
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter Note';
-              }
-              return null;
-            },
-            controller: _notesTextEditingController,
-            decoration: const InputDecoration(
-              hintText: 'Note On  ',
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.black,
+          child: Container(
+            decoration: BoxDecoration(
+              color: bgColor,
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade500,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: const Offset(5, 5),
                 ),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
+                const BoxShadow(
                   color: Colors.white,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: Offset(-5, -5),
+                ),
+              ],
+            ),
+            child: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter Note';
+                }
+                return null;
+              },
+              controller: _notesTextEditingController,
+              decoration: InputDecoration(
+                hintText: 'Note On  ',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: bgColor,
+                  ),
+                ),
+                border: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: bgColor,
+                  ),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: bgColor,
+                  ),
                 ),
               ),
-            ),
-            style: const TextStyle(
-              fontSize: 24.0,
+              style: const TextStyle(
+                fontSize: 24.0,
+              ),
             ),
           ),
         ),
@@ -405,32 +428,55 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
           width: 12.0,
         ),
         Expanded(
-          child: TextFormField(
-            maxLength: 10,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter amound';
-              }
-              return null;
-            },
-            controller: _amountTextEditingController,
-            decoration: const InputDecoration(
-              hintText: '0',
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.black,
+          child: Container(
+            decoration: BoxDecoration(
+              color: bgColor,
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade500,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: const Offset(5, 5),
                 ),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
+                const BoxShadow(
                   color: Colors.white,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: Offset(-5, -5),
                 ),
+              ],
+            ),
+            child: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter amound';
+                }
+                return null;
+              },
+              controller: _amountTextEditingController,
+              decoration: InputDecoration(
+                  hintText: '0',
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide(width: 0, color: bgColor),
+                  ),
+                  border: const OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: bgColor,
+                    ),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: bgColor,
+                    ),
+                  )),
+              style: const TextStyle(
+                fontSize: 24.0,
               ),
+              keyboardType: TextInputType.number,
             ),
-            style: const TextStyle(
-              fontSize: 24.0,
-            ),
-            keyboardType: TextInputType.number,
           ),
         ),
       ],
@@ -477,43 +523,85 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
         constwidth20,
         Row(
           children: [
-            ChoiceChip(
-              padding: const EdgeInsets.all(8),
-              label: const Text('Income'),
-              // color of selected chip
-              selectedColor: Colors.green,
-              // selected chip value
-              selected: _value == 1,
-              // onselected method
-              onSelected: (bool selected) {
-                setState(() {
-                  _value = 1;
-                  // _value = selected ? 1 : null;
-                  _selectCategorytype = CategoryType.income;
-                  _categoryID = null;
-                });
-              },
+            Container(
+              height: 35,
+              decoration: BoxDecoration(
+                color: bgColor,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade500,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: const Offset(5, 5),
+                  ),
+                  const BoxShadow(
+                    color: Colors.white,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: Offset(-5, -5),
+                  ),
+                ],
+              ),
+              child: ChoiceChip(
+                padding: const EdgeInsets.all(8),
+                label: const Text('Income'),
+                // color of selected chip
+                selectedColor: Colors.green,
+                // selected chip value
+                selected: _value == 1,
+                // onselected method
+                onSelected: (bool selected) {
+                  setState(() {
+                    _value = 1;
+                    // _value = selected ? 1 : null;
+                    _selectCategorytype = CategoryType.income;
+                    _categoryID = null;
+                  });
+                },
+              ),
             ),
 
             //width choisechip
 
             constwidth20,
-            ChoiceChip(
-              padding: const EdgeInsets.all(8),
-              label: const Text('Expense'),
-              // color of selected chip
-              selectedColor: Colors.red,
-              // selected chip value
-              selected: _value == 2,
-              // onselected method
-              onSelected: (bool selected) {
-                setState(() {
-                  _value = 2;
-                  // _value = selected ? 2 : null;
-                  _selectCategorytype = CategoryType.expense;
-                  _categoryID = null;
-                });
-              },
+            Container(
+              height: 35,
+              decoration: BoxDecoration(
+                color: bgColor,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade500,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: const Offset(5, 5),
+                  ),
+                  const BoxShadow(
+                    color: Colors.white,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: Offset(-5, -5),
+                  ),
+                ],
+              ),
+              child: ChoiceChip(
+                padding: const EdgeInsets.all(8),
+                label: const Text('Expense'),
+                // color of selected chip
+                selectedColor: Colors.red,
+                // selected chip value
+                selected: _value == 2,
+                // onselected method
+                onSelected: (bool selected) {
+                  setState(() {
+                    _value = 2;
+                    // _value = selected ? 2 : null;
+                    _selectCategorytype = CategoryType.expense;
+                    _categoryID = null;
+                  });
+                },
+              ),
             ),
           ],
         ),
@@ -560,52 +648,90 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 
         // dropdwon list
 
-        DropdownButton(
-          borderRadius: BorderRadius.circular(
-            30,
-          ),
-          iconSize: 30,
-          elevation: 16,
-          style: const TextStyle(color: Colors.black),
-          underline: Container(
-            decoration: const ShapeDecoration(
-              shape: RoundedRectangleBorder(
-                side: BorderSide(width: 0.50, style: BorderStyle.solid),
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+              color: bgColor,
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade500,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: const Offset(5, 5),
+                ),
+                const BoxShadow(
+                  color: Colors.white,
+                  blurRadius: 15,
+                  spreadRadius: 1,
+                  offset: Offset(-5, -5),
+                ),
+              ],
+            ),
+            child: DropdownButtonFormField(
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: bgColor,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: bgColor,
+                  ),
+                ),
+                border: OutlineInputBorder(),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: bgColor,
+                  ),
+                ),
               ),
-            ),
-          ),
-          hint: const Text(
-            'Select Category',
-            style: TextStyle(
-              fontSize: 20.0,
-            ),
-          ),
-          value: _categoryID,
-          items: (_selectCategorytype == CategoryType.expense
-                  ? CategoryDb().expenseCategoryListListener
-                  : CategoryDb().incomeCategoryListListener)
-              .value
-              .map((e) {
-            return DropdownMenuItem(
-              onTap: () {
-                _selectedcategorymodels = e;
+              borderRadius: BorderRadius.circular(
+                30,
+              ),
+              iconSize: 30,
+              elevation: 16,
+              style: const TextStyle(color: Colors.black),
+              hint: const Text(
+                'Select Category',
+                style: TextStyle(
+                  fontSize: 20.0,
+                ),
+              ),
+              value: _categoryID,
+              items: (_selectCategorytype == CategoryType.expense
+                      ? CategoryDb().expenseCategoryListListener
+                      : CategoryDb().incomeCategoryListListener)
+                  .value
+                  .map((e) {
+                return DropdownMenuItem(
+                  onTap: () {
+                    _selectedcategorymodels = e;
+                  },
+                  value: e.id,
+                  child: Text(e.name),
+                );
+              }).toList(),
+              onChanged: (selectedValue) {
+                setState(() {
+                  _categoryID = selectedValue;
+                });
               },
-              value: e.id,
-              child: Text(e.name),
-            );
-          }).toList(),
-          onChanged: (selectedValue) {
-            setState(() {
-              _categoryID = selectedValue;
-            });
-          },
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 10,
         ),
         IconButton(
           onPressed: () {
             showCategoryAddPopup(context);
           },
-          icon: const Icon(Icons.add_circle_outline_sharp),
+          icon: const Icon(
+            Icons.add_circle_outline_sharp,
+            size: 30,
+          ),
         )
       ],
     );

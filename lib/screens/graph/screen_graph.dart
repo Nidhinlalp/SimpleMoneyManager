@@ -5,7 +5,6 @@ import 'package:simplemoneymanager/screens/graph/pages/expense_graph.dart';
 import 'package:simplemoneymanager/screens/graph/pages/income_graph.dart';
 import 'package:simplemoneymanager/screens/graph/pages/overview_graph.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/menu_bar.dart';
-
 import '../../colors/colors.dart';
 
 class ScreenGraph extends StatefulWidget {

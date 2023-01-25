@@ -1,10 +1,10 @@
+import 'dart:developer';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
-import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
-import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 import 'package:simplemoneymanager/screens/graph/pages/overview_graph.dart';
 import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -24,11 +24,15 @@ class _CurrentBalanceState extends State<CurrentBalance> {
   @override
   void initState() {
     _tooltipBehavior = TooltipBehavior(enable: true);
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    log(incomtotel.value.toString());
+    log(expensetotel.value.toString());
+
     return SingleChildScrollView(
       child: SizedBox(
         child: Column(
@@ -102,7 +106,7 @@ class _CurrentBalanceState extends State<CurrentBalance> {
                                 tBalance =
                                     tBalance < 0 ? tBalance * -1 : tBalance;
                                 return AutoSizeText(
-                                  '₹ ${tBalance}/-',
+                                  '₹ $tBalance/-',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w900,
                                     color: Colors.black,

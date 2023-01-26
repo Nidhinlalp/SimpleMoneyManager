@@ -170,7 +170,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
           },
           // ignore: sort_child_properties_last
           child: const Text(
-            'Upadate',
+            'Update',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w500,

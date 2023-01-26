@@ -135,14 +135,14 @@ class _ScreenCategoryState extends State<ScreenCategory>
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: BorderRadius.circular(50),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Colors.grey.shade500,
+              color: Colors.blueGrey,
               blurRadius: 15,
               spreadRadius: 1,
-              offset: const Offset(5, 5),
+              offset: Offset(5, 5),
             ),
-            const BoxShadow(
+            BoxShadow(
               color: Colors.white,
               blurRadius: 15,
               spreadRadius: 1,
@@ -158,6 +158,7 @@ class _ScreenCategoryState extends State<ScreenCategory>
           // ignore: sort_child_properties_last
           child: const Icon(
             Icons.add,
+            size: 30,
           ),
           foregroundColor: const Color.fromARGB(255, 10, 10, 10),
           splashColor: const Color.fromARGB(255, 245, 245, 245),

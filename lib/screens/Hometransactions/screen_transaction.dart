@@ -145,14 +145,14 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
               decoration: BoxDecoration(
                 color: bgColor,
                 borderRadius: BorderRadius.circular(50),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
-                    color: Colors.grey.shade500,
+                    color: Colors.blueGrey,
                     blurRadius: 15,
                     spreadRadius: 1,
-                    offset: const Offset(5, 5),
+                    offset: Offset(5, 5),
                   ),
-                  const BoxShadow(
+                  BoxShadow(
                     color: Colors.white,
                     blurRadius: 15,
                     spreadRadius: 1,

@@ -25,6 +25,7 @@ class CustomFABWidget extends StatelessWidget {
           width: fabSize,
           child: const Icon(
             Icons.add,
+            size: 30,
             color: Colors.black,
           ),
         ),

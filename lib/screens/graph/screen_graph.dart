@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/constants/notifier.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
@@ -71,7 +72,8 @@ class _ScreenGraphState extends State<ScreenGraph>
       ),
       backgroundColor: bgColor,
       body: SafeArea(
-        child: Column(
+        child: ListView(
+          shrinkWrap: true,
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 30),
@@ -278,7 +280,8 @@ class _ScreenGraphState extends State<ScreenGraph>
                 ),
               ],
             ),
-            Expanded(
+            SizedBox(
+              height: 500,
               child: TabBarView(
                 controller: _tabController,
                 children: const [

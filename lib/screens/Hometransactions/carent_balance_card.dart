@@ -42,7 +42,7 @@ class _CurrentBalanceState extends State<CurrentBalance> {
               ),
               child: FlipCard(
                 direction: FlipDirection.VERTICAL,
-                speed: 1000,
+                speed: 800,
                 onFlipDone: (status) {},
                 front: Container(
                   // height: 340,

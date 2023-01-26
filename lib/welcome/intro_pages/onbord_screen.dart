@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simplemoneymanager/screens/hometransactions/zoom_Drawa.dart';
@@ -67,9 +68,12 @@ class _OnbordScreenState extends State<OnbordScreen> {
                 onLastPage
                     ? GestureDetector(
                         onTap: () async {
-                          SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          prefs.setBool('seen', true);
+                          if (kIsWeb == false) {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setBool('seen', true);
+                          }
+
                           // bool seen = (prefs.getBool('seen') ?? false);
 
                           // ignore: use_build_context_synchronously

@@ -5,6 +5,7 @@ import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/screens/hometransactions/zoom_Drawa.dart';
 import 'package:simplemoneymanager/welcome/intro_pages/onbord_screen.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -28,13 +29,19 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 2), () async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      bool seen = (prefs.getBool('seen') ?? false);
+      bool seen;
+      if (kIsWeb) {
+        seen = false;
+      } else {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        seen = (prefs.getBool('seen') ?? false);
+      }
 
       if (seen) {
         await TransactionDb.instance.refresh();
         goHom();
       } else {
+        await TransactionDb.instance.refresh();
         goIntro();
       }
     });

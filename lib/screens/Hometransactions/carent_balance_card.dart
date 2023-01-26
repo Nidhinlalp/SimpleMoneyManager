@@ -4,6 +4,7 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
+import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/screens/graph/pages/overview_graph.dart';
 import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -23,15 +24,13 @@ class _CurrentBalanceState extends State<CurrentBalance> {
   @override
   void initState() {
     _tooltipBehavior = TooltipBehavior(enable: true);
-
+    overviewGraphTransactions.value =
+        TransactionDb.transactionListNotifire.value;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    log(incomtotel.value.toString());
-    log(expensetotel.value.toString());
-
     return SingleChildScrollView(
       child: SizedBox(
         child: Column(

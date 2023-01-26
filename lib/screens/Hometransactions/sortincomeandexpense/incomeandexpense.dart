@@ -7,7 +7,7 @@ ValueNotifier incomtotel = ValueNotifier(0.0);
 ValueNotifier expensetotel = ValueNotifier(0.0);
 ValueNotifier totalbalanse = ValueNotifier(0.0);
 
-incomeandexpense() {
+void incomeandexpense() {
   incomtotel.value = 0;
   expensetotel.value = 0;
   totalbalanse.value = 0;

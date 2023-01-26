@@ -22,6 +22,12 @@ class SeeAllDetails extends StatefulWidget {
 
 class _SeeAllDetailsState extends State<SeeAllDetails> {
   @override
+  void initState() {
+    overviewTransactions.value = TransactionDb.transactionListNotifire.value;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     showCategory.value = "All";
     return Scaffold(

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
+import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/screens/hometransactions/zoom_Drawa.dart';
 import 'package:simplemoneymanager/welcome/intro_pages/onbord_screen.dart';
 
@@ -31,6 +32,7 @@ class _SplashState extends State<Splash> {
       bool seen = (prefs.getBool('seen') ?? false);
 
       if (seen) {
+        await TransactionDb.instance.refresh();
         goHom();
       } else {
         goIntro();

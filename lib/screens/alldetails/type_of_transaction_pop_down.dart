@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simplemoneymanager/screens/alldetails/seeall_details.dart';
+import 'package:simplemoneymanager/constants/notifier.dart';
 
 class TypeOfSeeAllDetails extends StatelessWidget {
   const TypeOfSeeAllDetails({

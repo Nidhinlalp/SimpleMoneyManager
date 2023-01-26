@@ -1,13 +1,15 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
+import 'package:simplemoneymanager/constants/notifier.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 
-ValueNotifier<CategoryType> selectCategoryNotifire =
-    ValueNotifier(CategoryType.income);
+// _selectCategorytype
 
-Future<void> showCategoryAddPopup(BuildContext context) async {
+Future<void> showCategoryAddPopup(
+    BuildContext context, boole, CategoryType dop) async {
+  // final bool boole;
   final nameEditingController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   showDialog(
@@ -78,15 +80,18 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: const [
-                  RadioButton(title: 'Income', type: CategoryType.income),
-                  RadioButton(title: 'Expense', type: CategoryType.expense),
-                ],
-              ),
-            ),
+            boole == false
+                ? const Text('')
+                : Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      children: const [
+                        RadioButton(title: 'Income', type: CategoryType.income),
+                        RadioButton(
+                            title: 'Expense', type: CategoryType.expense),
+                      ],
+                    ),
+                  ),
             Padding(
               padding: const EdgeInsets.all(30.0),
               child: Container(
@@ -121,12 +126,13 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                       if (name.isEmpty) {
                         return;
                       }
-                      final type = selectCategoryNotifire.value;
+                      // final type = selectCategoryNotifire.value;
                       final category = CategoryModels(
-                        id: DateTime.now().millisecondsSinceEpoch.toString(),
-                        name: name,
-                        type: type,
-                      );
+                          id: DateTime.now().millisecondsSinceEpoch.toString(),
+                          name: name,
+                          // type: Noti().selectCategorytype!.value,
+
+                          type: boole ? selectCategoryNotifire.value : dop);
 
                       CategoryDb().insertCategory(category);
                       Navigator.of(ctx).pop();

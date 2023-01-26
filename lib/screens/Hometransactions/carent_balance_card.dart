@@ -3,8 +3,8 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
+import 'package:simplemoneymanager/constants/notifier.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
-import 'package:simplemoneymanager/screens/graph/pages/overview_graph.dart';
 import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 

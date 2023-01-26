@@ -1,5 +1,5 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:simplemoneymanager/constants/notifier.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/screens/graph/pages/expense_graph.dart';
 import 'package:simplemoneymanager/screens/graph/pages/income_graph.dart';

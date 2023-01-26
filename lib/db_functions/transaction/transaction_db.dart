@@ -3,8 +3,6 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 
-const transactionDbName = 'transaction-db';
-
 abstract class TransactionDbFunctions {
   Future<void> addTransaction(TransactionModel obj);
   Future<List<TransactionModel>> getAllTransaction();
@@ -12,6 +10,7 @@ abstract class TransactionDbFunctions {
 } //includer class
 
 class TransactionDb implements TransactionDbFunctions {
+  static const transactionDbName = 'transaction-db';
   TransactionDb._internal();
 
   static ValueNotifier<List<TransactionModel>> transactionListNotifire =

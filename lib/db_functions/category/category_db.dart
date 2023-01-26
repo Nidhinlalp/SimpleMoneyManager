@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 
-const categoryDbName = 'category-database';
-
 abstract class CatageryDbFunctions {
   Future<List<CategoryModels>> getCategories();
   Future<void> insertCategory(CategoryModels value);
@@ -11,6 +9,8 @@ abstract class CatageryDbFunctions {
 }
 
 class CategoryDb implements CatageryDbFunctions {
+  static const categoryDbName = 'category-database';
+
   CategoryDb._internal();
 
   static CategoryDb instance = CategoryDb._internal();

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:simplemoneymanager/constants/notifier.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
-import 'package:simplemoneymanager/screens/graph/pages/overview_graph.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/menu_bar.dart';
 import 'package:simplemoneymanager/screens/hometransactions/resent_transaction_heding.dart';
 import 'package:simplemoneymanager/screens/hometransactions/transaction_slidable.dart';

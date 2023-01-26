@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
-import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
-import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
+import 'package:simplemoneymanager/constants/notifier.dart';
 import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-
-ValueNotifier<List<TransactionModel>> overviewGraphTransactions =
-    ValueNotifier(TransactionDb.transactionListNotifire.value);
 
 class OverViewGraph extends StatefulWidget {
   const OverViewGraph({super.key});

@@ -19,9 +19,10 @@ class EditeTransaction extends StatefulWidget {
 
 class _ScreenAddTransactionState extends State<EditeTransaction> {
   final _formKey = GlobalKey<FormState>();
+
   DateTime? _selectDate;
   String? dateString;
-  CategoryType? _selectCategorytype;
+  late CategoryType _selectCategorytype;
   CategoryModels? _selectedcategorymodels;
 
   String? _categoryID;
@@ -537,11 +538,10 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
                 // color of selected chip
                 selectedColor: Colors.green,
                 // selected chip value
-                selected: _value == 1,
+                selected: _selectCategorytype == CategoryType.income,
                 // onselected method
                 onSelected: (bool selected) {
                   setState(() {
-                    _value = 1;
                     // _value = selected ? 1 : null;
                     _selectCategorytype = CategoryType.income;
                     _categoryID = null;
@@ -579,11 +579,10 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
                 // color of selected chip
                 selectedColor: Colors.red,
                 // selected chip value
-                selected: _value == 2,
+                selected: _selectCategorytype == CategoryType.expense,
                 // onselected method
                 onSelected: (bool selected) {
                   setState(() {
-                    _value = 2;
                     // _value = selected ? 2 : null;
                     _selectCategorytype = CategoryType.expense;
                     _categoryID = null;
@@ -719,7 +718,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
         ),
         IconButton(
           onPressed: () {
-            showCategoryAddPopup(context);
+            showCategoryAddPopup(context, false, _selectCategorytype);
           },
           icon: const Icon(
             Icons.add_circle_outline_sharp,
@@ -761,7 +760,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
       notes: notesText,
       amount: parsedAmount,
       date: _selectDate!,
-      type: _selectCategorytype!,
+      type: _selectCategorytype,
       category: _selectedcategorymodels!,
     );
     await TransactionDb.instance.dbEditTransaction(models);

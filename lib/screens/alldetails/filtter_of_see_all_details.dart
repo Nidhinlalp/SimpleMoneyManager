@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simplemoneymanager/constants/notifier.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/screens/alldetails/seeall_details.dart';
 

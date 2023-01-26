@@ -6,6 +6,7 @@ import 'package:simplemoneymanager/constants/constants.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
+import 'package:simplemoneymanager/constants/notifier.dart';
 import 'package:simplemoneymanager/screens/graph/pages/overview_graph.dart';
 import '../../db_functions/category/category_db.dart';
 import '../category/category_add_popup.dart';
@@ -20,7 +21,7 @@ class ScreenAddTransaction extends StatefulWidget {
 class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   late DateTime _selectDate = DateTime.now();
   late String dateString;
-  CategoryType? _selectCategorytype;
+
   CategoryModels? _selectedcategorymodels;
   String? _categoryID;
   final _formKey = GlobalKey<FormState>();
@@ -45,7 +46,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
 
   @override
   void initState() {
-    _selectCategorytype = CategoryType.income;
+    // _selectCategorytype = CategoryType.income;
     dateString =
         "${_selectDate.day} ${monthList[_selectDate.month - 1]} ${_selectDate.year} ";
     super.initState();
@@ -88,9 +89,9 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                 children: [
                   constHeight10,
 
-                  //::::::::::::::::::::::::::::selectCategoryTypeSection::::::;
+                  //::::::::::::::::::::::::::::selectCategorytypeSection::::::;
 
-                  selectCategoryTypeSection(),
+                  selectCategorytypeSection(),
 
                   constHeight30,
                   //:::::::::::::::::::selectCategorySection:::::::::;
@@ -467,9 +468,9 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     );
   }
 
-//:::::::::::::::::::::::::::selectCategoryTypeSection:::::::::::::::::
+//:::::::::::::::::::::::::::selectCategorytypeSection:::::::::::::::::
 
-  Row selectCategoryTypeSection() {
+  Row selectCategorytypeSection() {
     return Row(
       children: [
         Container(
@@ -533,12 +534,12 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                 // color of selected chip
                 selectedColor: Colors.green,
                 // selected chip value
-                selected: _value == 1,
+                selected: selectCategorytype.value == CategoryType.income,
                 // onselected method
                 onSelected: (bool selected) {
                   setState(() {
                     _value = 1;
-                    _selectCategorytype = CategoryType.income;
+                    selectCategorytype.value = CategoryType.income;
                     _categoryID = null;
                   });
                 },
@@ -574,12 +575,12 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                 // color of selected chip
                 selectedColor: Colors.red,
                 // selected chip value
-                selected: _value == 2,
+                selected: selectCategorytype.value == CategoryType.expense,
                 // onselected method
                 onSelected: (bool selected) {
                   setState(() {
                     _value = 2;
-                    _selectCategorytype = CategoryType.expense;
+                    selectCategorytype.value = CategoryType.expense;
                     _categoryID = null;
                   });
                 },
@@ -695,7 +696,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                 ),
               ),
               value: _categoryID,
-              items: (_selectCategorytype == CategoryType.expense
+              items: (selectCategorytype.value == CategoryType.expense
                       ? CategoryDb().expenseCategoryListListener
                       : CategoryDb().incomeCategoryListListener)
                   .value
@@ -721,7 +722,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
         ),
         IconButton(
           onPressed: () {
-            showCategoryAddPopup(context);
+            showCategoryAddPopup(context, false, selectCategorytype.value);
           },
           icon: const Icon(
             Icons.add_circle_outline_sharp,
@@ -760,7 +761,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       notes: notesText,
       amount: parsedAmount,
       date: _selectDate,
-      type: _selectCategorytype!,
+      type: selectCategorytype.value,
       category: _selectedcategorymodels!,
     );
     await TransactionDb.instance.addTransaction(models);

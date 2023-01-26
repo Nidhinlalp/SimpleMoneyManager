@@ -258,13 +258,18 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
                     color: bgColor,
                   ),
                 ),
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: bgColor,
                   ),
                 ),
                 errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: bgColor,
+                  ),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: bgColor,
                   ),
@@ -433,22 +438,28 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
               },
               controller: _amountTextEditingController,
               decoration: InputDecoration(
-                  hintText: '0',
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    borderSide: BorderSide(width: 0, color: bgColor),
+                hintText: '0',
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  borderSide: BorderSide(width: 0, color: bgColor),
+                ),
+                border: const OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: bgColor,
                   ),
-                  border: const OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: bgColor,
-                    ),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: bgColor,
                   ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: bgColor,
-                    ),
-                  )),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: bgColor,
+                  ),
+                ),
+              ),
               style: const TextStyle(
                 fontSize: 24.0,
               ),
@@ -659,6 +670,11 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
                 ),
                 border: OutlineInputBorder(),
                 errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: bgColor,
+                  ),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: bgColor,
                   ),

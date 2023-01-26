@@ -69,6 +69,11 @@ Future<void> showCategoryAddPopup(BuildContext context) async {
                         color: bgColor,
                       ),
                     ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: bgColor,
+                      ),
+                    ),
                   ),
                 ),
               ),

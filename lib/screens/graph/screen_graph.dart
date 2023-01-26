@@ -119,10 +119,11 @@ class _ScreenGraphState extends State<ScreenGraph>
                             ),
                             child: const Padding(
                               padding: EdgeInsets.only(
-                                right: 30.0,
+                                right: 15.0,
                               ),
                               child: Icon(
                                 Icons.arrow_drop_down,
+                                size: 30,
                               ),
                             ),
                             itemBuilder: (context) => [

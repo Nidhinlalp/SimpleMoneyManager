@@ -151,8 +151,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             addTransaction();
-            overviewGraphTransactions.value =
-                TransactionDb.transactionListNotifire.value;
+            TransactionDb.instance.refresh();
           }
           // FocusManager.instance.primaryFocus?.unfocus();
         },

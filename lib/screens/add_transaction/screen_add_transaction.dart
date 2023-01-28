@@ -52,7 +52,6 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   }
 
   bool selectingchip = false;
-  int? _value = 1;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -536,7 +535,6 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                 // onselected method
                 onSelected: (bool selected) {
                   setState(() {
-                    _value = 1;
                     selectCategorytype.value = CategoryType.income;
                     _categoryID = null;
                   });
@@ -577,7 +575,6 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                 // onselected method
                 onSelected: (bool selected) {
                   setState(() {
-                    _value = 2;
                     selectCategorytype.value = CategoryType.expense;
                     _categoryID = null;
                   });

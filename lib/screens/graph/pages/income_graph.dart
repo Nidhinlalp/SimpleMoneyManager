@@ -44,7 +44,7 @@ class _IncomGraphState extends State<IncomGraph> {
                             'No Data !',
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              color: Colors.black,
+                              color: Colors.black26,
                               fontSize: 22,
                               letterSpacing: 1.5,
                             ),

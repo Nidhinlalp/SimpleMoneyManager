@@ -113,8 +113,17 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
                                   Center(
                                     child: Lottie.asset(
                                         'assets/images/empty.json',
-                                        width: 210),
+                                        width: 150),
                                   ),
+                                  const Text(
+                                    'No Data !',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black26,
+                                      fontSize: 22,
+                                      letterSpacing: 1.5,
+                                    ),
+                                  )
                                 ],
                               )
                             ]

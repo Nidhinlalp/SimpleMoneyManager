@@ -25,7 +25,7 @@ class _MoneyManagerBottomNavigationState
             animationDuration: const Duration(
               milliseconds: 400,
             ),
-            height: 65,
+            height: 60,
             color: Colors.blueGrey,
             backgroundColor: bgColor,
             buttonBackgroundColor: Colors.blueGrey,

@@ -26,13 +26,7 @@ class RecentTransactionHeding extends StatelessWidget {
           ),
           newList.isEmpty
               ? const Text(
-                  'No Data !',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                    fontSize: 22,
-                    letterSpacing: 1.5,
-                  ),
+                  '',
                 )
               : TextButton(
                   onPressed: () {

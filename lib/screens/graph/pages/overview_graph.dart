@@ -42,7 +42,7 @@ class _OverViewGraphState extends State<OverViewGraph> {
                             'No Data !',
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              color: Colors.black,
+                              color: Colors.black26,
                               fontSize: 22,
                               letterSpacing: 1.5,
                             ),

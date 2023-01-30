@@ -162,7 +162,7 @@ class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
             constHeight30,
             const SizedBox(
               width: 230,
-              child: Text('Version: 1.0.0'),
+              child: Text('Version: 1.0.1'),
             ),
           ],
         ),

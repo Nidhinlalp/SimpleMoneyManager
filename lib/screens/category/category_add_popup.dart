@@ -60,10 +60,6 @@ Future<void> showCategoryAddPopup(
                           hintText: selectCategory == CategoryType.income
                               ? 'Income'
                               : 'Expense',
-                          //hint: Text(
-                          // selectCategorytype.value == CategoryType.income
-                          //     ? 'Income'
-                          //     : 'Expense',
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: bgColor,

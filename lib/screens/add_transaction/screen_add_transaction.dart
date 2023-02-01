@@ -684,11 +684,9 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
               iconSize: 30,
               elevation: 16,
               style: const TextStyle(color: Colors.black),
-              hint: Text(
-                selectCategorytype.value == CategoryType.income
-                    ? 'Income'
-                    : 'Expense',
-                style: const TextStyle(
+              hint: const Text(
+                'Select Category',
+                style: TextStyle(
                   fontSize: 20.0,
                 ),
               ),

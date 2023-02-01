@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/constants/notifier.dart';
+import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/screens/category/category_add_popup.dart';
 import 'package:simplemoneymanager/screens/category/expense_category_list.dart';
 import 'package:simplemoneymanager/screens/category/income_category_list.dart';
@@ -154,6 +155,12 @@ class _ScreenCategoryState extends State<ScreenCategory>
           onPressed: () {
             //  print('ia, category');
             showCategoryAddPopup(context, true, selectCategorytype.value);
+            // showCategoryAddPopup(
+            //     context,
+            //     false,
+            //     _tabController.index == 0
+            //         ? CategoryType.income
+            //         : CategoryType.expense);
           },
           // ignore: sort_child_properties_last
           child: const Icon(

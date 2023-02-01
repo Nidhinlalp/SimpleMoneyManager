@@ -45,39 +45,49 @@ Future<void> showCategoryAddPopup(
                     ),
                   ],
                 ),
-                child: TextFormField(
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Category is empty';
-                    }
-                    return null;
-                  },
-                  controller: nameEditingController,
-                  decoration: InputDecoration(
-                    hintText: 'Category ',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: bgColor,
-                      ),
-                    ),
-                    border: const OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: bgColor,
-                      ),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: bgColor,
-                      ),
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: bgColor,
-                      ),
-                    ),
-                  ),
-                ),
+                child: ValueListenableBuilder(
+                    valueListenable: selectCategorytype,
+                    builder: (context, selectCategory, _) {
+                      return TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Category is empty';
+                          }
+                          return null;
+                        },
+                        controller: nameEditingController,
+                        decoration: InputDecoration(
+                          hintText: selectCategory == CategoryType.income
+                              ? 'Income'
+                              : 'Expense',
+                          //hint: Text(
+                          // selectCategorytype.value == CategoryType.income
+                          //     ? 'Income'
+                          //     : 'Expense',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: bgColor,
+                            ),
+                          ),
+                          border: const OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: bgColor,
+                            ),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: bgColor,
+                            ),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: bgColor,
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
               ),
             ),
             boole == false

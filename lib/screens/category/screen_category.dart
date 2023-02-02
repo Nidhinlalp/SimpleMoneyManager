@@ -153,7 +153,6 @@ class _ScreenCategoryState extends State<ScreenCategory>
         ),
         child: FloatingActionButton(
           onPressed: () {
-            //  print('ia, category');
             showCategoryAddPopup(context, true, selectCategorytype.value);
             // showCategoryAddPopup(
             //     context,

@@ -208,9 +208,11 @@ class _ScreenGraphState extends State<ScreenGraph>
                                               element.date.year ==
                                                   DateTime.now().year)
                                           .toList();
-                                  setState(() {
-                                    dateFilterTitle = "Month";
-                                  });
+                                  setState(
+                                    () {
+                                      dateFilterTitle = "Month";
+                                    },
+                                  );
                                 },
                               ),
                             ],

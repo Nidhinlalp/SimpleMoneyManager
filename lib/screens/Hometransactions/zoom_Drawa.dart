@@ -19,6 +19,5 @@ class _HompageState extends State<Hompage> {
         borderRadius: 50,
         angle: 0.0,
         slideWidth: 240,
-        //
       );
 }

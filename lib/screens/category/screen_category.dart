@@ -153,7 +153,13 @@ class _ScreenCategoryState extends State<ScreenCategory>
         ),
         child: FloatingActionButton(
           onPressed: () {
-            showCategoryAddPopup(context, true, selectCategorytype.value);
+            showCategoryAddPopup(
+              context,
+              true,
+              _tabController.index == 0
+                  ? CategoryType.income
+                  : CategoryType.expense,
+            );
             // showCategoryAddPopup(
             //     context,
             //     false,

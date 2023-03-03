@@ -46,7 +46,7 @@ Future<void> showCategoryAddPopup(
                   ],
                 ),
                 child: ValueListenableBuilder(
-                    valueListenable: selectCategorytype,
+                    valueListenable: selectCategoryNotifire,
                     builder: (context, selectCategory, _) {
                       return TextFormField(
                         validator: (value) {
@@ -57,9 +57,13 @@ Future<void> showCategoryAddPopup(
                         },
                         controller: nameEditingController,
                         decoration: InputDecoration(
-                          hintText: selectCategory == CategoryType.income
-                              ? 'Income'
-                              : 'Expense',
+                          hintText: boole
+                              ? selectCategory == CategoryType.income
+                                  ? 'Income'
+                                  : 'Expense'
+                              : dop == CategoryType.income
+                                  ? 'Income'
+                                  : 'Expense',
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: bgColor,

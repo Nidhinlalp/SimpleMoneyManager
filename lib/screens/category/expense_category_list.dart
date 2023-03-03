@@ -91,11 +91,8 @@ class ExpenseCategoyList extends StatelessWidget {
                     ),
                   );
                 },
-                // separatorBuilder: (ctx, index) {
-                //   return const SizedBox(
-                //     height: 10,
-                //   );
 
+                //lkuhgasdljkjgasdlkjghasldkjhg
                 itemCount: newlIst.length,
               );
       },

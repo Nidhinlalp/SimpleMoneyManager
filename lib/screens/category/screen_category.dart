@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
-import 'package:simplemoneymanager/constants/notifier.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/screens/category/category_add_popup.dart';
 import 'package:simplemoneymanager/screens/category/expense_category_list.dart';
@@ -27,12 +27,17 @@ class _ScreenCategoryState extends State<ScreenCategory>
       vsync: this,
     );
 
-    CategoryDb().refreshUI();
+    //CategoryDb().refreshUI();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) =>
+          Provider.of<CategoryDb>(context, listen: false).refreshUI(),
+    );
+
     return Scaffold(
       appBar: AppBar(
         leading: const MenuBar(),

@@ -30,14 +30,9 @@ class MenuBar extends StatelessWidget {
 
 //::::::::::::::::::::: Manu Bar Widget:::::::::::::::::::::
 
-class ManuPage extends StatefulWidget {
+class ManuPage extends StatelessWidget {
   const ManuPage({super.key});
 
-  @override
-  State<ManuPage> createState() => _ManuState();
-}
-
-class _ManuState extends State<ManuPage> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

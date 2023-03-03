@@ -1,40 +1,38 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:simplemoneymanager/constants/constants.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
+import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import '../../colors/colors.dart';
 import '../../db_functions/category/category_db.dart';
 import '../category/category_add_popup.dart';
 
-class EditeTransaction extends StatefulWidget {
-  const EditeTransaction({Key? key, required this.value}) : super(key: key);
+class EditeTransaction extends StatelessWidget {
+  EditeTransaction({Key? key, required this.value}) : super(key: key);
   final TransactionModel value;
 
-  @override
-  State<EditeTransaction> createState() => _ScreenAddTransactionState();
-}
-
-class _ScreenAddTransactionState extends State<EditeTransaction> {
   final _formKey = GlobalKey<FormState>();
 
-  DateTime? _selectDate;
+  // DateTime? _selectDate;
   String? dateString;
-  late CategoryType _selectCategorytype;
-  CategoryModels? _selectedcategorymodels;
+  //late CategoryType _selectCategorytype;
+  //CategoryModels? _selectedcategorymodels;
 
-  String? _categoryID;
+  //String? _categoryID;
   // String val=widget.value.notes.toString();
 
   var _notesTextEditingController = TextEditingController();
   var _amountTextEditingController = TextEditingController();
+  bool isExecuted = false;
 
   List<String> monthList = [
     "Jan",
     "Feb",
-    "Mrc",
+    "Mar",
     "Apr",
     "Mey",
     "Jun",
@@ -46,28 +44,29 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
     "Dec"
   ];
 
-  @override
-  void initState() {
-    _selectedcategorymodels = widget.value.category;
-    // _value = widget.value.type.index;
-    _categoryID = widget.value.category.id;
-    _selectCategorytype = widget.value.category.type;
-    _notesTextEditingController =
-        TextEditingController(text: widget.value.notes);
-    _amountTextEditingController =
-        TextEditingController(text: widget.value.amount.toString());
-    _selectDate = widget.value.date;
-    dateString =
-        "${_selectDate!.day} ${monthList[_selectDate!.month - 1]} ${_selectDate!.year} ";
-    // _selectCategorytype=widget.value.category;
-    super.initState();
-  }
-
   bool selectingchip = false;
-  int? _value = 1;
 
   @override
   Widget build(BuildContext context) {
+    if (isExecuted == false) {
+      context.read<CategoryDb>().refreshUI();
+      context.read<TransactionDb>().refresh();
+      context.read<IncomeAndExpence>().incomeandexpense(
+          context.read<TransactionDb>().transactionListNotifire);
+      context.read<CategoryDb>().selectedcategorymodels = value.category;
+      // _value = widget.value.type.index;
+      context.read<CategoryDb>().categoryID = value.category.id;
+      context.read<CategoryDb>().selectCategorytype = value.category.type;
+      _notesTextEditingController = TextEditingController(text: value.notes);
+      _amountTextEditingController =
+          TextEditingController(text: value.amount.toString());
+      context.read<CategoryDb>().selectDate = value.date;
+      dateString =
+          "${context.read<CategoryDb>().selectDate.day} ${monthList[context.read<CategoryDb>().selectDate.month - 1]} ${context.read<CategoryDb>().selectDate.year} ";
+      isExecuted = true;
+    }
+
+    // _selectCategorytype=widget.value.category;
     final size = MediaQuery.of(context).size;
     return Form(
       key: _formKey,
@@ -125,7 +124,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
                   constHeight30,
                   constHeight30,
                   //::::::::::::::::::::elevetedButtonSection:::::::::
-                  elevetedButtonSection(size)
+                  elevetedButtonSection(size, context)
                 ],
               ),
             ),
@@ -138,7 +137,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
   //:::::::::::::::::::::::::::::::::::::::::::::::::::;close the page::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::;
 
 //:::::::::elevetedButtonSection:::::::::::::::::::::::::::::::::::::::
-  SizedBox elevetedButtonSection(Size size) {
+  SizedBox elevetedButtonSection(Size size, BuildContext context) {
     return SizedBox(
       height: 50.0,
       child: Container(
@@ -164,7 +163,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
         child: ElevatedButton(
           onPressed: () {
             if (_formKey.currentState!.validate()) {
-              editTransactions();
+              editTransactions(context);
             }
             // Navigator.of(context).pop();
           },
@@ -290,88 +289,89 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
   SizedBox selectDateSection(BuildContext context) {
     return SizedBox(
       height: 50.0,
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: bgColor,
-              borderRadius: BorderRadius.circular(50),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade500,
-                  blurRadius: 15,
-                  spreadRadius: 1,
-                  offset: const Offset(5, 5),
-                ),
-                const BoxShadow(
-                  color: Colors.white,
-                  blurRadius: 15,
-                  spreadRadius: 1,
-                  offset: Offset(-5, -5),
-                ),
-              ],
+      child: Consumer<CategoryDb>(builder: (context, value, child) {
+        return Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: bgColor,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade500,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: const Offset(5, 5),
+                  ),
+                  const BoxShadow(
+                    color: Colors.white,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: Offset(-5, -5),
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(
+                12.0,
+              ),
+              child: const Icon(
+                Icons.date_range,
+                size: 24.0,
+                color: Colors.black,
+              ),
             ),
-            padding: const EdgeInsets.all(
-              12.0,
+            const SizedBox(
+              width: 5.0,
             ),
-            child: const Icon(
-              Icons.date_range,
-              size: 24.0,
-              color: Colors.black,
-            ),
-          ),
-          const SizedBox(
-            width: 5.0,
-          ),
-          TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.black,
-            ),
-            onPressed: () async {
-              final selectedDatetemp = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime.now().subtract(const Duration(days: 30)),
-                  lastDate: DateTime.now(),
-                  builder: (context, child) {
-                    return Theme(
-                      data: Theme.of(context).copyWith(
-                        colorScheme: ColorScheme.light(
-                          primary: bgColor,
-                          onPrimary: Colors.blueGrey,
-                          onSurface: Colors.black,
-                        ),
-                        textButtonTheme: TextButtonThemeData(
-                          style: TextButton.styleFrom(
-                            foregroundColor:
-                                Colors.blueGrey, // button text color
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.black,
+              ),
+              onPressed: () async {
+                final selectedDatetemp = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate:
+                        DateTime.now().subtract(const Duration(days: 30)),
+                    lastDate: DateTime.now(),
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: ColorScheme.light(
+                            primary: bgColor,
+                            onPrimary: Colors.blueGrey,
+                            onSurface: Colors.black,
+                          ),
+                          textButtonTheme: TextButtonThemeData(
+                            style: TextButton.styleFrom(
+                              foregroundColor:
+                                  Colors.blueGrey, // button text color
+                            ),
                           ),
                         ),
-                      ),
-                      child: child!,
-                    );
-                  });
-              if (selectedDatetemp == null) {
-                return;
-              } else {
-                setState(() {
-                  _selectDate = selectedDatetemp;
+                        child: child!,
+                      );
+                    });
+                if (selectedDatetemp == null) {
+                  return;
+                } else {
+                  value.selectDate = selectedDatetemp;
 
                   dateString =
                       "${selectedDatetemp.day} ${monthList[selectedDatetemp.month - 1]} ${selectedDatetemp.year} ";
-                });
-              }
-            },
-            child: Text(
-              //already store the date
-              dateString!,
-              style: const TextStyle(
-                fontSize: 20.0,
+                }
+              },
+              child: Text(
+                //already store the date
+                dateString!,
+                style: const TextStyle(
+                  fontSize: 20.0,
+                ),
               ),
-            ),
-          )
-        ],
-      ),
+            )
+          ],
+        );
+      }),
     );
   }
 
@@ -510,88 +510,88 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 
         //
         constwidth20,
-        Row(
-          children: [
-            Container(
-              height: 35,
-              decoration: BoxDecoration(
-                color: bgColor,
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade500,
-                    blurRadius: 15,
-                    spreadRadius: 1,
-                    offset: const Offset(5, 5),
-                  ),
-                  const BoxShadow(
-                    color: Colors.white,
-                    blurRadius: 15,
-                    spreadRadius: 1,
-                    offset: Offset(-5, -5),
-                  ),
-                ],
-              ),
-              child: ChoiceChip(
-                padding: const EdgeInsets.all(8),
-                label: const Text('Income'),
-                // color of selected chip
-                selectedColor: Colors.green,
-                // selected chip value
-                selected: _selectCategorytype == CategoryType.income,
-                // onselected method
-                onSelected: (bool selected) {
-                  setState(() {
+        Consumer<CategoryDb>(builder: (context, value, child) {
+          return Row(
+            children: [
+              Container(
+                height: 35,
+                decoration: BoxDecoration(
+                  color: bgColor,
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade500,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: const Offset(5, 5),
+                    ),
+                    const BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: Offset(-5, -5),
+                    ),
+                  ],
+                ),
+                child: ChoiceChip(
+                  padding: const EdgeInsets.all(8),
+                  label: const Text('Income'),
+                  // color of selected chip
+                  selectedColor: Colors.green,
+                  // selected chip value
+                  selected: value.selectCategorytype == CategoryType.income,
+                  // onselected method
+                  onSelected: (bool selected) {
                     // _value = selected ? 1 : null;
-                    _selectCategorytype = CategoryType.income;
-                    _categoryID = null;
-                  });
-                },
+                    value.selectCategorytype = CategoryType.income;
+                    value.notifyListeners();
+                    value.categoryID = null;
+                  },
+                ),
               ),
-            ),
 
-            //width choisechip
+              //width choisechip
 
-            constwidth20,
-            Container(
-              height: 35,
-              decoration: BoxDecoration(
-                color: bgColor,
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade500,
-                    blurRadius: 15,
-                    spreadRadius: 1,
-                    offset: const Offset(5, 5),
-                  ),
-                  const BoxShadow(
-                    color: Colors.white,
-                    blurRadius: 15,
-                    spreadRadius: 1,
-                    offset: Offset(-5, -5),
-                  ),
-                ],
-              ),
-              child: ChoiceChip(
-                padding: const EdgeInsets.all(8),
-                label: const Text('Expense'),
-                // color of selected chip
-                selectedColor: Colors.red,
-                // selected chip value
-                selected: _selectCategorytype == CategoryType.expense,
-                // onselected method
-                onSelected: (bool selected) {
-                  setState(() {
+              constwidth20,
+              Container(
+                height: 35,
+                decoration: BoxDecoration(
+                  color: bgColor,
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade500,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: const Offset(5, 5),
+                    ),
+                    const BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: Offset(-5, -5),
+                    ),
+                  ],
+                ),
+                child: ChoiceChip(
+                  padding: const EdgeInsets.all(8),
+                  label: const Text('Expense'),
+                  // color of selected chip
+                  selectedColor: Colors.red,
+                  // selected chip value
+                  selected: value.selectCategorytype == CategoryType.expense,
+                  // onselected method
+                  onSelected: (bool selected) {
                     // _value = selected ? 2 : null;
-                    _selectCategorytype = CategoryType.expense;
-                    _categoryID = null;
-                  });
-                },
+                    value.selectCategorytype = CategoryType.expense;
+                    value.notifyListeners();
+                    value.categoryID = null;
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          );
+        }),
       ],
     );
   }
@@ -635,90 +635,90 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 
         // dropdwon list
 
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              color: bgColor,
-              borderRadius: BorderRadius.circular(5),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade500,
-                  blurRadius: 15,
-                  spreadRadius: 1,
-                  offset: const Offset(5, 5),
+        Consumer<CategoryDb>(builder: (context, value, child) {
+          return Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: bgColor,
+                borderRadius: BorderRadius.circular(5),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade500,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: const Offset(5, 5),
+                  ),
+                  const BoxShadow(
+                    color: Colors.white,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: Offset(-5, -5),
+                  ),
+                ],
+              ),
+              child: DropdownButtonFormField(
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: bgColor,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: bgColor,
+                    ),
+                  ),
+                  border: const OutlineInputBorder(),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: bgColor,
+                    ),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: bgColor,
+                    ),
+                  ),
                 ),
-                const BoxShadow(
-                  color: Colors.white,
-                  blurRadius: 15,
-                  spreadRadius: 1,
-                  offset: Offset(-5, -5),
+                borderRadius: BorderRadius.circular(
+                  30,
                 ),
-              ],
+                iconSize: 30,
+                elevation: 16,
+                style: const TextStyle(color: Colors.black),
+                hint: const Text(
+                  'Select Category',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                  ),
+                ),
+                value: value.categoryID,
+                items: (value.selectCategorytype == CategoryType.expense
+                        ? value.expenseCategoryListListener
+                        : value.incomeCategoryListListener)
+                    .map((e) {
+                  return DropdownMenuItem(
+                    onTap: () {
+                      context.read<CategoryDb>().setselectedcategorymodels = e;
+                    },
+                    value: e.id,
+                    child: Text(e.name),
+                  );
+                }).toList(),
+                onChanged: (selectedValue) {
+                  value.categoryID = selectedValue;
+                },
+              ),
             ),
-            child: DropdownButtonFormField(
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: bgColor,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: bgColor,
-                  ),
-                ),
-                border: OutlineInputBorder(),
-                errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: bgColor,
-                  ),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: bgColor,
-                  ),
-                ),
-              ),
-              borderRadius: BorderRadius.circular(
-                30,
-              ),
-              iconSize: 30,
-              elevation: 16,
-              style: const TextStyle(color: Colors.black),
-              hint: const Text(
-                'Select Category',
-                style: TextStyle(
-                  fontSize: 20.0,
-                ),
-              ),
-              value: _categoryID,
-              items: (_selectCategorytype == CategoryType.expense
-                      ? CategoryDb().expenseCategoryListListener
-                      : CategoryDb().incomeCategoryListListener)
-                  .value
-                  .map((e) {
-                return DropdownMenuItem(
-                  onTap: () {
-                    _selectedcategorymodels = e;
-                  },
-                  value: e.id,
-                  child: Text(e.name),
-                );
-              }).toList(),
-              onChanged: (selectedValue) {
-                setState(() {
-                  _categoryID = selectedValue;
-                });
-              },
-            ),
-          ),
-        ),
+          );
+        }),
         const SizedBox(
           width: 10,
         ),
         IconButton(
           onPressed: () {
-            showCategoryAddPopup(context, false, _selectCategorytype);
+            showCategoryAddPopup(
+                context, false, context.read<CategoryDb>().selectCategorytype);
           },
           icon: const Icon(
             Icons.add_circle_outline_sharp,
@@ -731,7 +731,7 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
 
   //:::::::::::::::editTransaction:::::::::::::::::::::::::::::::::::::::
 
-  Future<void> editTransactions() async {
+  Future<void> editTransactions(BuildContext context) async {
     final notesText = _notesTextEditingController.text;
     final amountText = _amountTextEditingController.text;
     if (notesText.isEmpty) {
@@ -740,13 +740,13 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
     if (amountText.isEmpty) {
       return;
     }
-    if (_categoryID == null) {
+    if (context.read<CategoryDb>().categoryID == null) {
       return;
     }
-    if (_selectDate == null) {
+    if (context.read<CategoryDb>().selectDate == null) {
       return;
     }
-    if (_selectedcategorymodels == null) {
+    if (context.read<CategoryDb>().selectedcategorymodels == null) {
       return;
     }
 
@@ -756,14 +756,16 @@ class _ScreenAddTransactionState extends State<EditeTransaction> {
     }
 
     final models = TransactionModel(
-      id: widget.value.id,
+      id: value.id,
       notes: notesText,
       amount: parsedAmount,
-      date: _selectDate!,
-      type: _selectCategorytype,
-      category: _selectedcategorymodels!,
+      date: context.read<CategoryDb>().selectDate,
+      type: context.read<CategoryDb>().selectCategorytype,
+      category: context.read<CategoryDb>().selectedcategorymodels!,
     );
-    await TransactionDb.instance.dbEditTransaction(models);
+    await context.read<TransactionDb>().dbEditTransaction(models);
+    context.read<IncomeAndExpence>().incomeandexpense(
+        context.read<TransactionDb>().transactionListNotifire);
     //Navigator.of(context).pop();
     final snackBar = SnackBar(
       duration: const Duration(milliseconds: 500),

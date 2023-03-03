@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
-import '../../models/cetegory/cetegory_models.dart';
 import 'alert_snak_for_category.dart';
 
 class IncomeCategoryList extends StatelessWidget {
@@ -11,10 +11,9 @@ class IncomeCategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: CategoryDb().incomeCategoryListListener,
-      builder: (BuildContext ctx, List<CategoryModels> newlIst, Widget? _) {
-        return newlIst.isEmpty
+    return Consumer<CategoryDb>(
+      builder: (BuildContext ctx, newlIst, Widget? _) {
+        return newlIst.incomeCategoryListListener.isEmpty
             ? Center(child: Lottie.asset('assets/images/empty.json'))
             : GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -23,7 +22,7 @@ class IncomeCategoryList extends StatelessWidget {
                   mainAxisSpacing: 4,
                 ),
                 itemBuilder: (ctx, index) {
-                  final category = newlIst[index];
+                  final category = newlIst.incomeCategoryListListener[index];
                   // delete
                   return Card(
                     margin: const EdgeInsets.symmetric(
@@ -94,7 +93,7 @@ class IncomeCategoryList extends StatelessWidget {
                     ),
                   );
                 },
-                itemCount: newlIst.length,
+                itemCount: newlIst.incomeCategoryListListener.length,
               );
       },
     );

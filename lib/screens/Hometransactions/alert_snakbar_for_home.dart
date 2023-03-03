@@ -1,5 +1,8 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simplemoneymanager/db_functions/category/category_db.dart';
+import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import '../../db_functions/transaction/transaction_db.dart';
 
 alertAndSnakBar(BuildContext context, {required String modelId}) {
@@ -30,9 +33,15 @@ alertAndSnakBar(BuildContext context, {required String modelId}) {
               "Delete",
               style: TextStyle(color: Colors.redAccent),
             ),
-            onPressed: () {
-              TransactionDb.instance.deleteTransaction(modelId);
+            onPressed: () async {
+              await context.read<TransactionDb>().deleteTransaction(modelId);
               Navigator.of(context).pop(true);
+              context.read<TransactionDb>().refresh();
+              context.read<CategoryDb>().refreshUI();
+
+              context.read<IncomeAndExpence>().incomeandexpense(
+                  context.read<TransactionDb>().transactionListNotifire);
+
               final snackBar = SnackBar(
                 duration: const Duration(milliseconds: 600),
                 elevation: 0,

@@ -1,28 +1,23 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/constants/constants.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
-import 'package:simplemoneymanager/constants/notifier.dart';
+import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import '../../db_functions/category/category_db.dart';
 import '../category/category_add_popup.dart';
 
-class ScreenAddTransaction extends StatefulWidget {
-  const ScreenAddTransaction({super.key});
+// ignore: must_be_immutable
 
-  @override
-  State<ScreenAddTransaction> createState() => _ScreenAddTransactionState();
-}
+class ScreenAddTransaction extends StatelessWidget {
+  ScreenAddTransaction({super.key});
 
-class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
-  late DateTime _selectDate = DateTime.now();
   late String dateString;
 
-  CategoryModels? _selectedcategorymodels;
-  String? _categoryID;
   final _formKey = GlobalKey<FormState>();
 
   final _notesTextEditingController = TextEditingController();
@@ -31,7 +26,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   List<String> monthList = [
     "Jan",
     "Feb",
-    "Mrc",
+    "Mar",
     "Apr",
     "May",
     "Jun",
@@ -43,17 +38,19 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     "Dec"
   ];
 
-  @override
-  void initState() {
-    // _selectCategorytype = CategoryType.income;
-    dateString =
-        "${_selectDate.day} ${monthList[_selectDate.month - 1]} ${_selectDate.year} ";
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   // _selectCategorytype = CategoryType.income;
+
+  //   super.initState();
+  // }
 
   bool selectingchip = false;
   @override
   Widget build(BuildContext context) {
+    context.read<CategoryDb>().refreshUI();
+    dateString =
+        "${context.read<CategoryDb>().selectDate.day} ${monthList[context.read<CategoryDb>().selectDate.month - 1]} ${context.read<CategoryDb>().selectDate.year} ";
     final size = MediaQuery.of(context).size;
     return Form(
       key: _formKey,
@@ -111,7 +108,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
                   constHeight30,
                   constHeight30,
                   //:::::::::::::::::::::addButtonSection::::::::
-                  addButtonSection(size),
+                  addButtonSection(size, context),
                 ],
               ),
             ),
@@ -125,7 +122,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
 
   //::::::::::::::::::::::::::addButtonSection::::::::::::::::::::::::::::::::::::::::::::::
 
-  Container addButtonSection(Size size) {
+  Container addButtonSection(Size size, BuildContext context) {
     return Container(
       width: size.width / 3,
       decoration: BoxDecoration(
@@ -149,8 +146,10 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       child: ElevatedButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
-            addTransaction();
-            TransactionDb.instance.refresh();
+            addTransaction(context);
+            context.read<TransactionDb>().refresh();
+            context.read<IncomeAndExpence>().incomeandexpense(
+                context.read<TransactionDb>().transactionListNotifire);
           }
           // FocusManager.instance.primaryFocus?.unfocus();
         },
@@ -275,91 +274,93 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   SizedBox selectDateSection(BuildContext context) {
     return SizedBox(
       height: 50.0,
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: bgColor,
-              borderRadius: BorderRadius.circular(50),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade500,
-                  blurRadius: 15,
-                  spreadRadius: 1,
-                  offset: const Offset(5, 5),
-                ),
-                const BoxShadow(
-                  color: Colors.white,
-                  blurRadius: 15,
-                  spreadRadius: 1,
-                  offset: Offset(-5, -5),
-                ),
-              ],
+      child: Consumer<CategoryDb>(builder: (context, value, child) {
+        return Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: bgColor,
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade500,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: const Offset(5, 5),
+                  ),
+                  const BoxShadow(
+                    color: Colors.white,
+                    blurRadius: 15,
+                    spreadRadius: 1,
+                    offset: Offset(-5, -5),
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(
+                12.0,
+              ),
+              child: const Icon(
+                Icons.date_range,
+                size: 24.0,
+                color: Colors.black,
+              ),
             ),
-            padding: const EdgeInsets.all(
-              12.0,
+            const SizedBox(
+              width: 5.0,
             ),
-            child: const Icon(
-              Icons.date_range,
-              size: 24.0,
-              color: Colors.black,
-            ),
-          ),
-          const SizedBox(
-            width: 5.0,
-          ),
-          TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.black,
-            ),
-            onPressed: () async {
-              final selectedDatetemp = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime.now().subtract(const Duration(days: 30)),
-                  lastDate: DateTime.now(),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.black,
+              ),
+              onPressed: () async {
+                final selectedDatetemp = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate:
+                        DateTime.now().subtract(const Duration(days: 30)),
+                    lastDate: DateTime.now(),
 
-                  //::::::::::::::::::::colendercolor:::::::::::::::::::::::::::::::::::::::::;
+                    //::::::::::::::::::::colendercolor:::::::::::::::::::::::::::::::::::::::::;
 
-                  builder: (context, child) {
-                    return Theme(
-                      data: Theme.of(context).copyWith(
-                        colorScheme: ColorScheme.light(
-                          primary: bgColor,
-                          onPrimary: Colors.blueGrey,
-                          onSurface: Colors.black,
-                        ),
-                        textButtonTheme: TextButtonThemeData(
-                          style: TextButton.styleFrom(
-                            foregroundColor:
-                                Colors.blueGrey, // button text color
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: ColorScheme.light(
+                            primary: bgColor,
+                            onPrimary: Colors.blueGrey,
+                            onSurface: Colors.black,
+                          ),
+                          textButtonTheme: TextButtonThemeData(
+                            style: TextButton.styleFrom(
+                              foregroundColor:
+                                  Colors.blueGrey, // button text color
+                            ),
                           ),
                         ),
-                      ),
-                      child: child!,
-                    );
-                  });
-              if (selectedDatetemp == null) {
-                return;
-              } else {
-                setState(() {
-                  _selectDate = selectedDatetemp;
+                        child: child!,
+                      );
+                    });
+                if (selectedDatetemp == null) {
+                  return;
+                } else {
+                  value.selectDate = selectedDatetemp;
 
                   dateString =
                       "${selectedDatetemp.day} ${monthList[selectedDatetemp.month - 1]} ${selectedDatetemp.year} ";
-                });
-              }
-            },
-            child: Text(
-              // _selectDate == null ? 'SelectDate' : _selectDate!.toString(),
-              dateString,
-              style: const TextStyle(
-                fontSize: 20.0,
+                  context.read<CategoryDb>().notifyListeners();
+                }
+              },
+              child: Text(
+                // _selectDate == null ? 'SelectDate' : _selectDate!.toString(),
+                dateString,
+                style: const TextStyle(
+                  fontSize: 20.0,
+                ),
               ),
-            ),
-          )
-        ],
-      ),
+            )
+          ],
+        );
+      }),
     );
   }
 
@@ -503,85 +504,89 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
 
         //
         constwidth20,
-        Row(
-          children: [
-            Container(
-              height: 35,
-              decoration: BoxDecoration(
-                color: bgColor,
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade500,
-                    blurRadius: 15,
-                    spreadRadius: 1,
-                    offset: const Offset(5, 5),
+        Consumer<CategoryDb>(
+          builder: (context, categorydb, _) {
+            return Row(
+              children: [
+                Container(
+                  height: 35,
+                  decoration: BoxDecoration(
+                    color: bgColor,
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade500,
+                        blurRadius: 15,
+                        spreadRadius: 1,
+                        offset: const Offset(5, 5),
+                      ),
+                      const BoxShadow(
+                        color: Colors.white,
+                        blurRadius: 15,
+                        spreadRadius: 1,
+                        offset: Offset(-5, -5),
+                      ),
+                    ],
                   ),
-                  const BoxShadow(
-                    color: Colors.white,
-                    blurRadius: 15,
-                    spreadRadius: 1,
-                    offset: Offset(-5, -5),
+                  child: ChoiceChip(
+                    padding: const EdgeInsets.all(8),
+                    label: const Text('Income'),
+                    // color of selected chip
+                    selectedColor: Colors.green,
+                    // selected chip value
+                    selected:
+                        categorydb.selectCategorytype == CategoryType.income,
+                    // onselected method
+                    onSelected: (bool selected) {
+                      categorydb.selectCategorytype = CategoryType.income;
+                      categorydb.notifyListeners();
+                      categorydb.categoryID = null;
+                    },
                   ),
-                ],
-              ),
-              child: ChoiceChip(
-                padding: const EdgeInsets.all(8),
-                label: const Text('Income'),
-                // color of selected chip
-                selectedColor: Colors.green,
-                // selected chip value
-                selected: selectCategorytype.value == CategoryType.income,
-                // onselected method
-                onSelected: (bool selected) {
-                  setState(() {
-                    selectCategorytype.value = CategoryType.income;
-                    _categoryID = null;
-                  });
-                },
-              ),
-            ),
+                ),
 
-            //width choisechip
+                //width choisechip
 
-            constwidth20,
-            Container(
-              height: 35,
-              decoration: BoxDecoration(
-                color: bgColor,
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade500,
-                    blurRadius: 15,
-                    spreadRadius: 1,
-                    offset: const Offset(5, 5),
+                constwidth20,
+                Container(
+                  height: 35,
+                  decoration: BoxDecoration(
+                    color: bgColor,
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade500,
+                        blurRadius: 15,
+                        spreadRadius: 1,
+                        offset: const Offset(5, 5),
+                      ),
+                      const BoxShadow(
+                        color: Colors.white,
+                        blurRadius: 15,
+                        spreadRadius: 1,
+                        offset: Offset(-5, -5),
+                      ),
+                    ],
                   ),
-                  const BoxShadow(
-                    color: Colors.white,
-                    blurRadius: 15,
-                    spreadRadius: 1,
-                    offset: Offset(-5, -5),
+                  child: ChoiceChip(
+                    padding: const EdgeInsets.all(8),
+                    label: const Text('Expense'),
+                    // color of selected chip
+                    selectedColor: Colors.red,
+                    // selected chip value
+                    selected:
+                        categorydb.selectCategorytype == CategoryType.expense,
+                    // onselected method
+                    onSelected: (bool selected) {
+                      categorydb.selectCategorytype = CategoryType.expense;
+                      categorydb.notifyListeners();
+                      categorydb.categoryID = null;
+                    },
                   ),
-                ],
-              ),
-              child: ChoiceChip(
-                padding: const EdgeInsets.all(8),
-                label: const Text('Expense'),
-                // color of selected chip
-                selectedColor: Colors.red,
-                // selected chip value
-                selected: selectCategorytype.value == CategoryType.expense,
-                // onselected method
-                onSelected: (bool selected) {
-                  setState(() {
-                    selectCategorytype.value = CategoryType.expense;
-                    _categoryID = null;
-                  });
-                },
-              ),
-            ),
-          ],
+                ),
+              ],
+            );
+          },
         ),
       ],
     );
@@ -628,100 +633,126 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
 
         // dropdwon list
 
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              color: bgColor,
-              borderRadius: BorderRadius.circular(5),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade500,
-                  blurRadius: 15,
-                  spreadRadius: 1,
-                  offset: const Offset(5, 5),
+        Consumer<CategoryDb>(
+          builder: (context, categoryDb, _) {
+            return Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: bgColor,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade500,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: const Offset(5, 5),
+                    ),
+                    const BoxShadow(
+                      color: Colors.white,
+                      blurRadius: 15,
+                      spreadRadius: 1,
+                      offset: Offset(-5, -5),
+                    ),
+                  ],
                 ),
-                const BoxShadow(
-                  color: Colors.white,
-                  blurRadius: 15,
-                  spreadRadius: 1,
-                  offset: Offset(-5, -5),
-                ),
-              ],
-            ),
-            child: DropdownButtonFormField(
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: bgColor,
+                child: DropdownButtonFormField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: bgColor,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: bgColor,
+                      ),
+                    ),
+                    border: const OutlineInputBorder(),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: bgColor,
+                      ),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: bgColor,
+                      ),
+                    ),
                   ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: bgColor,
-                  ),
-                ),
-                border: const OutlineInputBorder(),
-                errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: bgColor,
-                  ),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: bgColor,
-                  ),
-                ),
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please Select Categoy';
-                }
-                return null;
-              },
-              borderRadius: BorderRadius.circular(
-                30,
-              ),
-              iconSize: 30,
-              elevation: 16,
-              style: const TextStyle(color: Colors.black),
-              hint: const Text(
-                'Select Category',
-                style: TextStyle(
-                  fontSize: 20.0,
-                ),
-              ),
-              value: _categoryID,
-              items: (selectCategorytype.value == CategoryType.expense
-                      ? CategoryDb().expenseCategoryListListener
-                      : CategoryDb().incomeCategoryListListener)
-                  .value
-                  .map((e) {
-                return DropdownMenuItem(
-                  onTap: () {
-                    _selectedcategorymodels = e;
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please Select Categoy';
+                    }
+                    return null;
                   },
-                  value: e.id,
-                  child: Text(e.name),
-                );
-              }).toList(),
-              onChanged: (selectedValue) {
-                setState(() {
-                  _categoryID = selectedValue;
-                });
-              },
-            ),
-          ),
+                  borderRadius: BorderRadius.circular(
+                    30,
+                  ),
+                  iconSize: 30,
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.black),
+                  hint: const Text(
+                    'Select Category',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                    ),
+                  ),
+                  value: categoryDb.categoryID,
+                  items: (categoryDb.selectCategorytype == CategoryType.expense
+                          ? categoryDb.expenseCategoryListListener
+                          : categoryDb.incomeCategoryListListener)
+                      .map((e) {
+                    return DropdownMenuItem(
+                      onTap: () {
+                        context.read<CategoryDb>().setselectedcategorymodels =
+                            e;
+                        // context.read<CategoryDb>().notifyListeners();
+                      },
+                      value: e.id,
+                      child: Text(e.name),
+                    );
+                  }).toList(),
+                  onChanged: (selectedValue) {
+                    categoryDb.categoryID = selectedValue;
+                  },
+                ),
+              ),
+            );
+          },
         ),
         const SizedBox(
           width: 10,
         ),
-        IconButton(
-          onPressed: () {
-            showCategoryAddPopup(context, false, selectCategorytype.value);
-          },
-          icon: const Icon(
-            Icons.add_circle_outline_sharp,
-            size: 30,
+        Container(
+          decoration: BoxDecoration(
+            color: bgColor,
+            borderRadius: BorderRadius.circular(5),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade500,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(5, 5),
+              ),
+              const BoxShadow(
+                color: Colors.white,
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: Offset(-5, -5),
+              ),
+            ],
+          ),
+          width: 60,
+          height: 70,
+          child: IconButton(
+            onPressed: () {
+              showCategoryAddPopup(context, false,
+                  context.read<CategoryDb>().selectCategorytype);
+            },
+            icon: const Icon(
+              Icons.add_circle_outline_sharp,
+              size: 30,
+            ),
           ),
         )
       ],
@@ -729,7 +760,7 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
   }
 
 //::::::::::::::::::::::::::::addTransactionFunction:::::::::::::::::::::
-  Future<void> addTransaction() async {
+  Future<void> addTransaction(BuildContext context) async {
     final notesText = _notesTextEditingController.text;
     final amountText = _amountTextEditingController.text;
     if (notesText.isEmpty) {
@@ -738,11 +769,11 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
     if (amountText.isEmpty) {
       return;
     }
-    if (_categoryID == null) {
+    if (context.read<CategoryDb>().categoryID == null) {
       return;
     }
 
-    if (_selectedcategorymodels == null) {
+    if (context.read<CategoryDb>().selectedcategorymodels == null) {
       return;
     }
 
@@ -755,15 +786,19 @@ class _ScreenAddTransactionState extends State<ScreenAddTransaction> {
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       notes: notesText,
       amount: parsedAmount,
-      date: _selectDate,
-      type: selectCategorytype.value,
-      category: _selectedcategorymodels!,
+      date: context.read<CategoryDb>().selectDate,
+      type: context.read<CategoryDb>().selectCategorytype,
+      category: context.read<CategoryDb>().selectedcategorymodels!,
     );
-    await TransactionDb.instance.addTransaction(models);
+    // await TransactionDb.addTransaction(models);
+    await context.read<TransactionDb>().addTransaction(models);
     // ignore: use_build_context_synchronously
     Navigator.of(context).pop();
-    TransactionDb.instance.refresh();
-
+    // TransactionDb.instance.refresh();
+    context.read<TransactionDb>().refresh();
+    context.read<CategoryDb>().refreshUI();
+    context.read<IncomeAndExpence>().incomeandexpense(
+        context.read<TransactionDb>().transactionListNotifire);
     //::::::::::::SnakBarTransaction Add Successfully !massege::::::::::::::
 
     final snackBar = SnackBar(

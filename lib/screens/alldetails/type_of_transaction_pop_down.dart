@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simplemoneymanager/constants/notifier.dart';
+import 'package:provider/provider.dart';
+import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 
 class TypeOfSeeAllDetails extends StatelessWidget {
   const TypeOfSeeAllDetails({
@@ -8,52 +9,59 @@ class TypeOfSeeAllDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<int>(
-      shape: ContinuousRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          50,
-        ),
-      ),
-      child: const Padding(
-        padding: EdgeInsets.only(
-          right: 10.0,
-        ),
-        child: Icon(
-          Icons.more_vert_outlined,
-          size: 30,
-          shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
-          color: Colors.black,
-        ),
-      ),
-      itemBuilder: (conext) => [
-        PopupMenuItem(
-          value: 1,
-          child: const Text(
-            "All",
+    return Consumer<TransactionDb>(
+      builder: (context, transactionDb, child) {
+        return PopupMenuButton<int>(
+          shape: ContinuousRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              50,
+            ),
           ),
-          onTap: () {
-            showCategory.value = "All";
-          },
-        ),
-        PopupMenuItem(
-          value: 2,
-          child: const Text(
-            "Income",
+          child: const Padding(
+            padding: EdgeInsets.only(
+              right: 10.0,
+            ),
+            child: Icon(
+              Icons.more_vert_outlined,
+              size: 30,
+              shadows: <Shadow>[Shadow(color: Colors.white, blurRadius: 15.0)],
+              color: Colors.black,
+            ),
           ),
-          onTap: () {
-            showCategory.value = "Income";
-          },
-        ),
-        PopupMenuItem(
-          value: 3,
-          child: const Text(
-            "Expense",
-          ),
-          onTap: () {
-            showCategory.value = "Expense";
-          },
-        ),
-      ],
+          itemBuilder: (conext) => [
+            PopupMenuItem(
+              value: 1,
+              child: const Text(
+                "All",
+              ),
+              onTap: () {
+                transactionDb.setshowCategory = "All";
+                // context.read<TransactionDb>().notifyListeners();
+              },
+            ),
+            PopupMenuItem(
+              value: 2,
+              child: const Text(
+                "Income",
+              ),
+              onTap: () {
+                transactionDb.setshowCategory = "Income";
+                //  context.read<TransactionDb>().notifyListeners();
+              },
+            ),
+            PopupMenuItem(
+              value: 3,
+              child: const Text(
+                "Expense",
+              ),
+              onTap: () {
+                transactionDb.setshowCategory = "Expense";
+                // context.read<TransactionDb>().notifyListeners();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

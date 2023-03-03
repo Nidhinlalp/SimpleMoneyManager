@@ -3,14 +3,9 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:simplemoneymanager/screens/home/screen_home.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/menu_bar.dart';
 
-class Hompage extends StatefulWidget {
+class Hompage extends StatelessWidget {
   const Hompage(BuildContext context, {super.key});
 
-  @override
-  State<Hompage> createState() => _HompageState();
-}
-
-class _HompageState extends State<Hompage> {
   @override
   Widget build(BuildContext context) => ZoomDrawer(
         style: DrawerStyle.Style1,

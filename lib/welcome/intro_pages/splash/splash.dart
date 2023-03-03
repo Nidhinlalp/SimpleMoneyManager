@@ -1,33 +1,30 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
+import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:simplemoneymanager/screens/hometransactions/zoom_Drawa.dart';
 import 'package:simplemoneymanager/welcome/intro_pages/onbord_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
-class Splash extends StatefulWidget {
+class Splash extends StatelessWidget {
   const Splash({super.key});
 
+  // @override
   @override
-  State<Splash> createState() => _SplashState();
-}
+  Widget build(BuildContext context) {
+    void goHom() {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => Hompage(context)));
+    }
 
-class _SplashState extends State<Splash> {
-  void goHom() {
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => Hompage(context)));
-  }
+    void goIntro() {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => OnbordScreen()));
+    }
 
-  void goIntro() {
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const OnbordScreen()));
-  }
-
-  @override
-  void initState() {
-    super.initState();
     Timer(const Duration(seconds: 2), () async {
       bool seen;
       if (kIsWeb) {
@@ -38,17 +35,17 @@ class _SplashState extends State<Splash> {
       }
 
       if (seen) {
-        await TransactionDb.instance.refresh();
+        await context.read<TransactionDb>().refresh();
+        context.read<IncomeAndExpence>().incomeandexpense(
+            context.read<TransactionDb>().transactionListNotifire);
         goHom();
       } else {
-        await TransactionDb.instance.refresh();
+        await context.read<TransactionDb>().refresh();
+        context.read<IncomeAndExpence>().incomeandexpense(
+            context.read<TransactionDb>().transactionListNotifire);
         goIntro();
       }
     });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
       body: SafeArea(

@@ -5,14 +5,9 @@ import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../colors/colors.dart';
 
-class PraivacyPolicy extends StatefulWidget {
+class PraivacyPolicy extends StatelessWidget {
   const PraivacyPolicy({super.key});
 
-  @override
-  State<PraivacyPolicy> createState() => _AboutState();
-}
-
-class _AboutState extends State<PraivacyPolicy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

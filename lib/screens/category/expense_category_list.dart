@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
-import '../../models/cetegory/cetegory_models.dart';
 import 'alert_snak_for_category.dart';
 
 class ExpenseCategoyList extends StatelessWidget {
@@ -10,10 +10,9 @@ class ExpenseCategoyList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: CategoryDb().expenseCategoryListListener,
-      builder: (BuildContext ctx, List<CategoryModels> newlIst, Widget? _) {
-        return newlIst.isEmpty
+    return Consumer<CategoryDb>(
+      builder: (BuildContext ctx, newlIst, Widget? _) {
+        return newlIst.expenseCategoryListListener.isEmpty
             ? Center(child: Lottie.asset('assets/images/empty.json'))
             : GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -22,7 +21,7 @@ class ExpenseCategoyList extends StatelessWidget {
                   mainAxisSpacing: 4,
                 ),
                 itemBuilder: (ctx, index) {
-                  final category = newlIst[index];
+                  final category = newlIst.expenseCategoryListListener[index];
                   return Card(
                     margin: const EdgeInsets.symmetric(
                       vertical: 30,
@@ -93,7 +92,7 @@ class ExpenseCategoyList extends StatelessWidget {
                 },
 
                 //lkuhgasdljkjgasdlkjghasldkjhg
-                itemCount: newlIst.length,
+                itemCount: newlIst.expenseCategoryListListener.length,
               );
       },
     );

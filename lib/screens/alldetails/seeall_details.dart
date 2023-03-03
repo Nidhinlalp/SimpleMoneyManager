@@ -1,30 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:simplemoneymanager/constants/notifier.dart';
-import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/screens/alldetails/searchaeealldetails.dart';
 import 'package:simplemoneymanager/screens/alldetails/seealldetailstile.dart';
 import '../../../colors/colors.dart';
 import 'filtter_of_see_all_details.dart';
 import 'type_of_transaction_pop_down.dart';
 
-class SeeAllDetails extends StatefulWidget {
+class SeeAllDetails extends StatelessWidget {
   const SeeAllDetails({super.key});
 
   @override
-  State<SeeAllDetails> createState() => _SeeAllDetailsState();
-}
-
-class _SeeAllDetailsState extends State<SeeAllDetails> {
-  @override
-  void initState() {
-    overviewTransactions.value = TransactionDb.transactionListNotifire.value;
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    showCategory.value = "All";
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) =>
+    //     context.read<TransactionDb>().overviewTransactions =
+    //         context.read<TransactionDb>().transactionListNotifire);
+    // context.read<TransactionDb>().refresh();
+    // context.read<CategoryDb>().refreshUI();
+    // context.read<TransactionDb>().showCategory = "All";
     return Scaffold(
       backgroundColor: bgColor,
       appBar: AppBar(

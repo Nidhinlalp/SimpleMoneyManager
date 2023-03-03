@@ -1,9 +1,10 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
-import 'package:simplemoneymanager/constants/notifier.dart';
 import 'package:simplemoneymanager/db_functions/category/category_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
+import 'package:simplemoneymanager/screens/category/radiobutton.dart';
 
 // _selectCategorytype
 
@@ -12,7 +13,7 @@ Future<void> showCategoryAddPopup(
   // final bool boole;
   final nameEditingController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  showDialog(
+  await showDialog(
     context: context,
     builder: (ctx) {
       return Form(
@@ -45,49 +46,46 @@ Future<void> showCategoryAddPopup(
                     ),
                   ],
                 ),
-                child: ValueListenableBuilder(
-                    valueListenable: selectCategoryNotifire,
-                    builder: (context, selectCategory, _) {
-                      return TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Category is empty';
-                          }
-                          return null;
-                        },
-                        controller: nameEditingController,
-                        decoration: InputDecoration(
-                          hintText: boole
-                              ? selectCategory == CategoryType.income
-                                  ? 'Income'
-                                  : 'Expense'
-                              : dop == CategoryType.income
-                                  ? 'Income'
-                                  : 'Expense',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: bgColor,
-                            ),
-                          ),
-                          border: const OutlineInputBorder(),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: bgColor,
-                            ),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: bgColor,
-                            ),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: bgColor,
-                            ),
-                          ),
+                child:
+                    Consumer<CategoryDb>(builder: (context, selectCategory, _) {
+                  return TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Category is empty';
+                      }
+                      return null;
+                    },
+                    controller: nameEditingController,
+                    decoration: InputDecoration(
+                      hintText: boole
+                          ? 'Category name'
+                          : dop == CategoryType.income
+                              ? 'Income'
+                              : 'Expense',
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: bgColor,
                         ),
-                      );
-                    }),
+                      ),
+                      border: const OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: bgColor,
+                        ),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: bgColor,
+                        ),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: bgColor,
+                        ),
+                      ),
+                    ),
+                  );
+                }),
               ),
             ),
             boole == false
@@ -142,9 +140,13 @@ Future<void> showCategoryAddPopup(
                           name: name,
                           // type: Noti().selectCategorytype!.value,
 
-                          type: boole ? selectCategoryNotifire.value : dop);
+                          type: boole
+                              ? context
+                                  .read<CategoryDb>()
+                                  .selectCategoryNotifire
+                              : dop);
 
-                      CategoryDb().insertCategory(category);
+                      context.read<CategoryDb>().insertCategory(category);
                       Navigator.of(ctx).pop();
                       final snackBar = SnackBar(
                         elevation: 0,
@@ -178,42 +180,4 @@ Future<void> showCategoryAddPopup(
       );
     },
   );
-}
-
-class RadioButton extends StatelessWidget {
-  final String title;
-  final CategoryType type;
-  const RadioButton({
-    super.key,
-    required this.title,
-    required this.type,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ValueListenableBuilder(
-            valueListenable: selectCategoryNotifire,
-            builder: (BuildContext ctx, CategoryType newCategory, Widget? _) {
-              return Radio<CategoryType>(
-                fillColor:
-                    MaterialStateColor.resolveWith((states) => Colors.black),
-                focusColor:
-                    MaterialStateColor.resolveWith((states) => Colors.black),
-                value: type,
-                groupValue: newCategory,
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  selectCategoryNotifire.value = value;
-                  selectCategoryNotifire.notifyListeners();
-                },
-              );
-            }),
-        Text(title),
-      ],
-    );
-  }
 }

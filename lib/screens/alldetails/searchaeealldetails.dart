@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
-import 'package:simplemoneymanager/constants/notifier.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 
 //ValueNotifier<List<TransactionModel>> founduser =
 //  ValueNotifier(overviewTransactions.value);
 
-class SearchAllDetails extends StatefulWidget {
+class SearchAllDetails extends StatelessWidget {
   const SearchAllDetails({
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<SearchAllDetails> createState() => _SearchAllDetailsState();
-}
-
-class _SearchAllDetailsState extends State<SearchAllDetails> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,7 +38,7 @@ class _SearchAllDetailsState extends State<SearchAllDetails> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
-            onChanged: (value) => searchresult(value),
+            onChanged: (value) => searchresult(value, context),
             decoration: InputDecoration(
               hintText: 'Search',
               suffixIcon: const Icon(
@@ -68,14 +63,20 @@ class _SearchAllDetailsState extends State<SearchAllDetails> {
     );
   }
 
-  searchresult(String qury) {
+  searchresult(String qury, BuildContext context) {
     if (qury.isEmpty) {
-      overviewTransactions.value = TransactionDb.transactionListNotifire.value;
+      context.read<TransactionDb>().overviewTransactions =
+          context.read<TransactionDb>().transactionListNotifire;
+      context.read<TransactionDb>().notifyListeners();
     } else {
-      overviewTransactions.value = overviewTransactions.value
+      context.read<TransactionDb>().overviewTransactions = context
+          .read<TransactionDb>()
+          .overviewTransactions
           .where(
               (element) => element.category.name.toLowerCase().contains(qury))
           .toList();
+      context.read<TransactionDb>().notifyListeners();
+      //overviewGraphTransactions..notifyListeners();
     }
   }
 }

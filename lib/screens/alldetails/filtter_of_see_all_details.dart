@@ -1,7 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:simplemoneymanager/constants/notifier.dart';
+import 'package:provider/provider.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
-import 'package:simplemoneymanager/screens/alldetails/seeall_details.dart';
 
 class FiltterSeeAllDetails extends StatelessWidget {
   const FiltterSeeAllDetails({
@@ -31,8 +32,8 @@ class FiltterSeeAllDetails extends StatelessWidget {
               "All",
             ),
             onTap: () {
-              overviewTransactions.value =
-                  TransactionDb.transactionListNotifire.value;
+              context.read<TransactionDb>().setOverviewTransactions =
+                  context.read<TransactionDb>().transactionListNotifire;
             },
           ),
           PopupMenuItem(
@@ -41,14 +42,18 @@ class FiltterSeeAllDetails extends StatelessWidget {
               "Today",
             ),
             onTap: () {
-              overviewTransactions.value =
-                  TransactionDb.transactionListNotifire.value;
-              overviewTransactions.value = overviewTransactions.value
-                  .where((element) =>
-                      element.date.day == DateTime.now().day &&
-                      element.date.month == DateTime.now().month &&
-                      element.date.year == DateTime.now().year)
-                  .toList();
+              context.read<TransactionDb>().setOverviewTransactions =
+                  context.read<TransactionDb>().transactionListNotifire;
+              context.read<TransactionDb>().setOverviewTransactions = context
+                  .read<TransactionDb>()
+                  .overviewTransactions
+                  .where((element) {
+                log('Date: ${element.date.day}');
+                return (element.date.day == DateTime.now().day &&
+                    element.date.month == DateTime.now().month &&
+                    element.date.year == DateTime.now().year);
+              }).toList();
+              log('Current OverviewTransactionLength: ${context.read<TransactionDb>().overviewTransactions.length}');
             },
           ),
           PopupMenuItem(
@@ -57,9 +62,12 @@ class FiltterSeeAllDetails extends StatelessWidget {
                 "Yesterday",
               ),
               onTap: () {
-                overviewTransactions.value =
-                    TransactionDb.transactionListNotifire.value;
-                overviewTransactions.value = overviewTransactions.value
+                context.read<TransactionDb>().overviewGraphTransactions =
+                    context.read<TransactionDb>().transactionListNotifire;
+
+                context.read<TransactionDb>().setOverviewTransactions = context
+                    .read<TransactionDb>()
+                    .overviewTransactions
                     .where((element) =>
                         element.date.day == DateTime.now().day - 1 &&
                         element.date.month == DateTime.now().month &&
@@ -72,9 +80,11 @@ class FiltterSeeAllDetails extends StatelessWidget {
                 "Month",
               ),
               onTap: () {
-                overviewTransactions.value =
-                    TransactionDb.transactionListNotifire.value;
-                overviewTransactions.value = overviewTransactions.value
+                context.read<TransactionDb>().setOverviewTransactions =
+                    context.read<TransactionDb>().transactionListNotifire;
+                context.read<TransactionDb>().setOverviewTransactions = context
+                    .read<TransactionDb>()
+                    .overviewTransactions
                     .where((element) =>
                         element.date.month == DateTime.now().month &&
                         element.date.year == DateTime.now().year)

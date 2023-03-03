@@ -1,5 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../db_functions/category/category_db.dart';
 
@@ -47,7 +48,7 @@ alertAndSnakForCategory(BuildContext context, String id) {
               style: TextStyle(color: Colors.red),
             ),
             onPressed: () {
-              CategoryDb.instance.deleteCategory(id);
+              context.read<CategoryDb>().deleteCategory(id);
               Navigator.of(context).pop(true);
               final snackBar = SnackBar(
                 duration: const Duration(milliseconds: 500),

@@ -5,14 +5,9 @@ import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../colors/colors.dart';
 
-class About extends StatefulWidget {
+class About extends StatelessWidget {
   const About({super.key});
 
-  @override
-  State<About> createState() => _AboutState();
-}
-
-class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

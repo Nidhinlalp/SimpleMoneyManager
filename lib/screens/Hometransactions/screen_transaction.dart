@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
-import 'package:simplemoneymanager/constants/notifier.dart';
-import 'package:simplemoneymanager/db_functions/category/category_db.dart';
+import 'package:provider/provider.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
-import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 import 'package:simplemoneymanager/screens/menu_bar_items/menu_bar.dart';
 import 'package:simplemoneymanager/screens/hometransactions/resent_transaction_heding.dart';
 import 'package:simplemoneymanager/screens/hometransactions/transaction_slidable.dart';
@@ -13,29 +11,14 @@ import '../add_transaction/floting_animation.dart';
 import '../home/search_function/main_search.dart';
 import 'carent_balance_card.dart';
 
-class ScreenTransaction extends StatefulWidget {
+class ScreenTransaction extends StatelessWidget {
   const ScreenTransaction({super.key});
 
-  @override
-  State<ScreenTransaction> createState() => _ScreenTransactionState();
-}
-
-class _ScreenTransactionState extends State<ScreenTransaction> {
-  @override
-  void initState() {
-    overviewGraphTransactions.value =
-        TransactionDb.transactionListNotifire.value;
-    super.initState();
-  }
-
+  // @override
   @override
   Widget build(BuildContext context) {
-    TransactionDb.instance.refresh();
-    CategoryDb.instance.refreshUI();
-
-    return ValueListenableBuilder(
-      valueListenable: TransactionDb.transactionListNotifire,
-      builder: (BuildContext ctx, List<TransactionModel> newList, Widget? _) {
+    return Consumer<TransactionDb>(
+      builder: (BuildContext ctx, newList, Widget? _) {
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
@@ -99,14 +82,15 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   //:::::::::::::::curent balance card:::::::::::::::::
-                  const CurrentBalance(),
+                  CurrentBalance(),
                   //::::::::::::RecentTransactionHeding:::::::::::;
-                  RecentTransactionHeding(newList: newList),
+                  RecentTransactionHeding(
+                      newList: newList.transactionListNotifire),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       //::::::::::::::strat of the home list::::::::::::::::
-                      children: newList.isEmpty
+                      children: newList.transactionListNotifire.isEmpty
                           ? [
                               Column(
                                 children: [
@@ -129,9 +113,12 @@ class _ScreenTransactionState extends State<ScreenTransaction> {
                             ]
                           : List.generate(
                               //::::::::cheking1st page 5 item ::::::::::
-                              newList.length > 5 ? 5 : newList.length,
+                              newList.transactionListNotifire.length > 5
+                                  ? 5
+                                  : newList.transactionListNotifire.length,
                               (index) {
-                                final value = newList[index];
+                                final value =
+                                    newList.transactionListNotifire[index];
                                 return Column(
                                   children: [
                                     TransactionSlidable(value: value),

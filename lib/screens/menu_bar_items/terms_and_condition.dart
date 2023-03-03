@@ -5,14 +5,9 @@ import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../colors/colors.dart';
 
-class TemsAndCondition extends StatefulWidget {
+class TemsAndCondition extends StatelessWidget {
   const TemsAndCondition({super.key});
 
-  @override
-  State<TemsAndCondition> createState() => _AboutState();
-}
-
-class _AboutState extends State<TemsAndCondition> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

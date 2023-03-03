@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../../../db_functions/category/category_db.dart';
+import 'package:provider/provider.dart';
 import '../../../db_functions/transaction/transaction_db.dart';
 import '../../../models/transaction/transaction_model.dart';
 import '../../hometransactions/transaction_slidable.dart';
@@ -47,13 +47,12 @@ class MySearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    TransactionDb.instance.refresh();
-    CategoryDb.instance.refreshUI();
-    return ValueListenableBuilder(
-      valueListenable: TransactionDb.transactionListNotifire,
-      builder: (BuildContext ctx, List<TransactionModel> newList, Widget? _) {
+    // context.read<TransactionDb>().refresh();
+    // context.read<CategoryDb>().refreshUI();
+    return Consumer<TransactionDb>(
+      builder: (BuildContext ctx, newList, Widget? _) {
         List<TransactionModel> searchResult = [];
-        searchResult = newList
+        searchResult = newList.transactionListNotifire
             .where((element) => element.category.name.contains(query))
             .toList();
         return searchResult.isEmpty

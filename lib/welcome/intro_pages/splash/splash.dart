@@ -36,12 +36,12 @@ class Splash extends StatelessWidget {
 
       if (seen) {
         await context.read<TransactionDb>().refresh();
-        context.read<IncomeAndExpence>().incomeandexpense(
+        context.read<TransactionDb>().incomeandexpense(
             context.read<TransactionDb>().transactionListNotifire);
         goHom();
       } else {
         await context.read<TransactionDb>().refresh();
-        context.read<IncomeAndExpence>().incomeandexpense(
+        context.read<TransactionDb>().incomeandexpense(
             context.read<TransactionDb>().transactionListNotifire);
         goIntro();
       }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 
 // abstract class TransactionDbFunctions {
@@ -67,7 +68,7 @@ class TransactionDb with ChangeNotifier {
     transactionListNotifire.clear();
     transactionListNotifire.addAll(list);
     overviewTransactions = transactionListNotifire;
-
+    incomeandexpense(transactionListNotifire);
     // context.read<IncomeAndExpence>().incomeandexpense(transactionListNotifire);
     notifyListeners();
   }
@@ -87,5 +88,27 @@ class TransactionDb with ChangeNotifier {
     final db = await Hive.openBox<TransactionModel>(transactionDbName);
     await db.put(value.id, value);
     refresh();
+  }
+
+  double incomtotel = 0;
+  double expensetotel = 0;
+  double totalbalanse = 0;
+
+  void incomeandexpense(List<TransactionModel> listofModel) {
+    incomtotel = 0;
+    expensetotel = 0;
+    totalbalanse = 0;
+
+    final List<TransactionModel> value = listofModel;
+
+    for (int i = 0; i < value.length; i++) {
+      if (CategoryType.income == value[i].category.type) {
+        incomtotel = incomtotel + value[i].amount;
+      } else {
+        expensetotel = expensetotel + value[i].amount;
+      }
+    }
+    totalbalanse = incomtotel - expensetotel;
+    notifyListeners();
   }
 }

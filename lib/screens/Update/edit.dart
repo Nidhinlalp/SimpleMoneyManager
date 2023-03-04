@@ -6,7 +6,6 @@ import 'package:simplemoneymanager/constants/constants.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
-import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import '../../colors/colors.dart';
 import '../../db_functions/category/category_db.dart';
 import '../category/category_add_popup.dart';
@@ -51,7 +50,7 @@ class EditeTransaction extends StatelessWidget {
     if (isExecuted == false) {
       context.read<CategoryDb>().refreshUI();
       context.read<TransactionDb>().refresh();
-      context.read<IncomeAndExpence>().incomeandexpense(
+      context.read<TransactionDb>().incomeandexpense(
           context.read<TransactionDb>().transactionListNotifire);
       context.read<CategoryDb>().selectedcategorymodels = value.category;
       // _value = widget.value.type.index;
@@ -764,7 +763,7 @@ class EditeTransaction extends StatelessWidget {
       category: context.read<CategoryDb>().selectedcategorymodels!,
     );
     await context.read<TransactionDb>().dbEditTransaction(models);
-    context.read<IncomeAndExpence>().incomeandexpense(
+    context.read<TransactionDb>().incomeandexpense(
         context.read<TransactionDb>().transactionListNotifire);
     //Navigator.of(context).pop();
     final snackBar = SnackBar(

@@ -44,9 +44,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => OnBoardingProvider(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => IncomeAndExpence(),
-        ),
       ],
       child: const MaterialApp(
         home: Splash(),

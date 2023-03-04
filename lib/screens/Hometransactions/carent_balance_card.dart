@@ -5,7 +5,6 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
-import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class CurrentBalance extends StatelessWidget {
@@ -57,8 +56,8 @@ class CurrentBalance extends StatelessWidget {
                     ],
                   ),
                   //:::::::::::::::::::::::::::::::::strat the 1st flip::::::::::::::::::::::::::::::::::::::::::::::::
-                  child: Consumer<IncomeAndExpence>(
-                      builder: (context, value, child) {
+                  child:
+                      Consumer<TransactionDb>(builder: (context, value, child) {
                     return Column(
                       children: <Widget>[
                         Row(
@@ -212,11 +211,11 @@ class CurrentBalance extends StatelessWidget {
                       Consumer<TransactionDb>(builder: (context, allData, _) {
                     Map incomeMap = {
                       "name": "Income",
-                      "amount": context.read<IncomeAndExpence>().incomtotel
+                      "amount": context.read<TransactionDb>().incomtotel
                     };
                     Map expenseMap = {
                       "name": "Expence",
-                      "amount": context.read<IncomeAndExpence>().expensetotel
+                      "amount": context.read<TransactionDb>().expensetotel
                     };
                     List<Map> dataList = [incomeMap, expenseMap];
                     return Column(
@@ -293,7 +292,7 @@ class CurrentBalance extends StatelessWidget {
     );
   }
 
-  Widget totelbalance(IncomeAndExpence value) {
+  Widget totelbalance(TransactionDb value) {
     var tBalance = value.totalbalanse;
     tBalance = tBalance < 0 ? tBalance * -1 : tBalance;
 

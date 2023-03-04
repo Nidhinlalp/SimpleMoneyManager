@@ -7,7 +7,6 @@ import 'package:simplemoneymanager/constants/constants.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
-import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import '../../db_functions/category/category_db.dart';
 import '../category/category_add_popup.dart';
 
@@ -148,7 +147,7 @@ class ScreenAddTransaction extends StatelessWidget {
           if (_formKey.currentState!.validate()) {
             addTransaction(context);
             context.read<TransactionDb>().refresh();
-            context.read<IncomeAndExpence>().incomeandexpense(
+            context.read<TransactionDb>().incomeandexpense(
                 context.read<TransactionDb>().transactionListNotifire);
           }
           // FocusManager.instance.primaryFocus?.unfocus();
@@ -797,7 +796,7 @@ class ScreenAddTransaction extends StatelessWidget {
     // TransactionDb.instance.refresh();
     context.read<TransactionDb>().refresh();
     context.read<CategoryDb>().refreshUI();
-    context.read<IncomeAndExpence>().incomeandexpense(
+    context.read<TransactionDb>().incomeandexpense(
         context.read<TransactionDb>().transactionListNotifire);
     //::::::::::::SnakBarTransaction Add Successfully !massege::::::::::::::
 

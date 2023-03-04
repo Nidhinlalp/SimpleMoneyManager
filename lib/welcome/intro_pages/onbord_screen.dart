@@ -70,11 +70,11 @@ class OnbordScreen extends StatelessWidget {
                             if (kIsWeb == false) {
                               // TransactionDb.instance.refresh();
                               context.read<TransactionDb>().refresh();
-                              context.read<IncomeAndExpence>().incomeandexpense(
+                              context.read<TransactionDb>().incomeandexpense(
                                   context
                                       .read<TransactionDb>()
                                       .transactionListNotifire);
-                              context.read<IncomeAndExpence>().incomeandexpense(
+                              context.read<TransactionDb>().incomeandexpense(
                                   context
                                       .read<TransactionDb>()
                                       .transactionListNotifire);

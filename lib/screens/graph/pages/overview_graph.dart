@@ -3,7 +3,6 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
-import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class OverViewGraph extends StatelessWidget {
@@ -17,11 +16,11 @@ class OverViewGraph extends StatelessWidget {
       body: Consumer<TransactionDb>(builder: (context, allData, _) {
         Map incomeMap = {
           "name": "Income",
-          "amount": context.read<IncomeAndExpence>().incomtotel
+          "amount": context.read<TransactionDb>().incomtotel
         };
         Map expenseMap = {
           "name": "Expense",
-          "amount": context.read<IncomeAndExpence>().expensetotel
+          "amount": context.read<TransactionDb>().expensetotel
         };
         List<Map> dataList = [incomeMap, expenseMap];
         return allData.overviewGraphTransactions.isEmpty

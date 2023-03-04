@@ -3,29 +3,14 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
 
-// abstract class TransactionDbFunctions {
-//   Future<void> addTransaction(TransactionModel obj);
-//   Future<List<TransactionModel>> getAllTransaction();
-//   Future<void> deleteTransaction(String id);
-// } //includer class
-
 class TransactionDb with ChangeNotifier {
   static const transactionDbName = 'transaction-db';
-  // TransactionDb._internal();
   String showCategory = ("All");
   String dateFilterTitle = "All";
 
   List<TransactionModel> transactionListNotifire = [];
   List<TransactionModel> overviewGraphTransactions = [];
-  // TransactionDb.instance.transactionListNotifire;
   List<TransactionModel> overviewTransactions = [];
-  // (TransactionDb.instance.transactionListNotifire);
-
-  // static TransactionDb instance = TransactionDb._internal();
-
-  // factory TransactionDb() {
-  //   return instance;
-  // }
 
   set setOverviewTransactions(List<TransactionModel> overviwnewList) {
     overviewTransactions = overviwnewList;
@@ -69,7 +54,6 @@ class TransactionDb with ChangeNotifier {
     transactionListNotifire.addAll(list);
     overviewTransactions = transactionListNotifire;
     incomeandexpense(transactionListNotifire);
-    // context.read<IncomeAndExpence>().incomeandexpense(transactionListNotifire);
     notifyListeners();
   }
 

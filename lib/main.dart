@@ -6,7 +6,6 @@ import 'package:simplemoneymanager/db_functions/onbordingprovider.dart';
 import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
-import 'package:simplemoneymanager/screens/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'welcome/intro_pages/splash/splash.dart';
 
 Future<void> main() async {

@@ -2,12 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 
-// abstract class CatageryDbFunctions {
-//   Future<List<CategoryModels>> getCategories();
-//   Future<void> insertCategory(CategoryModels value);
-//   Future<void> deleteCategory(String categoryID);
-// }
-
 class CategoryDb with ChangeNotifier {
   String? categoryID;
   CategoryModels? selectedcategorymodels;
@@ -16,14 +10,6 @@ class CategoryDb with ChangeNotifier {
   CategoryType selectCategoryNotifire = (CategoryType.income);
   static const categoryDbName = 'category-database';
 
-  // CategoryDb._internal();
-
-  // static CategoryDb instance = CategoryDb._internal();
-
-  // factory CategoryDb() {
-  //   return instance;
-
-  // }
   set setcategoryID(String categoryid) {
     categoryID = categoryid;
     notifyListeners();

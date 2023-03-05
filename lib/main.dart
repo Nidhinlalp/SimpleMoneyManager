@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:simplemoneymanager/db_functions/category/category_db.dart';
-import 'package:simplemoneymanager/db_functions/onbordingprovider.dart';
-import 'package:simplemoneymanager/db_functions/transaction/transaction_db.dart';
+import 'package:simplemoneymanager/view_model/category/category_db.dart';
+import 'package:simplemoneymanager/view_model/onbordingprovider.dart';
+import 'package:simplemoneymanager/view_model/transaction/transaction_db.dart';
 import 'package:simplemoneymanager/models/cetegory/cetegory_models.dart';
 import 'package:simplemoneymanager/models/transaction/transaction_model.dart';
-import 'welcome/intro_pages/splash/splash.dart';
+import 'view/welcome/intro_pages/splash/splash.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -5,13 +5,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simplemoneymanager/view_model/category/category_db.dart';
 import 'package:simplemoneymanager/view_model/onbordingprovider.dart';
 import 'package:simplemoneymanager/view_model/transaction/transaction_db.dart';
-import 'package:simplemoneymanager/view/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:simplemoneymanager/view/hometransactions/zoom_Drawa.dart';
 import 'package:simplemoneymanager/view/welcome/intro_pages/indro_page_one.dart';
 import 'package:simplemoneymanager/view/welcome/intro_pages/indro_page_tree.dart';
 import 'package:simplemoneymanager/view/welcome/intro_pages/indro_page_two.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+// ignore: must_be_immutable
 class OnbordScreen extends StatelessWidget {
   OnbordScreen({super.key});
 

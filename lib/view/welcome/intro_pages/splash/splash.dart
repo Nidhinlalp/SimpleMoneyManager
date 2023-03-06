@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simplemoneymanager/colors/colors.dart';
 import 'package:simplemoneymanager/view_model/transaction/transaction_db.dart';
-import 'package:simplemoneymanager/view/hometransactions/sortincomeandexpense/incomeandexpense.dart';
 import 'package:simplemoneymanager/view/hometransactions/zoom_Drawa.dart';
 import 'package:simplemoneymanager/view/welcome/intro_pages/onbord_screen.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;

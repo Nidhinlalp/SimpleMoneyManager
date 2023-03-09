@@ -160,9 +160,11 @@ class EditeTransaction extends StatelessWidget {
           ],
         ),
         child: ElevatedButton(
-          onPressed: () {
+          onPressed: () async {
             if (_formKey.currentState!.validate()) {
-              editTransactions(context);
+              await editTransactions(context);
+              // ignore: use_build_context_synchronously
+              Navigator.pop(context);
             }
             // Navigator.of(context).pop();
           },
